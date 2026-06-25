@@ -517,7 +517,7 @@ irm https://claude.ai/install.ps1 | iex</div>
     <section class="page" id="context">
       <h1>上下文窗口</h1>
       <p class="lead">Claude 只知道<b>放进一个工作空间（上下文窗口）</b>里的东西——可以把它看作 Claude 的‘<b>桌面</b>’。不在桌面上的，Claude 也不知道。</p>
-      <p class="defs">每一格的高度 = 它占用的量。亲自输入、点按钮来填满它看看。</p>
+      <p class="defs">每一格的高度 = 它占用的量。亲自输入、点按钮来填满它看看。（每个方块上的 token 数是帮助理解的<span class="exb">示例</span>。）</p>
       <div class="cols">
         <div>
           <div class="head"><span class="l">用量</span><span class="n" id="num"><span id="tok">0</span><span class="max"> / 40,000</span></span></div>
@@ -838,7 +838,7 @@ description: 按公司格式撰写周报
         <li><b>可以限制它能做的事。</b><span>例：‘代码审查’助手只能读、不能改 —— 更安全。</span></li>
         <li><b>内置助手有 Explore（探索）、Plan（计划）、General-purpose（通用）等。</b><span>其他的可以自己创建（<code>.claude/agents/</code>）。</span></li>
       </ul>
-      <p class="note">同时运行多个会话来协作的‘代理团队（agent teams）’是另外的实验功能。（来源：官方文档）</p>
+      <p class="note">图条和 token 数字是帮助理解的<span class="exb">示例</span>（实际值因任务而异）。同时运行多个会话来协作的‘代理团队（agent teams）’是另外的实验功能。（来源：官方文档）</p>
     </section>
 
     <!-- 13 IMAGES -->
@@ -1373,7 +1373,7 @@ description: 按公司格式撰写周报
   function countTo(k,target,dur,done){ var start=counts[k],steps=Math.max(1,Math.round(dur/40)),i=0; (function st(){ i++; counts[k]=Math.round(start+(target-start)*(i/steps)); meter(); if(i<steps)lcT.push(setTimeout(st,40)); else if(done)done(); })(); }
   function lcVisual(stage){ document.querySelectorAll('.stage').forEach(function(s){ s.classList.toggle('on',s.dataset.st===stage); });
     if(stage==='input'){ sv.innerHTML='<div class="sv-title">输入 — 读取</div><div class="sv-bar"><div class="sv-fill" style="background:var(--blue)"></div></div><div class="sv-desc">把我的问题 + 整个上下文窗口一次性读进来。右边的输入 token 会涨上去。</div>'; lcT.push(setTimeout(function(){ var f=sv.querySelector('.sv-fill'); if(f)f.style.width='100%'; },60)); }
-    else if(stage==='think'){ sv.innerHTML='<div class="sv-title">思考 — 内部推理 <span style="font-weight:300;color:var(--faint);font-size:12px;">(可选功能)</span></div><div class="think-dots"><i></i><i></i><i></i> &nbsp;<span id="lc-think">思考中…</span></div><div class="sv-desc">回答前一步步地推敲。通常是隐藏的，但<b>和输出同价</b>，所以右边的‘思考’token 涨得最多。</div>'; var t='法国…欧洲的国家…首都是…巴黎…',el=document.getElementById('lc-think'),i=0; (function ty(){ if(!el)return; el.textContent=t.slice(0,i)||'思考中…'; if(i++<=t.length)lcT.push(setTimeout(ty,55)); })(); }
+    else if(stage==='think'){ sv.innerHTML='<div class="sv-title">思考 — 内部推理 <span style="font-weight:300;color:var(--faint);font-size:12px;">(可选功能)</span></div><div class="think-dots"><i></i><i></i><i></i> &nbsp;<span id="lc-think">思考中…</span></div><div class="sv-desc">回答前会一步步思考。通常隐藏，<b>按与输出相同的价格</b>计费。问题越难，‘思考’token 可能用得越多（数字仅为<b>示例</b>）。</div>'; var t='法国…欧洲的国家…首都是…巴黎…',el=document.getElementById('lc-think'),i=0; (function ty(){ if(!el)return; el.textContent=t.slice(0,i)||'思考中…'; if(i++<=t.length)lcT.push(setTimeout(ty,55)); })(); }
     else { sv.innerHTML='<div class="sv-title">输出 — 写回答</div><div class="sv-type" id="lc-type"></div><div class="sv-desc">这是实际看到的回答。右边的输出 token 会涨上去。</div>'; var msg='是巴黎。它是法国的首都，也是最大的城市。',e2=document.getElementById('lc-type'),j=0; (function ty2(){ if(!e2)return; e2.textContent=msg.slice(0,j); if(j++<=msg.length)lcT.push(setTimeout(ty2,32)); })(); } }
   var lcMap={input:'in',think:'th',output:'out'},lcTg={input:500,think:2000,output:50};
   function lcSet(stage){ lcClear(); mreset(); lcVisual(stage); countTo(lcMap[stage],lcTg[stage],800); }
@@ -1616,7 +1616,7 @@ description: 按公司格式撰写周报
       var set=function(k,v,col){ document.getElementById('ef-f-'+k).style.width=(v*20)+'%'; document.getElementById('ef-f-'+k).style.background=col; document.getElementById('ef-v-'+k).textContent=RATE[v]; };
       set('acc',d.acc,'#1f9e76'); set('sp',d.sp,'#3b7dd8'); set('cost',d.cost,'#d8662f');
       efT.forEach(clearTimeout); efT=[]; efThink.innerHTML='';
-      d.steps.forEach(function(s,k){ var el=document.createElement('div'); el.className='efline'; el.textContent=(k+1)+'. '+s; efThink.appendChild(el); efT.push(setTimeout(function(){ el.classList.add('on'); },120+k*200)); });
+      d.steps.forEach(function(s,k){ var el=document.createElement('div'); el.className='efline'; el.textContent=(k+1)+'. '+s; efThink.appendChild(el); efT.push(setTimeout(function(){ el.classList.add('on'); },140+k*280)); });
     }
     EF.forEach(function(d,i){ var b=document.createElement('button'); b.className='efbtn'+(i===2?' on':''); b.innerHTML=d.n+'<span class="efd">'+d.d+'</span>'; b.addEventListener('click',function(){ efShow(i); }); efBtns.appendChild(b); });
     efShow(2);

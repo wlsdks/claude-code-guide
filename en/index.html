@@ -517,7 +517,7 @@ irm https://claude.ai/install.ps1 | iex</div>
     <section class="page" id="context">
       <h1>Context window</h1>
       <p class="lead">Claude only knows what's loaded into <b>one workspace (the context window)</b> — think of it as Claude's <b>'desk.'</b> If it's not on the desk, Claude doesn't know it.</p>
-      <p class="defs">A block's height = how much room it takes up. Type something and press the buttons to fill it.</p>
+      <p class="defs">A block's height = how much room it takes up. Type something and press the buttons to fill it. (The token counts on each block are an <span class="exb">example</span> to aid understanding.)</p>
       <div class="cols">
         <div>
           <div class="head"><span class="l">Usage</span><span class="n" id="num"><span id="tok">0</span><span class="max"> / 40,000</span></span></div>
@@ -838,7 +838,7 @@ description: Write the weekly report in the company format
         <li><b>You can limit what they're allowed to do.</b><span>e.g. a 'code review' helper can only read, not edit — safer.</span></li>
         <li><b>Built-in helpers include Explore, Plan, and General-purpose.</b><span>Beyond those, you can make your own (<code>.claude/agents/</code>).</span></li>
       </ul>
-      <p class="note">'Agent teams' — running multiple sessions at once to collaborate — is a separate experimental feature. (Source: official docs.)</p>
+      <p class="note">The bars and token numbers are an <span class="exb">example</span> to aid understanding (real values vary by task). 'Agent teams' — running multiple sessions at once to collaborate — is a separate experimental feature. (Source: official docs.)</p>
     </section>
 
     <!-- 13 IMAGES -->
@@ -1372,7 +1372,7 @@ description: Write the weekly report in the company format
   function countTo(k,target,dur,done){ var start=counts[k],steps=Math.max(1,Math.round(dur/40)),i=0; (function st(){ i++; counts[k]=Math.round(start+(target-start)*(i/steps)); meter(); if(i<steps)lcT.push(setTimeout(st,40)); else if(done)done(); })(); }
   function lcVisual(stage){ document.querySelectorAll('.stage').forEach(function(s){ s.classList.toggle('on',s.dataset.st===stage); });
     if(stage==='input'){ sv.innerHTML='<div class="sv-title">Input — reading</div><div class="sv-bar"><div class="sv-fill" style="background:var(--blue)"></div></div><div class="sv-desc">It reads your question + the whole context window all at once. The input tokens rise on the right.</div>'; lcT.push(setTimeout(function(){ var f=sv.querySelector('.sv-fill'); if(f)f.style.width='100%'; },60)); }
-    else if(stage==='think'){ sv.innerHTML='<div class="sv-title">Thinking — internal reasoning <span style="font-weight:300;color:var(--faint);font-size:12px;">(optional feature)</span></div><div class="think-dots"><i></i><i></i><i></i> &nbsp;<span id="lc-think">Thinking…</span></div><div class="sv-desc">It works through it step by step before replying. Usually hidden, but it\'s <b>the same price as output</b>, so the \'thinking\' tokens on the right rise the most.</div>'; var t='France… a country in Europe… the capital is… Paris…',el=document.getElementById('lc-think'),i=0; (function ty(){ if(!el)return; el.textContent=t.slice(0,i)||'Thinking…'; if(i++<=t.length)lcT.push(setTimeout(ty,55)); })(); }
+    else if(stage==='think'){ sv.innerHTML='<div class="sv-title">Thinking — internal reasoning <span style="font-weight:300;color:var(--faint);font-size:12px;">(optional feature)</span></div><div class="think-dots"><i></i><i></i><i></i> &nbsp;<span id="lc-think">Thinking…</span></div><div class="sv-desc">It reasons step by step before answering. Usually hidden, and <b>billed at the same price as output</b>. The harder the problem, the more \'thinking\' tokens it can use (numbers are an <b>example</b>).</div>'; var t='France… a country in Europe… the capital is… Paris…',el=document.getElementById('lc-think'),i=0; (function ty(){ if(!el)return; el.textContent=t.slice(0,i)||'Thinking…'; if(i++<=t.length)lcT.push(setTimeout(ty,55)); })(); }
     else { sv.innerHTML='<div class="sv-title">Output — writing the reply</div><div class="sv-type" id="lc-type"></div><div class="sv-desc">This is the reply you actually see. The output tokens rise on the right.</div>'; var msg='It\'s Paris. It\'s the capital and largest city of France.',e2=document.getElementById('lc-type'),j=0; (function ty2(){ if(!e2)return; e2.textContent=msg.slice(0,j); if(j++<=msg.length)lcT.push(setTimeout(ty2,32)); })(); } }
   var lcMap={input:'in',think:'th',output:'out'},lcTg={input:500,think:2000,output:50};
   function lcSet(stage){ lcClear(); mreset(); lcVisual(stage); countTo(lcMap[stage],lcTg[stage],800); }
@@ -1615,7 +1615,7 @@ description: Write the weekly report in the company format
       var set=function(k,v,col){ document.getElementById('ef-f-'+k).style.width=(v*20)+'%'; document.getElementById('ef-f-'+k).style.background=col; document.getElementById('ef-v-'+k).textContent=RATE[v]; };
       set('acc',d.acc,'#1f9e76'); set('sp',d.sp,'#3b7dd8'); set('cost',d.cost,'#d8662f');
       efT.forEach(clearTimeout); efT=[]; efThink.innerHTML='';
-      d.steps.forEach(function(s,k){ var el=document.createElement('div'); el.className='efline'; el.textContent=(k+1)+'. '+s; efThink.appendChild(el); efT.push(setTimeout(function(){ el.classList.add('on'); },120+k*200)); });
+      d.steps.forEach(function(s,k){ var el=document.createElement('div'); el.className='efline'; el.textContent=(k+1)+'. '+s; efThink.appendChild(el); efT.push(setTimeout(function(){ el.classList.add('on'); },140+k*280)); });
     }
     EF.forEach(function(d,i){ var b=document.createElement('button'); b.className='efbtn'+(i===2?' on':''); b.innerHTML=d.n+'<span class="efd">'+d.d+'</span>'; b.addEventListener('click',function(){ efShow(i); }); efBtns.appendChild(b); });
     efShow(2);
