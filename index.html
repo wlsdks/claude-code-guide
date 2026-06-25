@@ -177,6 +177,18 @@
   .cwba-d{ font-size:12px; color:var(--muted); margin-top:3px; }
   .cwba-arrow{ align-self:center; color:var(--faint); font-size:18px; flex:0 0 auto; }
   .cwba-note{ font-size:12.5px; color:var(--muted); margin-top:9px; line-height:1.6; }
+  .cwba-kd{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
+  .cwba-kdc{ border:1px solid var(--line2); border-radius:11px; padding:12px 14px; }
+  .cwba-kdc.keep{ border-color:rgba(31,158,118,.34); background:rgba(31,158,118,.06); }
+  .cwba-kdc.drop{ background:var(--row); }
+  .cwba-kdh{ font-size:13px; font-weight:600; margin-bottom:9px; display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+  .cwba-kdc.keep .cwba-kdh{ color:var(--good); } .cwba-kdc.drop .cwba-kdh{ color:var(--muted); }
+  .cwba-kdh span{ font-size:10px; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:.4px; }
+  .cwba-kdi{ font-size:12.5px; color:var(--ink); padding:6px 0; border-top:1px solid var(--line); line-height:1.5; }
+  .cwba-kdi:first-of-type{ border-top:none; padding-top:0; }
+  .cwba-kdex{ color:var(--faint); font-size:11.5px; }
+  .cwba-kdnote{ font-size:12.5px; color:var(--muted); margin:11px 0 0; line-height:1.6; }
+  @media(max-width:680px){ .cwba-kd{ grid-template-columns:1fr; } }
   @media (max-width:560px){ .cwba-row{ flex-direction:column; } .cwba-arrow{ transform:rotate(90deg); } }
   /* cowork */
   .cwapp{ border:1px solid var(--line2); border-radius:14px; background:var(--panel); overflow:hidden; box-shadow:var(--shadow); }
@@ -844,10 +856,19 @@ irm https://claude.ai/install.ps1 | iex</div>
           <div class="cwba-card hl"><div class="cwba-k">압축 이후</div><div class="cwba-v" id="cwba-post">—</div><div class="cwba-d">핵심만 ‘요약 한 칸’으로</div></div>
         </div>
         <div class="cwba-note" id="cwba-note"></div>
-      </div>
-      <div class="cmp">
-        <div class="cmpcard"><h4>남는 것</h4><div class="who">요약에 보존</div><div class="cmprow">내 요청과 의도</div><div class="cmprow">읽거나 고친 파일 목록과 핵심 코드</div><div class="cmprow">오류와 해결 과정, 남은 할 일</div></div>
-        <div class="cmpcard"><h4>사라지는 것</h4><div class="who">공간 절약</div><div class="cmprow">긴 명령 실행 출력(터미널 결과)</div><div class="cmprow">중간 단계의 장황한 설명</div><div class="cmprow">중복된 내용</div></div>
+        <div class="cwba-kd">
+          <div class="cwba-kdc keep"><div class="cwba-kdh">남는 것 <span>핵심·항상 필요</span></div>
+            <div class="cwba-kdi">시스템 안내 · 도구 목록 · 기억(CLAUDE.md)</div>
+            <div class="cwba-kdi">내 최근 요청 · 정한 규칙 · 파일 이름 목록</div>
+            <div class="cwba-kdi">지금까지 한 일 ‘요약 한 칸’<br><span class="cwba-kdex">예: “행사 명단 800명 중 중복 32건 정리·날짜순 정렬 완료”</span></div>
+          </div>
+          <div class="cwba-kdc drop"><div class="cwba-kdh">사라지는 것 <span>공간 절약</span></div>
+            <div class="cwba-kdi">옛 대화 메시지들 (오래된 질문·답)</div>
+            <div class="cwba-kdi">긴 도구 결과 (검색·파일 내용 전체, 표 미리보기)</div>
+            <div class="cwba-kdi">중간 과정의 장황한 설명<br><span class="cwba-kdex">예: 중복된 이름 800줄 전체 목록</span></div>
+          </div>
+        </div>
+        <p class="cwba-kdnote">→ 그래서 압축 뒤에도 <b>‘무슨 일을 어떻게 했는지’는 이어져요.</b> 버려진 상세(예: 이름 전체 목록)가 다시 필요하면 클로드가 <b>그 파일을 다시 읽어요.</b></p>
       </div>
       <p class="note"><b>언제 시작되나?</b> 컨텍스트 창이 <b>거의 꽉 찼을 때(한계 근처)</b> 자동으로 시작돼요. 정확한 기준 %는 공식적으로 공개돼 있지 않아요(“한계에 가까워지면”이라고만 안내). 압축 뒤에도 시스템 지침·CLAUDE.md·메모리·MCP 도구는 자동으로 다시 불러오지만, 처음 보였던 <b>스킬 목록</b>은 다시 채워지지 않고 ‘이미 사용한 스킬’만 남아요. 수동 <code>/compact</code> 도 같은 원리예요. (출처: 공식 문서, 2026년 6월 기준)</p>
     </section>
