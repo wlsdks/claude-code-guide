@@ -229,6 +229,19 @@
   .runbar{ height:8px; border-radius:6px; background:var(--line); overflow:hidden; margin:8px 0; }
   .runbar > i{ display:block; height:100%; width:0; background:var(--accent); transition:width .25s linear; }
   .runbar.bad > i{ background:var(--over); }
+  /* how-it-works agentic loop flow */
+  .flow{ display:flex; flex-direction:column; gap:10px; margin:6px 0 14px; }
+  .fstep{ display:flex; gap:11px; align-items:flex-start; opacity:0; transform:translateY(5px); transition:opacity .35s,transform .35s; }
+  .fstep.on{ opacity:1; transform:none; }
+  .fstep .ftag{ flex:0 0 auto; width:46px; text-align:center; font-size:11px; font-weight:700; border-radius:6px; padding:4px 0; border:1px solid var(--line2); color:var(--muted); }
+  .fstep .ftag.tool{ border-color:rgba(31,158,118,.4); color:var(--good); background:rgba(31,158,118,.08); }
+  .fstep .ftag.user{ background:var(--row); color:var(--ink); }
+  .fstep .ftag.done{ border-color:var(--good); background:var(--good); color:#fff; }
+  .fstep .ftxt{ font-size:13.5px; color:var(--ink); font-weight:500; }
+  .fstep .fd{ font-size:12.5px; color:var(--muted); margin-top:2px; }
+  .fstep .fperm{ display:inline-block; margin-top:5px; font-size:12px; color:#b9821a; border:1px solid rgba(214,158,46,.5); background:rgba(214,158,46,.1); border-radius:6px; padding:1px 9px; }
+  .floop{ align-self:center; font-size:12.5px; font-weight:600; color:var(--accent); border:1px dashed var(--accent); border-radius:20px; padding:6px 15px; opacity:0; transform:translateY(5px); transition:opacity .35s,transform .35s; text-align:center; }
+  .floop.on{ opacity:1; transform:none; }
   .cwapprove{ margin-top:11px; display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
   .cwmode{ font-size:11.5px; color:var(--faint); }
   .cwvm{ border:1px dashed var(--line2); border-radius:11px; padding:11px 14px 7px; background:var(--panel); position:relative; }
@@ -447,6 +460,7 @@
     <button class="navitem" data-page="keys"><span class="no">07</span>ショートカット & モード</button>
     <button class="navitem" data-page="steer"><span class="no">08</span>止めて方向転換</button>
     <div class="navsec">基本の概念</div>
+    <button class="navitem" data-page="howworks"><span class="no">09</span>しくみ（どう動くか）</button>
     <button class="navitem" data-page="context"><span class="no">05</span>コンテキストウィンドウ</button>
     <button class="navitem" data-page="manage"><span class="no">06</span>コンテキスト管理（なぜ？）</button>
     <button class="navitem" data-page="compact"><span class="no">07</span>圧縮 (compact)</button>
@@ -732,6 +746,21 @@ irm https://claude.ai/install.ps1 | iex</div>
         <p class="status" id="st-status">「頼む」を押すと、両方で同じように始まります。</p>
         <p class="simtake"><span class="stk">結論</span><span>間違った方向を<b>最後まで待ってからやり直す</b>と二倍の手間 — <b>Esc で即切って</b>直せば一度で合います。迷ったら <code>/clear</code> で新しく始めるのも手。</span></p>
       </div>
+    </section>
+
+    <!-- HOWWORKS: the agentic loop -->
+    <section class="page" id="howworks">
+      <h1>しくみ — どう動くか</h1>
+      <p class="lead">チャットは<b>質問 → 答え</b>の一度で終わります。Claude Code は違います — <b>自分でツールを使って見て・直して・確認を繰り返し</b>、終わったら完了します。</p>
+      <p class="defs">下の「動きを見る」を押すと — Claude が舞台裏で<b>実際にたどる過程</b>を一段階ずつお見せします。(実際の Claude なしで流れだけ)</p>
+      <div class="grp">
+        <h3>Claude が働くところを見る</h3>
+        <div class="exrow"><button class="btn solid" id="hw-go">▶ 動きを見る</button><button class="btn" id="hw-reset">最初に戻す</button></div>
+        <div class="flow" id="hw-flow"></div>
+        <p class="status" id="hw-status">ボタンを押すと一段階ずつ進みます。</p>
+        <p class="simtake"><span class="stk">結論</span><span>Claude は<b>答えるだけではなく</b> — 自分で<b>ツール(検索・読み取り・編集・実行)</b>を使って<b>見て → 直して → 確認を繰り返し</b>ます。だから「チャット」と違い、実際に動く成果物が出てきます。</span></p>
+      </div>
+      <p class="note">この「見る → 行動 → 確認 → 繰り返し」の流れを<b>エージェントループ</b>と呼びます。途中でファイルを直したりコマンドを実行するときは、たいてい<b>先に確認します</b>(権限)。(出典: code.claude.com/docs — How Claude Code works)</p>
     </section>
 
     <!-- 03 CONTEXT -->
@@ -1548,7 +1577,7 @@ description: 週次レポートを会社の様式で作成
   (function(){ var s=null; try{ s=localStorage.getItem('cc_present'); }catch(e){} if(s==='1') setPresent(true); })();
 
   /* LNB icons (monoline) */
-  var ICN={ intro:'<path d="M12 3l1.6 4.8L18.4 9.4l-4.8 1.6L12 15.8l-1.6-4.8L5.6 9.4l4.8-1.6z"/>', cowork:'<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M8.5 7.5V6a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 6v1.5"/><path d="M3 12.5h18"/>', usecases:'<path d="M4 6h10M4 12h10M4 18h6"/><path d="M18 13l1 2.4 2.4.3-1.8 1.7.5 2.5-2.1-1.2-2.1 1.2.5-2.5-1.8-1.7 2.4-.3z"/>', where:'<rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/>', ask:'<path d="M4 5.5h16v10H10l-4 3.5V15.5H4z"/><path d="M8.5 9h7M8.5 12h4"/>', mention:'<circle cx="12" cy="12" r="3.4"/><path d="M15.4 12v1.6a2.6 2.6 0 0 0 5.1 0V12a8.5 8.5 0 1 0-3.3 6.7"/>', keys:'<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M8 13.5h8"/>', steer:'<path d="M4 7v4.5a4 4 0 0 0 4 4h8"/><path d="M13 12.5l3.5 3-3.5 3"/>', context:'<path d="M12 3 3 7.5 12 12l9-4.5z"/><path d="M3 16.5 12 21l9-4.5"/><path d="M3 12 12 16.5 21 12"/>', manage:'<path d="M4 20h16"/><rect x="5" y="13" width="3" height="6.5" rx="1"/><rect x="10.5" y="9" width="3" height="10.5" rx="1"/><rect x="16" y="5" width="3" height="14.5" rx="1"/>', sessions:'<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18"/>', tokens:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>', models:'<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/>', claudemd:'<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/>', memory:'<ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v6c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-6"/><path d="M4.5 11.5v6c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-6"/>', skills:'<path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.15 1 5.85L12 17.1l-5.25 2.75 1-5.85L3.5 9.7l5.9-.9z"/>', mcp:'<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8 15.8 7.2M8.2 13.2l7.6 3.6"/>', plugins:'<path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 21V11"/>', agents:'<circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.6a3 3 0 0 1 0 5.6M15.5 14.4a5.5 5.5 0 0 1 5 5.6"/>', images:'<rect x="3" y="3.5" width="18" height="17" rx="2"/><circle cx="8.5" cy="9" r="1.6"/><path d="M21 16l-5-5-8 8"/>', hooks:'<path d="M13 2 4 14h7l-1 8 10-12h-7z"/>', planmode:'<rect x="5" y="4.5" width="14" height="16" rx="2"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 13l2 2 4-4"/>', permissions:'<path d="M12 3 5 5.7v5.3c0 4.5 3.2 7.6 7 9 3.8-1.4 7-4.5 7-9V5.7z"/>', rewind:'<path d="M4 4v5h5"/><path d="M4.5 13.5a8 8 0 1 0 1.9-8.3L4 9"/>', privacy:'<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>', commands:'<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/>', plans:'<path d="M11.6 3H4v7.6l9.7 9.7a1.5 1.5 0 0 0 2.1 0l5.3-5.3a1.5 1.5 0 0 0 0-2.1z"/><path d="M7.5 7.5h.01"/>', limits:'<path d="M3 12h4l2.5 7L14 4l2.5 8H21"/>', compact:'<path d="M9 4v4a1 1 0 0 1-1 1H4M20 9h-4a1 1 0 0 1-1-1V4M15 20v-4a1 1 0 0 1 1-1h4M4 15h4a1 1 0 0 1 1 1v4"/>', effort:'<path d="M5.5 18a8 8 0 1 1 13 0"/><path d="M12 12l3.5-3"/><circle cx="12" cy="12" r="1.3"/>', goal:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>', loop:'<path d="M4 5v5h5"/><path d="M20 19v-5h-5"/><path d="M19 9a8 8 0 0 0-14-2.5M5 15a8 8 0 0 0 14 2.5"/>', workflows:'<circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.3 7 15.6 11M8.3 17 15.6 13"/>', config:'<path d="M4 7h9M17 7h3"/><circle cx="15" cy="7" r="2"/><path d="M4 12h3M11 12h9"/><circle cx="9" cy="12" r="2"/><path d="M4 17h9M17 17h3"/><circle cx="15" cy="17" r="2"/>', doctor:'<circle cx="12" cy="12" r="8.5"/><path d="M12 8.5v7M8.5 12h7"/>', glossary:'<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19"/>' };
+  var ICN={ intro:'<path d="M12 3l1.6 4.8L18.4 9.4l-4.8 1.6L12 15.8l-1.6-4.8L5.6 9.4l4.8-1.6z"/>', cowork:'<rect x="3" y="7.5" width="18" height="12" rx="2"/><path d="M8.5 7.5V6a1.5 1.5 0 0 1 1.5-1.5h4A1.5 1.5 0 0 1 15.5 6v1.5"/><path d="M3 12.5h18"/>', usecases:'<path d="M4 6h10M4 12h10M4 18h6"/><path d="M18 13l1 2.4 2.4.3-1.8 1.7.5 2.5-2.1-1.2-2.1 1.2.5-2.5-1.8-1.7 2.4-.3z"/>', where:'<rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M8.5 20.5h7M12 16.5v4"/>', ask:'<path d="M4 5.5h16v10H10l-4 3.5V15.5H4z"/><path d="M8.5 9h7M8.5 12h4"/>', mention:'<circle cx="12" cy="12" r="3.4"/><path d="M15.4 12v1.6a2.6 2.6 0 0 0 5.1 0V12a8.5 8.5 0 1 0-3.3 6.7"/>', keys:'<rect x="2.5" y="6.5" width="19" height="11" rx="2"/><path d="M6 10h.01M9 10h.01M12 10h.01M15 10h.01M18 10h.01M8 13.5h8"/>', steer:'<path d="M4 7v4.5a4 4 0 0 0 4 4h8"/><path d="M13 12.5l3.5 3-3.5 3"/>', howworks:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v2.6M12 18.9v2.6M21.5 12h-2.6M5.1 12H2.5M18.7 5.3l-1.8 1.8M7.1 16.9l-1.8 1.8M18.7 18.7l-1.8-1.8M7.1 7.1L5.3 5.3"/>', context:'<path d="M12 3 3 7.5 12 12l9-4.5z"/><path d="M3 16.5 12 21l9-4.5"/><path d="M3 12 12 16.5 21 12"/>', manage:'<path d="M4 20h16"/><rect x="5" y="13" width="3" height="6.5" rx="1"/><rect x="10.5" y="9" width="3" height="10.5" rx="1"/><rect x="16" y="5" width="3" height="14.5" rx="1"/>', sessions:'<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M3 9h18"/>', tokens:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/>', models:'<path d="M4 6h10M18 6h2M4 12h2M10 12h10M4 18h8M16 18h4"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="14" cy="18" r="2"/>', claudemd:'<path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/>', memory:'<ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v6c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-6"/><path d="M4.5 11.5v6c0 1.55 3.36 2.8 7.5 2.8s7.5-1.25 7.5-2.8v-6"/>', skills:'<path d="M12 3.5l2.6 5.3 5.9.9-4.25 4.15 1 5.85L12 17.1l-5.25 2.75 1-5.85L3.5 9.7l5.9-.9z"/>', mcp:'<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8 15.8 7.2M8.2 13.2l7.6 3.6"/>', plugins:'<path d="M12 3 4 7v10l8 4 8-4V7z"/><path d="M4 7l8 4 8-4M12 21V11"/>', agents:'<circle cx="9" cy="8" r="3"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0"/><path d="M16 5.6a3 3 0 0 1 0 5.6M15.5 14.4a5.5 5.5 0 0 1 5 5.6"/>', images:'<rect x="3" y="3.5" width="18" height="17" rx="2"/><circle cx="8.5" cy="9" r="1.6"/><path d="M21 16l-5-5-8 8"/>', hooks:'<path d="M13 2 4 14h7l-1 8 10-12h-7z"/>', planmode:'<rect x="5" y="4.5" width="14" height="16" rx="2"/><path d="M9 4.5V3.5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 13l2 2 4-4"/>', permissions:'<path d="M12 3 5 5.7v5.3c0 4.5 3.2 7.6 7 9 3.8-1.4 7-4.5 7-9V5.7z"/>', rewind:'<path d="M4 4v5h5"/><path d="M4.5 13.5a8 8 0 1 0 1.9-8.3L4 9"/>', privacy:'<rect x="5" y="11" width="14" height="9.5" rx="2"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>', commands:'<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M7 9l3 3-3 3M13 15h4"/>', plans:'<path d="M11.6 3H4v7.6l9.7 9.7a1.5 1.5 0 0 0 2.1 0l5.3-5.3a1.5 1.5 0 0 0 0-2.1z"/><path d="M7.5 7.5h.01"/>', limits:'<path d="M3 12h4l2.5 7L14 4l2.5 8H21"/>', compact:'<path d="M9 4v4a1 1 0 0 1-1 1H4M20 9h-4a1 1 0 0 1-1-1V4M15 20v-4a1 1 0 0 1 1-1h4M4 15h4a1 1 0 0 1 1 1v4"/>', effort:'<path d="M5.5 18a8 8 0 1 1 13 0"/><path d="M12 12l3.5-3"/><circle cx="12" cy="12" r="1.3"/>', goal:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/>', loop:'<path d="M4 5v5h5"/><path d="M20 19v-5h-5"/><path d="M19 9a8 8 0 0 0-14-2.5M5 15a8 8 0 0 0 14 2.5"/>', workflows:'<circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="18" r="2.4"/><circle cx="18" cy="12" r="2.4"/><path d="M8.3 7 15.6 11M8.3 17 15.6 13"/>', config:'<path d="M4 7h9M17 7h3"/><circle cx="15" cy="7" r="2"/><path d="M4 12h3M11 12h9"/><circle cx="9" cy="12" r="2"/><path d="M4 17h9M17 17h3"/><circle cx="15" cy="17" r="2"/>', doctor:'<circle cx="12" cy="12" r="8.5"/><path d="M12 8.5v7M8.5 12h7"/>', glossary:'<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H19v15H6.5A1.5 1.5 0 0 0 5 19.5z"/><path d="M5 19.5A1.5 1.5 0 0 0 6.5 21H19"/>' };
   function svgIcon(p){ return '<svg class="nic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">'+(ICN[p]||'')+'</svg>'; }
 
   /* router */
@@ -1556,7 +1585,7 @@ description: 週次レポートを会社の様式で作成
   navs.forEach(function(b){ var page=b.dataset.page; var no=b.querySelector('.no'); var noHtml=no?no.outerHTML:''; var txt=b.textContent.replace(/^\s*\d+\s*/,'').trim(); b.innerHTML=svgIcon(page)+noHtml+'<span class="lbl">'+txt+'</span>'; });
 
   /* per-page one-line summaries */
-  var TLDR={ intro:'チャットは「答え」をくれて、Claude Code は自分のプロジェクトで<b>直接作って動くところまで</b>やってくれます。', cowork:'コードではなく<b>オフィス業務を代わりに</b>こなす Claude — 目標を伝えるだけで<b>自分のファイルで成果物まで</b>作ります（非エンジニア・デスクトップアプリ）。', usecases:'職業ごとに<b>いつもの仕事がどう変わるか</b>をビフォー→アフターで見せます。', where:'ターミナル・VS Code・デスクトップ・Web — <b>どこでも同じ Claude Code</b>、設定も共有されます。', ask:'同じ作業でも<b>具体的に頼めば</b>一度で — 自分で書いて点数ももらえます。', mention:'<code class="inlinecode">@</code> で<b>まさにそのファイル</b>をピンポイント指定すると速く正確。', keys:'<b>Esc</b>(止める)・<b>Esc Esc</b>(巻き戻し)など、キーいくつかで全部できます — 押して覚えましょう。', steer:'間違ったら<b>Esc で切って</b>直す — 最後まで待ちません。', context:'ここに乗ったものだけを Claude が覚えています。満杯になったら<b>「圧縮」で整理</b>します。', manage:'コンテキストを<b>放置すると遅く・高く・混乱します</b> — だからこまめに片づけます。', sessions:'<b>一つのセッションに一つの仕事</b> — 混ぜると混乱します。作業フォルダは狭く。', tokens:'トークン = AI が文章を読む単位。<b>長いほど空間・コストが増え</b>、日本語のほうが重い。', models:'賢さ ↔ 速さ ↔ コストはトレードオフ。<b>迷ったら Sonnet</b> で始めましょう。', claudemd:'<b>自分で書いておくルールのメモ</b> — 毎回の会話の始めに自動で適用されます。', memory:'<b>Claude が自分で学んで覚える</b>メモ。セッションをまたいで引き継がれます。', skills:'よく使う作業の手順を<b>一度作ってずっと再利用</b>します。', mcp:'<b>外部ツール(Jira・Figma など)につないで</b> Claude が直接使えるようにします。', plugins:'スキル・ツール・コマンドなどを<b>まとめて一度にインストール</b>する一式です。', agents:'大きな仕事を<b>専門のお手伝いに分けて任せ</b>、結果だけ受け取ります。', images:'<b>スクリーンショットを貼れば</b> Claude が見て理解します — 言葉より速く正確。', hooks:'特定の瞬間に<b>決まった動作が毎回自動</b>で実行されるルールです。', planmode:'直す前に<b>計画を先に見せて承認</b>を受けます — 大きな変更に安全。', permissions:'Claude が<b>どのくらい頻繁に聞くか</b>を決める設定。最初は安全に。', rewind:'リクエストごとに<b>自動保存</b> — 気に入らなければ以前へ巻き戻します。', privacy:'<b>業務用(Team·Enterprise·API)は基本的に学習に使われません。</b> 個人用は設定で選択。', commands:'<code class="inlinecode">/</code> で始まるショートカットコマンド。いちばんよく使うのは <b>/clear · /compact</b>。', plans:'<b>無料プランにはありません。</b> 有料(Pro·Max·Team)または API(従量制)で使用。', limits:'<b>使い切るとリセットまで待つ</b>必要があります — だから管理が大切です。', compact:'長く積み上がった会話が<b>短い要約 1 マス</b>に縮みます。', effort:'答える前に<b>どれだけ深く考えるか</b> — 深いほど正確ですが、遅く高くつきます。', goal:'<b>「完了条件」だけ与えれば、できるまで</b> Claude が自分で繰り返します。', loop:'<b>決めた間隔ごとに</b>同じ作業を自動でもう一度実行します。', workflows:'大きな仕事を<b>複数のお手伝いが同時に</b>処理するよう調整します（上級）。', config:'<b>言語・テーマ・モデル・権限</b>のような設定を一か所で変えます。', doctor:'うまくいかないとき<b>インストール・設定を点検</b>して直す場所を教えてくれます。', glossary:'迷う用語を<b>一行で</b>素早く探す場所です。' };
+  var TLDR={ intro:'チャットは「答え」をくれて、Claude Code は自分のプロジェクトで<b>直接作って動くところまで</b>やってくれます。', cowork:'コードではなく<b>オフィス業務を代わりに</b>こなす Claude — 目標を伝えるだけで<b>自分のファイルで成果物まで</b>作ります（非エンジニア・デスクトップアプリ）。', usecases:'職業ごとに<b>いつもの仕事がどう変わるか</b>をビフォー→アフターで見せます。', where:'ターミナル・VS Code・デスクトップ・Web — <b>どこでも同じ Claude Code</b>、設定も共有されます。', ask:'同じ作業でも<b>具体的に頼めば</b>一度で — 自分で書いて点数ももらえます。', mention:'<code class="inlinecode">@</code> で<b>まさにそのファイル</b>をピンポイント指定すると速く正確。', keys:'<b>Esc</b>(止める)・<b>Esc Esc</b>(巻き戻し)など、キーいくつかで全部できます — 押して覚えましょう。', steer:'間違ったら<b>Esc で切って</b>直す — 最後まで待ちません。', howworks:'Claude はただ答えるのではなく — <b>ツールで見て・直して・確認を繰り返します</b>（エージェントループ）。', context:'ここに乗ったものだけを Claude が覚えています。満杯になったら<b>「圧縮」で整理</b>します。', manage:'コンテキストを<b>放置すると遅く・高く・混乱します</b> — だからこまめに片づけます。', sessions:'<b>一つのセッションに一つの仕事</b> — 混ぜると混乱します。作業フォルダは狭く。', tokens:'トークン = AI が文章を読む単位。<b>長いほど空間・コストが増え</b>、日本語のほうが重い。', models:'賢さ ↔ 速さ ↔ コストはトレードオフ。<b>迷ったら Sonnet</b> で始めましょう。', claudemd:'<b>自分で書いておくルールのメモ</b> — 毎回の会話の始めに自動で適用されます。', memory:'<b>Claude が自分で学んで覚える</b>メモ。セッションをまたいで引き継がれます。', skills:'よく使う作業の手順を<b>一度作ってずっと再利用</b>します。', mcp:'<b>外部ツール(Jira・Figma など)につないで</b> Claude が直接使えるようにします。', plugins:'スキル・ツール・コマンドなどを<b>まとめて一度にインストール</b>する一式です。', agents:'大きな仕事を<b>専門のお手伝いに分けて任せ</b>、結果だけ受け取ります。', images:'<b>スクリーンショットを貼れば</b> Claude が見て理解します — 言葉より速く正確。', hooks:'特定の瞬間に<b>決まった動作が毎回自動</b>で実行されるルールです。', planmode:'直す前に<b>計画を先に見せて承認</b>を受けます — 大きな変更に安全。', permissions:'Claude が<b>どのくらい頻繁に聞くか</b>を決める設定。最初は安全に。', rewind:'リクエストごとに<b>自動保存</b> — 気に入らなければ以前へ巻き戻します。', privacy:'<b>業務用(Team·Enterprise·API)は基本的に学習に使われません。</b> 個人用は設定で選択。', commands:'<code class="inlinecode">/</code> で始まるショートカットコマンド。いちばんよく使うのは <b>/clear · /compact</b>。', plans:'<b>無料プランにはありません。</b> 有料(Pro·Max·Team)または API(従量制)で使用。', limits:'<b>使い切るとリセットまで待つ</b>必要があります — だから管理が大切です。', compact:'長く積み上がった会話が<b>短い要約 1 マス</b>に縮みます。', effort:'答える前に<b>どれだけ深く考えるか</b> — 深いほど正確ですが、遅く高くつきます。', goal:'<b>「完了条件」だけ与えれば、できるまで</b> Claude が自分で繰り返します。', loop:'<b>決めた間隔ごとに</b>同じ作業を自動でもう一度実行します。', workflows:'大きな仕事を<b>複数のお手伝いが同時に</b>処理するよう調整します（上級）。', config:'<b>言語・テーマ・モデル・権限</b>のような設定を一か所で変えます。', doctor:'うまくいかないとき<b>インストール・設定を点検</b>して直す場所を教えてくれます。', glossary:'迷う用語を<b>一行で</b>素早く探す場所です。' };
   pages.forEach(function(p){ var t=TLDR[p.id]; if(!t)return; var anchor=p.querySelector('.defs')||p.querySelector('.lead'); if(!anchor)return; var d=document.createElement('div'); d.className='tldr'; d.innerHTML='<span class="tlb">一行まとめ</span><span class="tlx">'+t+'</span>'; anchor.parentNode.insertBefore(d, anchor.nextSibling); });
 
   /* collapse code blocks by default */
@@ -1575,7 +1604,7 @@ description: 週次レポートを会社の様式で作成
   [['cc-go',5500],['cw3-go',5500],['uc-go',7000],['sess-play',9500],['lc-all',8200],['md-go',5500],['mem-go',5200],['sk-go',5200],['sa-go',5600],['pl-go',6200],['plan-go',4800],['goal-go',4200],['loop-go',4800],['wf-go',4500],['dr-go',4800],['cx-go',5500,'cx-reset'],['img-go',4800]].forEach(function(p){ autoLoop(p[0],p[1],p[2]); });
 
   /* difficulty mode — 초급/중급/고급 filter */
-  var LV={ intro:1,cowork:1,usecases:1,where:1,ask:1,mention:1,keys:1,steer:1,context:1,manage:1,compact:1,sessions:1,models:1,claudemd:1,images:1,permissions:1,rewind:1,commands:1,glossary:1,
+  var LV={ intro:1,cowork:1,usecases:1,where:1,ask:1,mention:1,keys:1,steer:1,howworks:1,context:1,manage:1,compact:1,sessions:1,models:1,claudemd:1,images:1,permissions:1,rewind:1,commands:1,glossary:1,
     tokens:2,effort:2,memory:2,skills:2,planmode:2,privacy:2,config:2,doctor:2,plans:2,limits:2,
     mcp:3,plugins:3,agents:3,hooks:3,goal:3,loop:3,workflows:3 };
   (function(){ var chips=document.querySelectorAll('#lvlsel .lvlchip'); if(!chips.length) return; var origNo={}; navs.forEach(function(n){ var no=n.querySelector('.no'); if(no) origNo[n.dataset.page]=no.textContent; });
@@ -2051,14 +2080,16 @@ description: 週次レポートを会社の様式で作成
 
   /* mention — @ file picker */
   (function(){
-    var TY=document.getElementById('m-typed'),MENU=document.getElementById('atmenu'),ST=document.getElementById('m-status'); if(!TY) return; var attached=null;
+    var TY=document.getElementById('m-typed'),MENU=document.getElementById('atmenu'),ST=document.getElementById('m-status'); if(!TY) return; var attached=null,msT=[];
     var FILES=[['予約画面.html','Webページ'],['予約リスト.xlsx','エクセル'],['案内文.docx','文書'],['価格表.csv','表']];
     function openMenu(){ if(attached) return; TY.innerHTML='<span style="color:var(--accent)">@</span>'; var h=''; FILES.forEach(function(f,i){ h+='<div class="ai" data-i="'+i+'"><span class="afile">@'+f[0]+'</span><span class="akind">'+f[1]+'</span></div>'; }); MENU.innerHTML=h; MENU.className='atmenu on'; ST.textContent='ファイル一覧が出ました。一つ選んでみてください。';
       MENU.querySelectorAll('.ai').forEach(function(a){ a.addEventListener('click',function(){ pick(+a.dataset.i); }); }); }
-    function pick(i){ var f=FILES[i]; attached=f; TY.innerHTML='<span class="fchip">@'+f[0]+'</span> '; MENU.className='atmenu'; ST.textContent='添付しました: @'+f[0]+' — では「送信」を押してみてください。'; }
+    function pick(i){ msT.forEach(clearTimeout); msT=[]; var f=FILES[i]; attached=f; TY.innerHTML='<span class="fchip">@'+f[0]+'</span> '; MENU.className='atmenu'; ST.textContent='添付しました: @'+f[0]+' — では「送信」を押してみてください。'; }
     document.getElementById('m-at').addEventListener('click',openMenu);
-    document.getElementById('m-send').addEventListener('click',function(){ if(!attached){ ST.textContent='先に @ でファイルを添付してください。'; return; } ST.textContent='Claude が @'+attached[0]+' を開いています… ✓ まさにそのファイルを見つけました。'; });
-    document.getElementById('m-reset').addEventListener('click',function(){ attached=null; TY.innerHTML=''; MENU.className='atmenu'; ST.textContent='「@ 入力」を押してみてください。'; });
+    document.getElementById('m-send').addEventListener('click',function(){ if(!attached){ ST.textContent='先に @ でファイルを添付してください。'; return; } msT.forEach(clearTimeout); msT=[]; var f=attached[0];
+      var seq=['① Claude が @'+f+' をすぐ開きます。','② 中身を読みます…','③ 直す場所を見つけて作業します。✓ — 迷わずそのファイルへ。'];
+      seq.forEach(function(s,i){ msT.push(setTimeout(function(){ ST.textContent=s; },i*950)); }); });
+    document.getElementById('m-reset').addEventListener('click',function(){ msT.forEach(clearTimeout); msT=[]; attached=null; TY.innerHTML=''; MENU.className='atmenu'; ST.textContent='「@ 入力」を押してみてください。'; });
   })();
 
   /* keys — shortcuts & modes playground */
@@ -2093,6 +2124,29 @@ description: 週次レポートを会社の様式で作成
     ESC.addEventListener('click',function(){ if(ESC.disabled)return; steered=true; if(wrongT){clearTimeout(wrongT);wrongT=null;} ESC.disabled=true; BARB.parentNode.classList.remove('bad'); B.innerHTML='■ 停止 → 「色じゃなくて <b>文字の大きさ</b>だよ」と直しています…';
       setTimeout(function(){ BARB.style.width='100%'; B.innerHTML='■ 停止 → 訂正 → <b>文字を大きくしました ✓</b> 一度で合いました。'; ST.textContent='切って直したら一度で終わりましたね?'; },800); });
     RUN.addEventListener('click',start);
+  })();
+
+  /* howworks — the agentic loop, step by step */
+  (function(){
+    var FLOW=document.getElementById('hw-flow'),ST=document.getElementById('hw-status'); if(!FLOW) return; var T=[];
+    var STEPS=[
+      {tag:'あなた',cls:'user',t:'「ログインできないバグを直して」',d:'やることを言葉で伝えます。'},
+      {tag:'ツール',cls:'tool',t:'関連ファイルを探して読みます',d:'自分で login.js · auth.js を検索して開きます。(ツール: 検索・読み取り)'},
+      {tag:'考える',cls:'',t:'原因を絞り込みます',d:'「ログイン時間が切れたときの処理が抜けていますね。」'},
+      {tag:'ツール',cls:'tool',t:'ファイルを直します',d:'auth.js を修正します。(ツール: 編集)',perm:'このファイルを直していい？→ 承認 ✓'},
+      {tag:'確認',cls:'',t:'テストを走らせて自分で確認します',d:'走らせたら1つ失敗 — まだダメです。(ツール: 実行)'},
+      {loop:'↻ ダメならまた — 考える → 直す → 確認 を通るまで繰り返す'},
+      {tag:'完了',cls:'done',t:'直し終えました',d:'何をどう変えたかをまとめて知らせます。'}
+    ];
+    function render(){ FLOW.innerHTML=''; STEPS.forEach(function(s){ var el=document.createElement('div');
+      if(s.loop){ el.className='floop'; el.textContent=s.loop; }
+      else { el.className='fstep'; el.innerHTML='<span class="ftag '+(s.cls||'')+'">'+s.tag+'</span><div><div class="ftxt">'+s.t+'</div><div class="fd">'+s.d+'</div>'+(s.perm?'<span class="fperm">'+s.perm+'</span>':'')+'</div>'; }
+      FLOW.appendChild(el); }); }
+    function play(){ T.forEach(clearTimeout); T=[]; render(); ST.textContent='Claude が作業を始めます…'; var rows=FLOW.children;
+      [].forEach.call(rows,function(el,i){ T.push(setTimeout(function(){ el.classList.add('on'); if(i===rows.length-1) ST.textContent='見ましたか？ ただ答えるのではなく — ツールで見て・直して・確認を繰り返します。'; },350+i*900)); }); }
+    document.getElementById('hw-go').addEventListener('click',play);
+    document.getElementById('hw-reset').addEventListener('click',function(){ T.forEach(clearTimeout); T=[]; render(); ST.textContent='ボタンを押すと一段階ずつ進みます。'; });
+    render();
   })();
 
   /* plugins — bundle install demo */
