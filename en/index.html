@@ -455,7 +455,7 @@
       <div class="bignote"><span class="bx">Same request</span><span>If you give all three the same task — "<b>organize these receipts into a spreadsheet</b>" — what happens?</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="cw3-go">See all three react ▶</button><button class="btn" id="cw3-reset">Reset</button></div>
       <div class="cw3grid">
-        <div class="cw3card"><div class="cw3h">Claude Chat <span class="badge no">answer & how-to only</span></div><div class="cw3body" id="cw3-chat"></div></div>
+        <div class="cw3card"><div class="cw3h">Claude Chat <span class="badge no">In the chat</span></div><div class="cw3body" id="cw3-chat"></div></div>
         <div class="cw3card hl"><div class="cw3h">Cowork <span class="badge yes">finished result</span></div><div class="cw3body" id="cw3-cowork"></div></div>
         <div class="cw3card"><div class="cw3h">Claude Code <span class="badge no">development only</span></div><div class="cw3body" id="cw3-code"></div></div>
       </div>
@@ -542,8 +542,8 @@ irm https://claude.ai/install.ps1 | iex</div>
           <div class="tokprev" id="tokprev" style="margin-bottom:20px;"></div>
           <p class="label">Claude's work <span class="hint">Takes up the most room</span></p>
           <div class="acts">
-            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">Reading files</div><div class="d">Pulls in whole code files</div></span><span class="add">+8,400</span></button>
-            <button class="act" data-k="tool" data-t="3100"><span class="dot" style="background:#3b7dd8"></span><span class="meta"><div class="t">Running commands</div><div class="d">Output from tests and searches</div></span><span class="add">+3,100</span></button>
+            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">Reading files</div><div class="d">Pulls in a document/file whole</div></span><span class="add">+8,400</span></button>
+            <button class="act" data-k="toolout" data-t="3100"><span class="dot" style="background:#129a8e"></span><span class="meta"><div class="t">Run tool</div><div class="d">Result of a search/run</div></span><span class="add">+3,100</span></button>
             <button class="act" data-k="reply" data-t="1800"><span class="dot" style="background:#cf5184"></span><span class="meta"><div class="t">Claude's reply</div><div class="d">Writes explanations and code</div></span><span class="add">+1,800</span></button>
           </div>
           <div class="botrow"><button class="btn solid" id="autocompact">See auto-compact ▶</button><button class="ghost" id="compact">Manual compact</button><span class="sep">·</span><button class="ghost" id="reset">Reset</button></div>
@@ -1354,8 +1354,8 @@ description: Write the weekly report in the company format
 
   /* context tank */
   var MAX=200000,LIMIT_PX=420,AC_RATIO=0.8,stack=document.getElementById('stack'),limit=document.getElementById('limit'),cap=document.getElementById('cap'),free=document.getElementById('free'),tokEl=document.getElementById('tok'),num=document.getElementById('num'),status=document.getElementById('status'),inp=document.getElementById('inp'),capinp=document.getElementById('capinp'),tokprev=document.getElementById('tokprev');
-  var labels={sys:'System prompt · base instructions',tool:'Tool list · available features',mem:'Project note · CLAUDE.md',user:'Your message',file:'File content · code that was read',reply:'Claude\'s reply',summary:'Info summarized by compaction'};
-  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',reply:'#cf5184',summary:'#1f9e76'};
+  var labels={sys:'System prompt · base instructions',tool:'Tool list · available features',mem:'Project note · CLAUDE.md',user:'Your message',file:'File contents · material read in',toolout:'Tool results · search/run output',reply:'Claude\'s reply',summary:'Info summarized by compaction'};
+  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',toolout:'#129a8e',reply:'#cf5184',summary:'#1f9e76'};
   var base=[{k:'sys',t:3000},{k:'tool',t:11500},{k:'mem',t:2200}],items=[],curShown=0;
   function makeBlk(it,fixed,h){ var d=document.createElement('div'); var isSum=it.k==='summary'; d.className='blk'+(h<18?' mini':'')+(fixed?'':' acc')+(isSum?' sumhl':''); d.style.height=h+'px'; if(!isSum){ d.style.background=rgba(hex[it.k],0.14); d.style.borderColor=rgba(hex[it.k],0.30); } d.title=labels[it.k]+(it.txt&&!isSum?(' — '+it.txt):'')+' · '+fmt(it.t)+' tokens'; var name=labels[it.k]; if(it.txt&&!isSum)name+=' — "'+it.txt+'"'; d.innerHTML='<span class="dot" style="background:'+hex[it.k]+'"></span><span class="name">'+(isSum?'<b>'+name+'</b>':name)+'</span>'+(isSum?'<span class="sumbadge">Summary</span>':(fixed?'<span class="tag">base</span>':''))+'<span class="tk">'+fmt(it.t)+'</span>'; return d; }
   function ctxRender(animLast){ var scale=LIMIT_PX/MAX; stack.innerHTML=''; items.forEach(function(it,i){ var el=makeBlk(it,it._base,Math.max(8,Math.round(it.t*scale))); if(animLast&&i===items.length-1){ el.style.opacity='0'; el.style.transform='translateY(-8px)'; el.style.transition='opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1)'; stack.appendChild(el); requestAnimationFrame(function(){ el.style.opacity='1'; el.style.transform='none'; }); } else stack.appendChild(el); });
@@ -1378,7 +1378,7 @@ description: Write the weekly report in the company format
   document.getElementById('reset').addEventListener('click',function(){ acStop(); ctxBase(); var ba=document.getElementById('cwba'); if(ba)ba.style.display='none'; status.textContent='The three blocks below are always loaded, even before you start a conversation.'; });
   var acT=[]; function acStop(){ acT.forEach(clearTimeout); acT=[]; document.getElementById('tank').classList.remove('flash'); stack.classList.remove('summarizing'); var ov=document.getElementById('acoverlay'); if(ov)ov.classList.remove('on'); }
   document.getElementById('autocompact').addEventListener('click',function(){ acStop(); ctxBase(); var ba=document.getElementById('cwba'); if(ba)ba.style.display='none';
-    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','Build a dashboard'],['file',null],['tool',null],['reply',null]], seq=[], tot=base0;
+    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','draft an event notice'],['file',null],['toolout',null],['reply',null]], seq=[], tot=base0;
     for(var k=0; tot<MAX*AC_RATIO && k<14; k++){ var L=labels[k%4], amt=(k===0?900:Math.round(chunk*(0.8+0.4*((k%3)/2)))); seq.push([L[0],amt,L[1]]); tot+=amt; }
     status.textContent='Conversation piling up… (one continuous task)'; var i=0;
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
@@ -1648,9 +1648,9 @@ description: Write the weekly report in the company format
   (function(){
     var go=document.getElementById('cw3-go'); if(!go) return;
     var DATA={
-      'cw3-chat':[{t:'"Let me explain how to organize it in a spreadsheet"'},{t:'① Make amount & date columns, then'},{t:'② Add a sum formula…'},{t:'(just explaining in words — can\'t touch your files directly)'}],
-      'cw3-cowork':[{t:'Read the receipts folder (32 files) directly'},{t:'Extracted amounts, dates, and items'},{t:'Saved as expenses.xlsx',done:true},{t:'✅ Finished result — the file was created!',done:true}],
-      'cw3-code':[{t:'This is \'office work,\' so Cowork is the right fit'},{t:'I handle coding & development in the terminal'},{t:'(e.g. "Fix the login bug")'}]
+      'cw3-chat':[{t:'You upload the receipt photos and it analyzes them'},{t:'It can even hand you a tidy Excel file'},{t:'but it\'s an upload-and-download flow in the chat'},{t:'(it doesn\'t directly touch your computer\'s folders)'}],
+      'cw3-cowork':[{t:'Reads the receipts folder (32 files) on your computer directly'},{t:'Extracts amounts, dates, items'},{t:'Saves expenses.xlsx into that folder',done:true},{t:'✓ A result file appeared in your folder!',done:true}],
+      'cw3-code':[{t:'It could do the same, but it\'s a tool built for coding/development'},{t:'I work in the terminal and project folders'},{t:'(e.g. "fix the login bug")'}]
     };
     var cw3T=[];
     function cw3Reset(){ cw3T.forEach(clearTimeout); cw3T=[]; ['cw3-chat','cw3-cowork','cw3-code'].forEach(function(id){ document.getElementById(id).innerHTML=''; }); document.getElementById('cw3-status').textContent='Press "See all three react" — we\'ll show how the same request leads to different results.'; }

@@ -455,7 +455,7 @@
       <div class="bignote"><span class="bx">同一请求</span><span>对三者都说“把这些<b>收据整理成 Excel</b>”，会怎样？</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="cw3-go">看看三者的反应 ▶</button><button class="btn" id="cw3-reset">重置</button></div>
       <div class="cw3grid">
-        <div class="cw3card"><div class="cw3h">Claude 聊天 <span class="badge no">只给答案·方法</span></div><div class="cw3body" id="cw3-chat"></div></div>
+        <div class="cw3card"><div class="cw3h">Claude 聊天 <span class="badge no">在聊天里</span></div><div class="cw3body" id="cw3-chat"></div></div>
         <div class="cw3card hl"><div class="cw3h">Cowork <span class="badge yes">做出成品</span></div><div class="cw3body" id="cw3-cowork"></div></div>
         <div class="cw3card"><div class="cw3h">Claude Code <span class="badge no">开发专用</span></div><div class="cw3body" id="cw3-code"></div></div>
       </div>
@@ -542,8 +542,8 @@ irm https://claude.ai/install.ps1 | iex</div>
           <div class="tokprev" id="tokprev" style="margin-bottom:20px;"></div>
           <p class="label">Claude 的工作 <span class="hint">最占地方</span></p>
           <div class="acts">
-            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">读取文件</div><div class="d">把代码文件整个拿进来</div></span><span class="add">+8,400</span></button>
-            <button class="act" data-k="tool" data-t="3100"><span class="dot" style="background:#3b7dd8"></span><span class="meta"><div class="t">执行命令</div><div class="d">跑测试、搜索后的结果</div></span><span class="add">+3,100</span></button>
+            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">读取文件</div><div class="d">把文档·文件整份取来</div></span><span class="add">+8,400</span></button>
+            <button class="act" data-k="toolout" data-t="3100"><span class="dot" style="background:#129a8e"></span><span class="meta"><div class="t">运行工具</div><div class="d">搜索·运行的结果</div></span><span class="add">+3,100</span></button>
             <button class="act" data-k="reply" data-t="1800"><span class="dot" style="background:#cf5184"></span><span class="meta"><div class="t">Claude 回复</div><div class="d">写出说明和代码</div></span><span class="add">+1,800</span></button>
           </div>
           <div class="botrow"><button class="btn solid" id="autocompact">查看自动压缩 ▶</button><button class="ghost" id="compact">手动压缩</button><span class="sep">·</span><button class="ghost" id="reset">重置</button></div>
@@ -1355,8 +1355,8 @@ description: 按公司格式撰写周报
 
   /* context tank */
   var MAX=200000,LIMIT_PX=420,AC_RATIO=0.8,stack=document.getElementById('stack'),limit=document.getElementById('limit'),cap=document.getElementById('cap'),free=document.getElementById('free'),tokEl=document.getElementById('tok'),num=document.getElementById('num'),status=document.getElementById('status'),inp=document.getElementById('inp'),capinp=document.getElementById('capinp'),tokprev=document.getElementById('tokprev');
-  var labels={sys:'系统提示词 · 基本指令',tool:'工具列表 · 可用的功能',mem:'项目备忘 · CLAUDE.md',user:'我的消息',file:'文件内容 · 读进来的代码',reply:'Claude 回复',summary:'压缩后浓缩的信息'};
-  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',reply:'#cf5184',summary:'#1f9e76'};
+  var labels={sys:'系统提示词 · 基本指令',tool:'工具列表 · 可用的功能',mem:'项目备忘 · CLAUDE.md',user:'我的消息',file:'文件内容 · 读入的资料',toolout:'工具执行结果 · 搜索·运行输出',reply:'Claude 回复',summary:'压缩后浓缩的信息'};
+  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',toolout:'#129a8e',reply:'#cf5184',summary:'#1f9e76'};
   var base=[{k:'sys',t:3000},{k:'tool',t:11500},{k:'mem',t:2200}],items=[],curShown=0;
   function makeBlk(it,fixed,h){ var d=document.createElement('div'); var isSum=it.k==='summary'; d.className='blk'+(h<18?' mini':'')+(fixed?'':' acc')+(isSum?' sumhl':''); d.style.height=h+'px'; if(!isSum){ d.style.background=rgba(hex[it.k],0.14); d.style.borderColor=rgba(hex[it.k],0.30); } d.title=labels[it.k]+(it.txt&&!isSum?(' — '+it.txt):'')+' · '+fmt(it.t)+' token'; var name=labels[it.k]; if(it.txt&&!isSum)name+=' — “'+it.txt+'”'; d.innerHTML='<span class="dot" style="background:'+hex[it.k]+'"></span><span class="name">'+(isSum?'<b>'+name+'</b>':name)+'</span>'+(isSum?'<span class="sumbadge">摘要</span>':(fixed?'<span class="tag">基本</span>':''))+'<span class="tk">'+fmt(it.t)+'</span>'; return d; }
   function ctxRender(animLast){ var scale=LIMIT_PX/MAX; stack.innerHTML=''; items.forEach(function(it,i){ var el=makeBlk(it,it._base,Math.max(8,Math.round(it.t*scale))); if(animLast&&i===items.length-1){ el.style.opacity='0'; el.style.transform='translateY(-8px)'; el.style.transition='opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1)'; stack.appendChild(el); requestAnimationFrame(function(){ el.style.opacity='1'; el.style.transform='none'; }); } else stack.appendChild(el); });
@@ -1379,7 +1379,7 @@ description: 按公司格式撰写周报
   document.getElementById('reset').addEventListener('click',function(){ acStop(); ctxBase(); var ba=document.getElementById('cwba'); if(ba)ba.style.display='none'; status.textContent='下面这三格在对话还没开始时就一直在里面。'; });
   var acT=[]; function acStop(){ acT.forEach(clearTimeout); acT=[]; document.getElementById('tank').classList.remove('flash'); stack.classList.remove('summarizing'); var ov=document.getElementById('acoverlay'); if(ov)ov.classList.remove('on'); }
   document.getElementById('autocompact').addEventListener('click',function(){ acStop(); ctxBase(); var ba=document.getElementById('cwba'); if(ba)ba.style.display='none';
-    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','帮我做一个仪表盘'],['file',null],['tool',null],['reply',null]], seq=[], tot=base0;
+    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','写个活动通知'],['file',null],['toolout',null],['reply',null]], seq=[], tot=base0;
     for(var k=0; tot<MAX*AC_RATIO && k<14; k++){ var L=labels[k%4], amt=(k===0?900:Math.round(chunk*(0.8+0.4*((k%3)/2)))); seq.push([L[0],amt,L[1]]); tot+=amt; }
     status.textContent='对话正在堆积中…（连续的同一件工作）'; var i=0;
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
@@ -1649,9 +1649,9 @@ description: 按公司格式撰写周报
   (function(){
     var go=document.getElementById('cw3-go'); if(!go) return;
     var DATA={
-      'cw3-chat':[{t:'“我来告诉你怎么整理成 Excel”'},{t:'① 先建好金额·日期的列'},{t:'② 再放上合计公式…'},{t:'（只是用话讲 —— 碰不了你的文件）'}],
-      'cw3-cowork':[{t:'直接读取收据文件夹（32 张）'},{t:'提取金额·日期·项目'},{t:'保存为 支出整理.xlsx',done:true},{t:'✅ 成品完成 —— 文件做出来了！',done:true}],
-      'cw3-code':[{t:'这是‘办公事务’，Cowork 更合适'},{t:'我负责在终端里写代码·搞开发'},{t:'（例如：“帮我修登录的 bug”）'}]
+      'cw3-chat':[{t:'把收据照片传上去，它会分析'},{t:'也能整理好给你一个 Excel 文件'},{t:'但都是在聊天里上传·下载的方式'},{t:'（不会直接操作你电脑里的文件夹）'}],
+      'cw3-cowork':[{t:'直接读取你电脑里的收据文件夹（32 张）'},{t:'提取金额·日期·项目'},{t:'把 支出整理.xlsx 保存到那个文件夹',done:true},{t:'✓ 文件夹里生成了结果文件！',done:true}],
+      'cw3-code':[{t:'同样的事也能做，但它是为编程·开发打造的工具'},{t:'我在终端·项目文件夹里工作'},{t:'（例如“修一下登录 bug”）'}]
     };
     var cw3T=[];
     function cw3Reset(){ cw3T.forEach(clearTimeout); cw3T=[]; ['cw3-chat','cw3-cowork','cw3-code'].forEach(function(id){ document.getElementById(id).innerHTML=''; }); document.getElementById('cw3-status').textContent='点一下“看看三者的反应”——同样的请求，结果有什么不同，给你看清楚。'; }

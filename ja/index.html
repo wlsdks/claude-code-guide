@@ -456,7 +456,7 @@
       <div class="bignote"><span class="bx">同じお願い</span><span>「この<b>領収書を Excel に整理</b>して」と 3 つに同じように頼んだら？</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="cw3-go">3 つの反応を見る ▶</button><button class="btn" id="cw3-reset">リセット</button></div>
       <div class="cw3grid">
-        <div class="cw3card"><div class="cw3h">Claude チャット <span class="badge no">答え・方法だけ</span></div><div class="cw3body" id="cw3-chat"></div></div>
+        <div class="cw3card"><div class="cw3h">Claude チャット <span class="badge no">チャットの中で</span></div><div class="cw3body" id="cw3-chat"></div></div>
         <div class="cw3card hl"><div class="cw3h">Cowork <span class="badge yes">成果物まで完成</span></div><div class="cw3body" id="cw3-cowork"></div></div>
         <div class="cw3card"><div class="cw3h">Claude Code <span class="badge no">開発専用</span></div><div class="cw3body" id="cw3-code"></div></div>
       </div>
@@ -544,8 +544,8 @@ irm https://claude.ai/install.ps1 | iex</div>
           <div class="tokprev" id="tokprev" style="margin-bottom:20px;"></div>
           <p class="label">Claude の作業 <span class="hint">いちばん場所を取ります</span></p>
           <div class="acts">
-            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">ファイル読み込み</div><div class="d">コードファイルをまるごと取り込む</div></span><span class="add">+8,400</span></button>
-            <button class="act" data-k="tool" data-t="3100"><span class="dot" style="background:#3b7dd8"></span><span class="meta"><div class="t">コマンド実行</div><div class="d">テスト・検索を走らせた結果</div></span><span class="add">+3,100</span></button>
+            <button class="act" data-k="file" data-t="8400"><span class="dot" style="background:#d8662f"></span><span class="meta"><div class="t">ファイル読み込み</div><div class="d">書類・ファイルを丸ごと取り込む</div></span><span class="add">+8,400</span></button>
+            <button class="act" data-k="toolout" data-t="3100"><span class="dot" style="background:#129a8e"></span><span class="meta"><div class="t">ツール実行</div><div class="d">検索・実行した結果</div></span><span class="add">+3,100</span></button>
             <button class="act" data-k="reply" data-t="1800"><span class="dot" style="background:#cf5184"></span><span class="meta"><div class="t">Claude の返答</div><div class="d">説明とコードを書いた</div></span><span class="add">+1,800</span></button>
           </div>
           <div class="botrow"><button class="btn solid" id="autocompact">自動圧縮を見る ▶</button><button class="ghost" id="compact">手動で圧縮</button><span class="sep">·</span><button class="ghost" id="reset">リセット</button></div>
@@ -1356,8 +1356,8 @@ description: 週次レポートを会社の様式で作成
 
   /* context tank */
   var MAX=200000,LIMIT_PX=420,AC_RATIO=0.8,stack=document.getElementById('stack'),limit=document.getElementById('limit'),cap=document.getElementById('cap'),free=document.getElementById('free'),tokEl=document.getElementById('tok'),num=document.getElementById('num'),status=document.getElementById('status'),inp=document.getElementById('inp'),capinp=document.getElementById('capinp'),tokprev=document.getElementById('tokprev');
-  var labels={sys:'システムプロンプト · 基本の指示',tool:'ツール一覧 · 使える機能',mem:'プロジェクトのメモ · CLAUDE.md',user:'自分のメッセージ',file:'ファイルの内容 · 読み込んだコード',reply:'Claude の返答',summary:'圧縮で要約された情報'};
-  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',reply:'#cf5184',summary:'#1f9e76'};
+  var labels={sys:'システムプロンプト · 基本の指示',tool:'ツール一覧 · 使える機能',mem:'プロジェクトのメモ · CLAUDE.md',user:'自分のメッセージ',file:'ファイル内容 · 読み込んだ資料',toolout:'ツール実行結果 · 検索・実行の出力',reply:'Claude の返答',summary:'圧縮で要約された情報'};
+  var hex={sys:'#8a8a8a',tool:'#3b7dd8',mem:'#1f9e76',user:'#6d5fd0',file:'#d8662f',toolout:'#129a8e',reply:'#cf5184',summary:'#1f9e76'};
   var base=[{k:'sys',t:3000},{k:'tool',t:11500},{k:'mem',t:2200}],items=[],curShown=0;
   function makeBlk(it,fixed,h){ var d=document.createElement('div'); var isSum=it.k==='summary'; d.className='blk'+(h<18?' mini':'')+(fixed?'':' acc')+(isSum?' sumhl':''); d.style.height=h+'px'; if(!isSum){ d.style.background=rgba(hex[it.k],0.14); d.style.borderColor=rgba(hex[it.k],0.30); } d.title=labels[it.k]+(it.txt&&!isSum?(' — '+it.txt):'')+' · '+fmt(it.t)+'トークン'; var name=labels[it.k]; if(it.txt&&!isSum)name+=' — 「'+it.txt+'」'; d.innerHTML='<span class="dot" style="background:'+hex[it.k]+'"></span><span class="name">'+(isSum?'<b>'+name+'</b>':name)+'</span>'+(isSum?'<span class="sumbadge">要約</span>':(fixed?'<span class="tag">基本</span>':''))+'<span class="tk">'+fmt(it.t)+'</span>'; return d; }
   function ctxRender(animLast){ var scale=LIMIT_PX/MAX; stack.innerHTML=''; items.forEach(function(it,i){ var el=makeBlk(it,it._base,Math.max(8,Math.round(it.t*scale))); if(animLast&&i===items.length-1){ el.style.opacity='0'; el.style.transform='translateY(-8px)'; el.style.transition='opacity .35s ease, transform .35s cubic-bezier(.22,1,.36,1)'; stack.appendChild(el); requestAnimationFrame(function(){ el.style.opacity='1'; el.style.transform='none'; }); } else stack.appendChild(el); });
@@ -1380,7 +1380,7 @@ description: 週次レポートを会社の様式で作成
   document.getElementById('reset').addEventListener('click',function(){ acStop(); ctxBase(); status.textContent='下の 3 つのマスは、会話を始める前からいつも入っています。'; });
   var acT=[]; function acStop(){ acT.forEach(clearTimeout); acT=[]; document.getElementById('tank').classList.remove('flash'); stack.classList.remove('summarizing'); var ov=document.getElementById('acoverlay'); if(ov)ov.classList.remove('on'); }
   document.getElementById('autocompact').addEventListener('click',function(){ acStop(); ctxBase(); var ba=document.getElementById('cwba'); if(ba)ba.style.display='none';
-    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','ダッシュボードを作って'],['file',null],['tool',null],['reply',null]], seq=[], tot=base0;
+    var base0=items.reduce(function(a,b){return a+b.t;},0), chunk=Math.max(1500,Math.round(MAX*0.11)), labels=[['user','イベント案内を作って'],['file',null],['toolout',null],['reply',null]], seq=[], tot=base0;
     for(var k=0; tot<MAX*AC_RATIO && k<14; k++){ var L=labels[k%4], amt=(k===0?900:Math.round(chunk*(0.8+0.4*((k%3)/2)))); seq.push([L[0],amt,L[1]]); tot+=amt; }
     status.textContent='会話が積み上がる途中… (続いている一つの作業)'; var i=0;
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
@@ -1650,9 +1650,9 @@ description: 週次レポートを会社の様式で作成
   (function(){
     var go=document.getElementById('cw3-go'); if(!go) return;
     var DATA={
-      'cw3-chat':[{t:'「Excel に整理する方法をお教えします」'},{t:'① 金額・日付の列を作って'},{t:'② 合計の数式を入れてください…'},{t:'(言葉で説明だけ — 自分のファイルは直接さわれません)'}],
-      'cw3-cowork':[{t:'領収書フォルダ（32 枚）を直接読んだ'},{t:'金額・日付・項目を抽出'},{t:'支出整理.xlsx として保存',done:true},{t:'✅ 成果物が完成 — ファイルができました！',done:true}],
-      'cw3-code':[{t:'これは「オフィス業務」なので Cowork がぴったりです'},{t:'私はコーディング・開発をターミナルで担当します'},{t:'(例: 「ログインのバグを直して」)'}]
+      'cw3-chat':[{t:'レシートの写真を上げると分析してくれます'},{t:'整理して Excel ファイルで受け取ることもできます'},{t:'ただしチャットに上げて・ダウンロードする方式'},{t:'（自分のPCのフォルダを直接は扱いません）'}],
+      'cw3-cowork':[{t:'自分のPCのレシートフォルダ（32枚）を直接読む'},{t:'金額・日付・項目を抽出'},{t:'そのフォルダに 支出整理.xlsx として保存',done:true},{t:'✓ フォルダに結果ファイルができました！',done:true}],
+      'cw3-code':[{t:'同じこともできますが、コーディング・開発向けのツールです'},{t:'私はターミナル・プロジェクトフォルダで作業します'},{t:'（例：「ログインのバグを直して」）'}]
     };
     var cw3T=[];
     function cw3Reset(){ cw3T.forEach(clearTimeout); cw3T=[]; ['cw3-chat','cw3-cowork','cw3-code'].forEach(function(id){ document.getElementById(id).innerHTML=''; }); document.getElementById('cw3-status').textContent='「3 つの反応を見る」を押してみてください — 同じお願いなのに結果がどう違うかをお見せします。'; }
