@@ -641,7 +641,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">가장 똑똑함</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">균형 · 기본 추천</div></button>
         <button class="mtab" data-m="haiku"><div class="mn">Haiku 4.5</div><div class="mt">가장 빠르고 저렴</div></button>
-        <button class="mtab locked" data-m="fable"><div class="mn">Fable 5 <span class="lockpill">잠김</span></div><div class="mt">최상위 · 특수 작업</div></button>
+        <button class="mtab" data-m="fable"><div class="mn">Fable 5</div><div class="mt">최신 최강 · 기본값 아님</div></button>
       </div>
       <div class="bars">
         <div class="bar"><div class="bl"><span>지능 (어려운 문제 해결)</span><b id="v-iq"></b></div><div class="track2"><div class="fill2" id="f-iq"></div></div></div>
@@ -660,6 +660,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         <tr><td class="cmd">Opus 4.8</td><td>최대 1M (100만)</td><td>가장 똑똑함</td></tr>
         <tr><td class="cmd">Sonnet 4.6</td><td>최대 1M (100만)</td><td>균형 · 기본 추천</td></tr>
         <tr><td class="cmd">Haiku 4.5</td><td>200K (20만)</td><td>가장 빠르고 저렴</td></tr>
+        <tr><td class="cmd">Fable 5</td><td>최대 1M (100만)</td><td>최신 최강 · 직접 선택</td></tr>
       </tbody></table></div>
       <ul class="points">
         <li><b>유료 플랜에서 최신 Opus·Sonnet을 고르면 1M 컨텍스트까지 쓸 수 있어요.</b><span>단, 1M 사용 가능 여부는 플랜·설정에 따라 달라요(자동은 아니에요). Haiku 같은 기본 모델은 200K예요.</span></li>
@@ -1112,7 +1113,7 @@ description: 주간 보고서를 회사 양식으로 작성
     <section class="page" id="effort">
       <h1>생각의 깊이 (effort)</h1>
       <p class="lead"><b>생각의 깊이(effort)</b>는 클로드가 <b>답하기 전에 얼마나 깊이 고민할지</b> 정하는 설정이에요. 깊게 생각할수록 어려운 문제에 더 정확하지만, 더 느리고 비싸요.</p>
-      <p class="defs"><b>저 · 중 · 고 · 최고</b> 단계가 있어요. 깊이 생각하는 만큼 ‘생각(thinking) 토큰’을 더 써요(‘토큰’ 탭). 골라서 차이를 보세요.</p>
+      <p class="defs"><b>저 · 중 · 고 · 초고 · 최고</b> 단계가 있어요(기본은 ‘고’). 깊이 생각하는 만큼 ‘생각(thinking) 토큰’을 더 써요(‘토큰’ 탭). 골라서 차이를 보세요.</p>
       <div class="efbtns" id="ef-btns"></div>
       <div class="bars">
         <div class="bar"><div class="bl"><span>어려운 문제 정확도</span><b id="ef-v-acc"></b></div><div class="track2"><div class="fill2" id="ef-f-acc"></div></div></div>
@@ -1383,7 +1384,7 @@ description: 주간 보고서를 회사 양식으로 작성
   var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'최대 1M (약 100만 토큰)',tag:'가장 똑똑하지만 가장 느리고 비싸요.',when:'정확도가 무엇보다 중요할 때.',ex:['복잡한 코드 분석·설계','풀기 어려운 버그','긴 추론이 필요한 작업']},
     sonnet:{iq:4,sp:4,cost:3,ctx:'최대 1M (약 100만 토큰)',tag:'똑똑함과 속도의 균형. 대부분의 작업에 무난.',when:'무엇을 고를지 모르겠다면 여기서 시작.',ex:['일반적인 코딩·수정','문서 작성·요약','대부분의 작업']},
     haiku:{iq:3,sp:5,cost:5,ctx:'200K (약 20만 토큰)',tag:'가장 빠르고 가장 저렴.',when:'속도·비용이 중요하고 작업이 단순할 때.',ex:['간단·반복 작업','빠른 응답','대량 가볍게 처리']},
-    fable:{iq:5,sp:1,cost:1,locked:true,ctx:'최대 1M (약 100만 토큰)',lock:'지금은 일반 사용이 막혀 있는 최상위 특수 모델이에요. (선택 불가 — 참고용)',tag:'가장 강력하지만 가장 느리고 비싼 특수 모델.',when:'아주 어렵고 오래 걸리는 자율 작업용.',ex:['대규모 코드 마이그레이션','장시간 자율 작업','최고 난도 문제']} };
+    fable:{iq:5,sp:1,cost:1,ctx:'최대 1M (약 100만 토큰)',tag:'가장 강력한 최신 모델 — 가장 느리고 비싸요. 기본값이 아니라 직접 골라야 해요.',when:'아주 어렵거나 오래 걸리는 작업에 최고 성능이 필요할 때. (플랜·환경에 따라 선택 가능 여부가 달라요)',ex:['대규모 코드 마이그레이션','장시간 자율 작업','최고 난도 문제']} };
   var barColor={iq:'#6d5fd0',sp:'#1f9e76',cost:'#3b7dd8'},rateTxt=['','매우 낮음','낮음','보통','높음','매우 높음'];
   function showModel(m){ var d=MODELS[m]; ['iq','sp','cost'].forEach(function(k){ document.getElementById('f-'+k).style.width=(d[k]*20)+'%'; document.getElementById('f-'+k).style.background=d.locked?'var(--line2)':barColor[k]; document.getElementById('v-'+k).textContent=rateTxt[d[k]]; });
     var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent='🔒 '+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
@@ -1606,7 +1607,8 @@ description: 주간 보고서를 회사 양식으로 작성
     /* effort */
     var EF=[{n:'저',d:'간단·빠르게',acc:2,sp:5,cost:1,steps:['바로 답해요']},
       {n:'중',d:'보통',acc:3,sp:4,cost:2,steps:['핵심 한 번 점검','답 정리']},
-      {n:'고',d:'깊게',acc:4,sp:2,cost:4,steps:['여러 방법 비교','근거 따져보기','빠진 곳 확인','답 정리']},
+      {n:'고',d:'깊게 (기본)',acc:4,sp:3,cost:3,steps:['여러 방법 비교','근거 따져보기','빠진 곳 확인','답 정리']},
+      {n:'초고',d:'더 깊게',acc:5,sp:2,cost:4,steps:['경우의 수 펼치기','각각 검증','반례 찾기','근거 정리','답 정리']},
       {n:'최고',d:'아주 깊게',acc:5,sp:1,cost:5,steps:['경우의 수 펼치기','각각 검증','반례 찾기','다시 점검','근거 정리','최종 답']}];
     var efBtns=document.getElementById('ef-btns'),efThink=document.getElementById('ef-think'),efT=[];
     function efShow(i){ var d=EF[i]; [].forEach.call(efBtns.children,function(c,j){ c.classList.toggle('on',j===i); });
@@ -1615,8 +1617,8 @@ description: 주간 보고서를 회사 양식으로 작성
       efT.forEach(clearTimeout); efT=[]; efThink.innerHTML='';
       d.steps.forEach(function(s,k){ var el=document.createElement('div'); el.className='efline'; el.textContent=(k+1)+'. '+s; efThink.appendChild(el); efT.push(setTimeout(function(){ el.classList.add('on'); },120+k*200)); });
     }
-    EF.forEach(function(d,i){ var b=document.createElement('button'); b.className='efbtn'+(i===1?' on':''); b.innerHTML=d.n+'<span class="efd">'+d.d+'</span>'; b.addEventListener('click',function(){ efShow(i); }); efBtns.appendChild(b); });
-    efShow(1);
+    EF.forEach(function(d,i){ var b=document.createElement('button'); b.className='efbtn'+(i===2?' on':''); b.innerHTML=d.n+'<span class="efd">'+d.d+'</span>'; b.addEventListener('click',function(){ efShow(i); }); efBtns.appendChild(b); });
+    efShow(2);
     /* goal */
     var GTURNS=[{t:'1턴 — 오타 5개 중 3개 고침 (남은 오타 2개)',ok:false},{t:'2턴 — 남은 2개 고침 (남은 오타 0개)',ok:true,last:true}];
     var goalBox=document.getElementById('goal-turns'),goalT=[];
@@ -1643,7 +1645,7 @@ description: 주간 보고서를 회사 양식으로 작성
     var CFG=[{k:'언어',sub:'화면에 보이는 언어',vals:['한국어','English','中文','日本語'],i:0},
       {k:'테마',sub:'밝게 / 어둡게',vals:['라이트','다크','시스템'],i:1},
       {k:'모델',sub:'어떤 클로드로',vals:['Haiku','Sonnet','Opus'],i:1},
-      {k:'생각의 깊이',sub:'effort',vals:['저','중','고','최고'],i:1},
+      {k:'생각의 깊이',sub:'effort',vals:['저','중','고','초고','최고'],i:2},
       {k:'권한',sub:'얼마나 물어볼지',vals:['권한 요청','편집 수락','자동'],i:0}];
     var cfgPanel=document.getElementById('cfg-panel');
     CFG.forEach(function(o){ var row=document.createElement('div'); row.className='cfgrow'; row.innerHTML='<div class="cfk">'+o.k+'<small>'+o.sub+'</small></div>'; var v=document.createElement('button'); v.className='cfgval'; v.textContent=o.vals[o.i]; v.addEventListener('click',function(){ o.i=(o.i+1)%o.vals.length; v.textContent=o.vals[o.i]; document.getElementById('cfg-status').textContent='‘'+o.k+'’을(를) ‘'+o.vals[o.i]+'’(으)로 바꿨어요.'; }); row.appendChild(v); cfgPanel.appendChild(row); });
