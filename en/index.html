@@ -608,7 +608,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="label">Step 1 — Pick your working folder first <span class="hint">A session starts inside a folder</span></p>
       <div class="folderbox" style="max-width:100%;">
         <p style="font-size:14px;margin:0 0 4px;">Claude only sees the files <b>inside the folder you started in</b>. So 'which folder you start in' comes first. Use the buttons to see what happens if you don't pick one.</p>
-        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">Start without picking a folder (whole home) ▶</button><button class="btn solid" id="fold-proj">Start in the project folder ▶</button></div>
+        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">Start without picking a folder ▶</button><button class="btn solid" id="fold-proj">Start in the project folder ▶</button></div>
         <div class="folderscan" id="fold-scan"><div class="fs">Press a button to see 'which files Claude ends up looking at.'</div></div>
       </div>
 
@@ -648,7 +648,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="defs">An AI doesn't read characters as-is — it splits text into tokens. Try typing something.</p>
       <p class="label">Type any sentence <span class="hint">Type your own, or press an example</span></p>
       <div class="field" style="max-width:560px;"><input id="tinp" type="text" placeholder="e.g. Hello Claude!" maxlength="200"></div>
-      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">Example: Korean (long sentence)</button><button class="btn" id="ex-en">Example: English (same content)</button><button class="btn" id="ex-clear">Reset</button></div>
+      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">Korean example</button><button class="btn" id="ex-en">English example</button><button class="btn" id="ex-clear">Reset</button></div>
       <div class="tokprev" id="tprev" style="max-width:560px;"></div>
       <p class="note" style="margin:8px 0 0; max-width:560px;">Same meaning, but Korean uses far more tokens, right? The very same request uses different amounts of tokens (= space and cost) depending on the language you write it in.</p>
       <p class="label">Korean vs English — even for the same greeting</p>
@@ -865,7 +865,7 @@ description: Write the weekly report in the company format
       <p class="defs">The idea is simple — 'divide the work and hand it off.'</p>
       <div class="callout"><b>An easy analogy</b> · Picture yourself as a <b>team lead</b>. Instead of doing a big job alone, you hand pieces to <b>specialist teammates</b>: "You research this," "You review that." Each works at their own desk and <b>reports back only the result</b>. Your desk (the main conversation) stays clean.</div>
       <p class="label">See it yourself — handing work to 6 helpers <span class="hint">Click to play</span></p>
-      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">See it work ▶</button><button class="btn" id="sa-self">What if the main did it all alone?</button></div>
+      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">See it work ▶</button><button class="btn" id="sa-self">Main alone?</button></div>
       <div class="mainbox"><div class="mh"><span class="mt2">Main conversation (you and Claude)</span><span class="ctxnum" id="sa-main-n">Context 8%</span></div><div class="ctxmini"><i id="sa-main-b" style="background:var(--good); width:8%;"></i></div><div class="sd2" style="margin:6px 0 0;">"Review and improve our whole online store"</div></div>
       <div class="arrowdown" style="max-width:none; margin:10px 0;">↓ Split into 6 and handed off at the same time</div>
       <div class="sagrid" id="sa-grid"></div>
@@ -1458,7 +1458,7 @@ description: Write the weekly report in the company format
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
       if(total>=MAX*AC_RATIO){ status.textContent='Reached the auto-compact start line! ('+fmt(total)+' / limit '+fmt(MAX)+') — it stops here, before the limit, and compacts.'; acT.push(setTimeout(acTrigger,1100)); return; }
       if(total/MAX>.6) status.textContent='Filling up steadily… soon it\'ll reach the auto-compact line.'; acT.push(setTimeout(step,1100)); })(); });
-  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='⚠️ Reached the auto-compact line — it stops here and starts summarizing. (No new work runs while it summarizes.)'; tank.classList.add('flash');
+  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='Reached the auto-compact line — it stops here and starts summarizing. (No new work runs while it summarizes.)'; tank.classList.add('flash');
     acT.push(setTimeout(function(){ stack.classList.add('summarizing'); if(ov)ov.classList.add('on'); status.textContent='Paused — briefly summarizing past conversation, files, and tool results…'; },1300));
     acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='Compaction done — old conversation and tool output shrink into one \'summary\' block, while essentials like your request, the file list, and decisions are preserved. (To see how the content actually changes, check the \'Compaction in detail\' tab.)'; },3400)); }
   renderPrev(tokprev,'',true); ctxMax(200000); ctxBase();
@@ -1477,7 +1477,7 @@ description: Write the weekly report in the company format
     {c:'#6d5fd0',k:'Job 4',l:'"Add gym membership management too" (yet another one!)',p:96} ];
   document.getElementById('sess-play').addEventListener('click',function(){ sClear(); brainReset(); sMode.textContent='One session (mixing many businesses)'; sBarSet(0); sMsg.textContent='Playing — cafe, store, academy, gym… piling different businesses\' work into one session…'; var prev=0;
     MESSY.forEach(function(s,i){ sTimers.push(setTimeout(function(){ sRow(s.c,s.k,s.l,s.done?'done':''); sBarSet(s.p); brainAdd(s.c,s.p-prev); prev=s.p; if(brainStat)brainStat.innerHTML='Complexity <b>'+s.p+'%</b> — the businesses are getting jumbled';
-      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'⚠️ Claude: I\'m confused about which screen belongs to which business…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">Overloaded</b> — the mind is jumbled and confused'; sMsg.textContent='Even after the cafe job was done, the store, academy, and gym were all asked for in the same session, so the 4 businesses got jumbled in the mind (context) and filled it up. → Each time the business (job) changes, clear it with /clear or use a new session to keep things clean.'; },1100)); } },950*i)); }); });
+      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'Claude: I\'m confused about which screen belongs to which business…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">Overloaded</b> — the mind is jumbled and confused'; sMsg.textContent='Even after the cafe job was done, the store, academy, and gym were all asked for in the same session, so the 4 businesses got jumbled in the mind (context) and filled it up. → Each time the business (job) changes, clear it with /clear or use a new session to keep things clean.'; },1100)); } },950*i)); }); });
   var fsT=[];
   var HOME=['family_photo.jpg','trip_2019.png','music_playlist.mp3','tax_receipt.xlsx','resume_final_reallyfinal.docx','Downloads/installer.exe','notes.txt','… and thousands more'];
   var PROJ=['index.html','style.css','about.html','script.js'];
@@ -1520,7 +1520,7 @@ description: Write the weekly report in the company format
     fable:{iq:5,sp:1,cost:1,ctx:'up to 1M (about one million tokens)',tag:'The most powerful, latest model — slowest and priciest. It\'s not the default, so you have to pick it yourself.',when:'When you need top performance for very hard or long-running tasks. (Whether you can pick it depends on your plan and environment.)',ex:['Large-scale code migrations','Long autonomous tasks','The hardest problems']} };
   var barColor={iq:'#6d5fd0',sp:'#1f9e76',cost:'#3b7dd8'},rateTxt=['','Very low','Low','Medium','High','Very high'];
   function showModel(m){ var d=MODELS[m]; ['iq','sp','cost'].forEach(function(k){ document.getElementById('f-'+k).style.width=(d[k]*20)+'%'; document.getElementById('f-'+k).style.background=d.locked?'var(--line2)':barColor[k]; document.getElementById('v-'+k).textContent=rateTxt[d[k]]; });
-    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent='🔒 '+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
+    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent=''+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
     document.getElementById('m-tag').textContent=d.tag; document.getElementById('m-when').textContent=d.when; document.getElementById('m-ctx').innerHTML='Context window: <b>'+d.ctx+'</b>'; document.getElementById('m-ex').innerHTML=d.ex.map(function(e){return '<li>'+e+'</li>';}).join(''); document.querySelectorAll('.mtab').forEach(function(t){ t.classList.toggle('on',t.dataset.m===m); }); }
   document.querySelectorAll('.mtab').forEach(function(t){ t.addEventListener('click',function(){ showModel(t.dataset.m); }); }); showModel('sonnet');
 
@@ -1620,7 +1620,7 @@ description: Write the weekly report in the company format
   function luFeed(t){ var f=document.getElementById('use-feed'); var d=document.createElement('div'); d.className='uf'; d.textContent=t; f.appendChild(d); while(f.children.length>5)f.removeChild(f.firstChild); }
   var USES=['Sent a message · "Build a dashboard"','Read 30 files (lots of tokens!)','Ran tests + long output','Image analysis','Continued a long conversation','Read another big file'];
   document.getElementById('lim-use').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; var btn=document.getElementById('lim-use'); btn.disabled=false; document.getElementById('lock-msg').textContent=''; var step=0;
-    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='🔒 5-hour limit reached — you can\'t send new work until it resets. Wait a bit or move up to a higher plan.'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
+    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='5-hour limit reached — you can\'t send new work until it resets. Wait a bit or move up to a higher plan.'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
   document.getElementById('lim-reset').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; l5=0; gset(); document.getElementById('lim-use').disabled=false; document.getElementById('lock-msg').textContent='5 hours passed and the limit reset! You can use it again. (Note: the weekly limit still remains.)'; });
   gset();
 

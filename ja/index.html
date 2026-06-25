@@ -609,7 +609,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="label">ステップ1 — まず作業フォルダを決める <span class="hint">セッションはフォルダの中で始まります</span></p>
       <div class="folderbox" style="max-width:100%;">
         <p style="font-size:14px;margin:0 0 4px;">Claude は<b>始めたフォルダの中</b>のファイルだけを見ます。だから「どのフォルダで始めるか」が先です。決めないとどうなるか、ボタンで見てみましょう。</p>
-        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">フォルダを決めずに開始 (ホーム全体) ▶</button><button class="btn solid" id="fold-proj">プロジェクトフォルダで開始 ▶</button></div>
+        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">フォルダを決めずに開始 ▶</button><button class="btn solid" id="fold-proj">プロジェクトフォルダで開始 ▶</button></div>
         <div class="folderscan" id="fold-scan"><div class="fs">ボタンを押すと、Claude が「どのファイルを見ることになるか」が表示されます。</div></div>
       </div>
 
@@ -649,7 +649,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="defs">AI は文字をそのまま読むのではなく、トークン単位に分けて読みます。実際に入力してみてください。</p>
       <p class="label">なんでもいいので文を入力 <span class="hint">直接打つか、例を押してみてください</span></p>
       <div class="field" style="max-width:560px;"><input id="tinp" type="text" placeholder="例: こんにちは Claude!" maxlength="200"></div>
-      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">例: 日本語 (長い文)</button><button class="btn" id="ex-en">例: 英語 (同じ内容)</button><button class="btn" id="ex-clear">リセット</button></div>
+      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">日本語の例</button><button class="btn" id="ex-en">英語の例</button><button class="btn" id="ex-clear">リセット</button></div>
       <div class="tokprev" id="tprev" style="max-width:560px;"></div>
       <p class="note" style="margin:8px 0 0; max-width:560px;">同じ意味なのに日本語のトークンのほうがずっと多いでしょう? 同じお願いでも、どの言語で書くかによってトークン（=空間・コスト）が変わります。</p>
       <p class="label">日本語 vs 英語 — 同じあいさつなのに</p>
@@ -866,7 +866,7 @@ description: 週次レポートを会社の様式で作成
       <p class="defs">核心はシンプルです — 「仕事を分けて任せる」。</p>
       <div class="callout"><b>わかりやすいたとえ</b> · 自分が<b>チームリーダー</b>だと思ってください。大きな仕事を一人で全部やらず、<b>専門のメンバー</b>に「これは君が調べてきて」「これは君が確認して」と分けて任せますよね。メンバーはそれぞれ自分の机で働き、<b>結果だけ報告</b>します。自分の机（メインの会話）はきれいに保たれます。</div>
       <p class="label">実際に見る — 6 人に分けて任せる <span class="hint">押して再生</span></p>
-      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">動作を見る ▶</button><button class="btn" id="sa-self">もしメインが全部一人でやったら?</button></div>
+      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">動作を見る ▶</button><button class="btn" id="sa-self">メイン一人だと?</button></div>
       <div class="mainbox"><div class="mh"><span class="mt2">メインの会話 (自分と Claude)</span><span class="ctxnum" id="sa-main-n">コンテキスト 8%</span></div><div class="ctxmini"><i id="sa-main-b" style="background:var(--good); width:8%;"></i></div><div class="sd2" style="margin:6px 0 0;">「うちのショッピングサイト全体を点検して改善して」</div></div>
       <div class="arrowdown" style="max-width:none; margin:10px 0;">↓ 6 つに分けて同時に任せる</div>
       <div class="sagrid" id="sa-grid"></div>
@@ -1459,7 +1459,7 @@ description: 週次レポートを会社の様式で作成
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
       if(total>=MAX*AC_RATIO){ status.textContent='自動圧縮の開始線に達しました! ('+fmt(total)+' / 上限 '+fmt(MAX)+') — 上限まで行かず、ここで止まって圧縮します。'; acT.push(setTimeout(acTrigger,1100)); return; }
       if(total/MAX>.6) status.textContent='だんだん満ちていく途中… もうすぐ自動圧縮線に達します。'; acT.push(setTimeout(step,1100)); })(); });
-  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='⚠️ 自動圧縮線に到達 — ここで止まって要約を始めます。(要約の間は新しい作業が進みません)'; tank.classList.add('flash');
+  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='自動圧縮線に到達 — ここで止まって要約を始めます。(要約の間は新しい作業が進みません)'; tank.classList.add('flash');
     acT.push(setTimeout(function(){ stack.classList.add('summarizing'); if(ov)ov.classList.add('on'); status.textContent='停止 — これまでの会話・ファイル・ツール結果を短く要約中…'; },1300));
     acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='圧縮完了 — 古い会話・ツールの出力は「要約」1 マスに縮み、依頼・ファイル一覧・決定といった核心は保存されます。(内容が実際にどう変わるかは「圧縮をくわしく」タブで見られます)'; },3400)); }
   renderPrev(tokprev,'',true); ctxMax(200000); ctxBase();
@@ -1478,7 +1478,7 @@ description: 週次レポートを会社の様式で作成
     {c:'#6d5fd0',k:'作業 4',l:'「ジムの会員管理も追加して」(またまた別!)',p:96} ];
   document.getElementById('sess-play').addEventListener('click',function(){ sClear(); brainReset(); sMode.textContent='セッション 1 つ (複数の事業を混ぜる)'; sBarSet(0); sMsg.textContent='再生中 — カフェ・ネットショップ・塾・ジム… 別々の事業の作業を一つのセッションに積み続けている途中…'; var prev=0;
     MESSY.forEach(function(s,i){ sTimers.push(setTimeout(function(){ sRow(s.c,s.k,s.l,s.done?'done':''); sBarSet(s.p); brainAdd(s.c,s.p-prev); prev=s.p; if(brainStat)brainStat.innerHTML='複雑度 <b>'+s.p+'%</b> — 事業が入り混じる途中';
-      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'⚠️ Claude: どの事業のどの画面か混乱します…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">過負荷</b> — 頭の中が混ざって混乱しています'; sMsg.textContent='完了したカフェの作業のあとも、ネットショップ・塾・ジムを同じセッションで続けてお願いしたので、4 つの事業の内容が頭の中（コンテキスト）で混ざって満杯になりました。→ 事業（作業）が変わるたびに /clear で空にするか、新しいセッションを使えばきれいになります。'; },1100)); } },950*i)); }); });
+      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'Claude: どの事業のどの画面か混乱します…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">過負荷</b> — 頭の中が混ざって混乱しています'; sMsg.textContent='完了したカフェの作業のあとも、ネットショップ・塾・ジムを同じセッションで続けてお願いしたので、4 つの事業の内容が頭の中（コンテキスト）で混ざって満杯になりました。→ 事業（作業）が変わるたびに /clear で空にするか、新しいセッションを使えばきれいになります。'; },1100)); } },950*i)); }); });
   var fsT=[];
   var HOME=['家族写真.jpg','旅行_2019.png','音楽_プレイリスト.mp3','税金領収書.xlsx','履歴書_最終_本当に最終.docx','ダウンロード/インストーラ.exe','メモ.txt','… そして数千個もっと'];
   var PROJ=['index.html','style.css','about.html','script.js'];
@@ -1521,7 +1521,7 @@ description: 週次レポートを会社の様式で作成
     fable:{iq:5,sp:1,cost:1,ctx:'最大 1M (約 100万トークン)',tag:'いちばん強力な最新モデル — いちばん遅くて高価です。デフォルトではなく、自分で選ぶ必要があります。',when:'とても難しく長くかかる作業に最高性能が必要なとき。(プラン・環境によって選択できるかどうかが変わります)',ex:['大規模なコードのマイグレーション','長時間の自律作業','最高難度の問題']} };
   var barColor={iq:'#6d5fd0',sp:'#1f9e76',cost:'#3b7dd8'},rateTxt=['','とても低い','低い','普通','高い','とても高い'];
   function showModel(m){ var d=MODELS[m]; ['iq','sp','cost'].forEach(function(k){ document.getElementById('f-'+k).style.width=(d[k]*20)+'%'; document.getElementById('f-'+k).style.background=d.locked?'var(--line2)':barColor[k]; document.getElementById('v-'+k).textContent=rateTxt[d[k]]; });
-    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent='🔒 '+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
+    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent=''+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
     document.getElementById('m-tag').textContent=d.tag; document.getElementById('m-when').textContent=d.when; document.getElementById('m-ctx').innerHTML='コンテキストウィンドウ: <b>'+d.ctx+'</b>'; document.getElementById('m-ex').innerHTML=d.ex.map(function(e){return '<li>'+e+'</li>';}).join(''); document.querySelectorAll('.mtab').forEach(function(t){ t.classList.toggle('on',t.dataset.m===m); }); }
   document.querySelectorAll('.mtab').forEach(function(t){ t.addEventListener('click',function(){ showModel(t.dataset.m); }); }); showModel('sonnet');
 
@@ -1621,7 +1621,7 @@ description: 週次レポートを会社の様式で作成
   function luFeed(t){ var f=document.getElementById('use-feed'); var d=document.createElement('div'); d.className='uf'; d.textContent=t; f.appendChild(d); while(f.children.length>5)f.removeChild(f.firstChild); }
   var USES=['メッセージ送信 · 「ダッシュボードを作って」','ファイル 30 個を読んだ (トークンたくさん!)','テスト実行 + 長い結果','画像の分析','長い会話を続ける','また大きなファイルを読んだ'];
   document.getElementById('lim-use').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; var btn=document.getElementById('lim-use'); btn.disabled=false; document.getElementById('lock-msg').textContent=''; var step=0;
-    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='🔒 5時間の上限に到達 — リセットまで新しい作業を送れません。しばらく待つか、上位プランに上げる必要があります。'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
+    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='5時間の上限に到達 — リセットまで新しい作業を送れません。しばらく待つか、上位プランに上げる必要があります。'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
   document.getElementById('lim-reset').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; l5=0; gset(); document.getElementById('lim-use').disabled=false; document.getElementById('lock-msg').textContent='5時間が過ぎて上限がリセットされました! また使えます。(ただし週間の上限はそのまま残っている点に注意)'; });
   gset();
 

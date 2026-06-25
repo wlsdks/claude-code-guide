@@ -608,7 +608,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="label">第 1 步 —— 先定好工作文件夹 <span class="hint">会话是在文件夹里开始的</span></p>
       <div class="folderbox" style="max-width:100%;">
         <p style="font-size:14px;margin:0 0 4px;">Claude 只看<b>启动时所在文件夹里</b>的文件。所以‘从哪个文件夹开始’是第一步。点按钮看看不定好会怎样。</p>
-        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">不定文件夹就开始（整个主目录） ▶</button><button class="btn solid" id="fold-proj">在项目文件夹里开始 ▶</button></div>
+        <div class="btnrow" style="margin:10px 0;"><button class="btn" id="fold-home">不定文件夹就开始 ▶</button><button class="btn solid" id="fold-proj">在项目文件夹里开始 ▶</button></div>
         <div class="folderscan" id="fold-scan"><div class="fs">点按钮，就会显示 Claude‘会看到哪些文件’。</div></div>
       </div>
 
@@ -648,7 +648,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="defs">AI 不是逐字读文字，而是按 token 切成小块来读。亲自输入试试。</p>
       <p class="label">随便输入一句话 <span class="hint">自己敲，或点示例试试</span></p>
       <div class="field" style="max-width:560px;"><input id="tinp" type="text" placeholder="例：你好 Claude！" maxlength="200"></div>
-      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">示例：中文（长句）</button><button class="btn" id="ex-en">示例：英文（相同内容）</button><button class="btn" id="ex-clear">重置</button></div>
+      <div class="btnrow" style="max-width:560px; margin-bottom:10px;"><button class="btn" id="ex-kr">中文示例</button><button class="btn" id="ex-en">英文示例</button><button class="btn" id="ex-clear">重置</button></div>
       <div class="tokprev" id="tprev" style="max-width:560px;"></div>
       <p class="note" style="margin:8px 0 0; max-width:560px;">意思一样，可中文的 token 多得多吧？同样的需求，用哪种语言写，token（＝空间·成本）也不一样。</p>
       <p class="label">中文 vs 英文 —— 同样是打招呼</p>
@@ -865,7 +865,7 @@ description: 按公司格式撰写周报
       <p class="defs">核心很简单 —— ‘把活分出去’。</p>
       <div class="callout"><b>简单类比</b> · 想象你是<b>组长</b>。大事不全自己扛，而是分给<b>专业的组员</b>：“这个你去调查”、“这个你来审一下”。组员各自在自己的工位干活，<b>只汇报结果</b>。你的工位（主对话）保持清爽。</div>
       <p class="label">亲眼看看 —— 分给 6 个人 <span class="hint">点一下回放</span></p>
-      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">查看运行 ▶</button><button class="btn" id="sa-self">如果主对话自己全干会怎样？</button></div>
+      <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sa-go">查看运行 ▶</button><button class="btn" id="sa-self">主对话独自做？</button></div>
       <div class="mainbox"><div class="mh"><span class="mt2">主对话（我和 Claude）</span><span class="ctxnum" id="sa-main-n">上下文 8%</span></div><div class="ctxmini"><i id="sa-main-b" style="background:var(--good); width:8%;"></i></div><div class="sd2" style="margin:6px 0 0;">“把我们商城整体检查并改进一下”</div></div>
       <div class="arrowdown" style="max-width:none; margin:10px 0;">↓ 分成 6 项同时派出去</div>
       <div class="sagrid" id="sa-grid"></div>
@@ -1459,7 +1459,7 @@ description: 按公司格式撰写周报
     (function step(){ if(i>=seq.length){ acTrigger(); return; } var s=seq[i++]; ctxAdd(s[0],s[1],s[2]); var total=items.reduce(function(a,b){return a+b.t;},0);
       if(total>=MAX*AC_RATIO){ status.textContent='碰到自动压缩起始线了！（'+fmt(total)+' / 上限 '+fmt(MAX)+'）—— 不会一直走到上限，而是在这里停下来压缩。'; acT.push(setTimeout(acTrigger,1100)); return; }
       if(total/MAX>.6) status.textContent='正在一点点填满…马上就要碰到自动压缩线了。'; acT.push(setTimeout(step,1100)); })(); });
-  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='⚠️ 到达自动压缩线 —— 在这里停下，开始总结。（总结期间不会进行新工作）'; tank.classList.add('flash');
+  function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='到达自动压缩线 —— 在这里停下，开始总结。（总结期间不会进行新工作）'; tank.classList.add('flash');
     acT.push(setTimeout(function(){ stack.classList.add('summarizing'); if(ov)ov.classList.add('on'); status.textContent='已暂停 —— 正在把之前的对话、文件、工具结果简短总结…'; },1300));
     acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='压缩完成 —— 旧对话、工具输出缩成一格‘摘要’，而需求、文件清单、决定这些核心都保留下来。（内容实际怎么变，可在‘压缩 (compact)’标签页看到）'; },3400)); }
   renderPrev(tokprev,'',true); ctxMax(200000); ctxBase();
@@ -1478,7 +1478,7 @@ description: 按公司格式撰写周报
     {c:'#6d5fd0',k:'任务 4',l:'“再加个健身房会员管理”（又又一摊！）',p:96} ];
   document.getElementById('sess-play').addEventListener('click',function(){ sClear(); brainReset(); sMode.textContent='一个会话（混了多摊生意）'; sBarSet(0); sMsg.textContent='回放中 —— 咖啡店、商城、培训班、健身房…把不同生意的活儿一股脑塞进同一个会话…'; var prev=0;
     MESSY.forEach(function(s,i){ sTimers.push(setTimeout(function(){ sRow(s.c,s.k,s.l,s.done?'done':''); sBarSet(s.p); brainAdd(s.c,s.p-prev); prev=s.p; if(brainStat)brainStat.innerHTML='复杂度 <b>'+s.p+'%</b> —— 几摊生意正混到一起';
-      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'⚠️ Claude：搞不清是哪摊生意的哪个界面了…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">过载</b> —— 脑子里全混在一起，糊涂了'; sMsg.textContent='咖啡店做完之后，又在同一个会话里接着让它做商城、培训班、健身房，结果 4 摊生意的内容在脑海（上下文）里混作一团、装满了。→ 每次换生意（任务）时用 /clear 清空，或开新会话，就清爽了。'; },1100)); } },950*i)); }); });
+      if(i===MESSY.length-1){ sTimers.push(setTimeout(function(){ sRow(null,null,'Claude：搞不清是哪摊生意的哪个界面了…','warn'); sBarSet(100); if(brainEl)brainEl.classList.add('overload'); if(brainStat)brainStat.innerHTML='<b style="color:var(--over)">过载</b> —— 脑子里全混在一起，糊涂了'; sMsg.textContent='咖啡店做完之后，又在同一个会话里接着让它做商城、培训班、健身房，结果 4 摊生意的内容在脑海（上下文）里混作一团、装满了。→ 每次换生意（任务）时用 /clear 清空，或开新会话，就清爽了。'; },1100)); } },950*i)); }); });
   var fsT=[];
   var HOME=['全家福.jpg','旅行_2019.png','音乐_歌单.mp3','税务发票.xlsx','简历_最终_真的最终.docx','下载/安装包.exe','备忘.txt','… 还有好几千个'];
   var PROJ=['index.html','style.css','about.html','script.js'];
@@ -1521,7 +1521,7 @@ description: 按公司格式撰写周报
     fable:{iq:5,sp:1,cost:1,ctx:'最大 1M (约 100 万 token)',tag:'最强大的最新模型 —— 最慢、最贵。它不是默认值，需要你自己选择。',when:'当非常难或耗时很长的任务需要最高性能时。（能否选择取决于套餐和环境）',ex:['大规模代码迁移','长时间自主工作','最高难度的问题']} };
   var barColor={iq:'#6d5fd0',sp:'#1f9e76',cost:'#3b7dd8'},rateTxt=['','很低','低','一般','高','很高'];
   function showModel(m){ var d=MODELS[m]; ['iq','sp','cost'].forEach(function(k){ document.getElementById('f-'+k).style.width=(d[k]*20)+'%'; document.getElementById('f-'+k).style.background=d.locked?'var(--line2)':barColor[k]; document.getElementById('v-'+k).textContent=rateTxt[d[k]]; });
-    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent='🔒 '+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
+    var lb=document.getElementById('m-lock'); if(d.locked){ lb.style.display='block'; lb.textContent=''+d.lock; document.getElementById('muse').classList.add('lock'); } else { lb.style.display='none'; document.getElementById('muse').classList.remove('lock'); }
     document.getElementById('m-tag').textContent=d.tag; document.getElementById('m-when').textContent=d.when; document.getElementById('m-ctx').innerHTML='上下文窗口：<b>'+d.ctx+'</b>'; document.getElementById('m-ex').innerHTML=d.ex.map(function(e){return '<li>'+e+'</li>';}).join(''); document.querySelectorAll('.mtab').forEach(function(t){ t.classList.toggle('on',t.dataset.m===m); }); }
   document.querySelectorAll('.mtab').forEach(function(t){ t.addEventListener('click',function(){ showModel(t.dataset.m); }); }); showModel('sonnet');
 
@@ -1621,7 +1621,7 @@ description: 按公司格式撰写周报
   function luFeed(t){ var f=document.getElementById('use-feed'); var d=document.createElement('div'); d.className='uf'; d.textContent=t; f.appendChild(d); while(f.children.length>5)f.removeChild(f.firstChild); }
   var USES=['发了消息 · “帮我做个仪表盘”','读取了 30 个文件（token 很多！）','运行测试 + 长结果','图片分析','接着长对话','又读了大文件'];
   document.getElementById('lim-use').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; var btn=document.getElementById('lim-use'); btn.disabled=false; document.getElementById('lock-msg').textContent=''; var step=0;
-    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='🔒 已到 5 小时上限 —— 重置前发不了新任务。要稍等一会，或升级到更高方案。'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
+    (function go(){ if(l5>=100){ document.getElementById('lock-msg').textContent='已到 5 小时上限 —— 重置前发不了新任务。要稍等一会，或升级到更高方案。'; btn.disabled=true; return; } l5=Math.min(100,l5+18); lw=Math.min(100,lw+6); gset(); luFeed(USES[step%USES.length]); step++; luT.push(setTimeout(go,750)); })(); });
   document.getElementById('lim-reset').addEventListener('click',function(){ luT.forEach(clearTimeout); luT=[]; l5=0; gset(); document.getElementById('lim-use').disabled=false; document.getElementById('lock-msg').textContent='过了 5 小时，上限重置了！又能用了。（不过要注意，每周上限还原样留着）'; });
   gset();
 
