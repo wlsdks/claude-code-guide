@@ -137,6 +137,8 @@
   .mg2chat{ margin-top:11px; display:flex; flex-direction:column; gap:8px; min-height:96px; }
   /* sim takeaway (결론) — what you learn after watching */
   .simtake{ margin-top:14px; display:flex; gap:9px; align-items:baseline; font-size:13px; line-height:1.55; background:rgba(31,158,118,.07); border:1px solid rgba(31,158,118,.26); border-radius:9px; padding:10px 13px; } .simtake .stk{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--good); border:1px solid rgba(31,158,118,.34); border-radius:5px; padding:1px 7px; }
+  /* real-world analogy callout (비유) */
+  .anlg{ display:flex; gap:9px; align-items:baseline; font-size:13.5px; line-height:1.6; background:var(--row); border:1px solid var(--line2); border-radius:9px; padding:11px 14px; margin:0 0 18px; } .anlg .ak{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:5px; padding:1px 7px; }
   .cxbadge{ display:inline-block; font-size:12.5px; font-variant-numeric:tabular-nums; background:var(--row); border-radius:7px; padding:7px 12px; margin-bottom:12px; } .cxbadge b{ font-weight:600; } .cxbadge .ar{ color:var(--faint); margin:0 6px; }
   .cxsummary{ border:1px solid var(--good); border-radius:12px; background:rgba(31,158,118,.08); padding:14px 16px; font-size:13.5px; line-height:1.65; }
   .cxsummary .cxh{ font-size:11px; color:var(--good); text-transform:uppercase; letter-spacing:.3px; font-weight:600; margin-bottom:6px; }
@@ -811,6 +813,7 @@ irm https://claude.ai/install.ps1 | iex</div>
     <section class="page" id="sessions">
       <h1>会话 & 文件夹</h1>
       <p class="lead"><b>会话</b>就是一次连续的对话。这次会话的所有内容都会堆进它的上下文窗口里。</p>
+      <p class="anlg"><span class="ak">比方</span><span>一个会话就像<b>“做一道菜”</b>——这道菜做完先把锅涮一下（<code>/clear</code>）再做下一道，味道才不会串。</span></p>
       <p class="defs">不太懂电脑也没关系。按顺序来 —— <b>先选好文件夹，再在里面开始会话</b>。</p>
 
       <p class="label">第 1 步 —— 先定好工作文件夹 <span class="hint">会话是在文件夹里开始的</span></p>
@@ -1137,6 +1140,7 @@ description: 按公司格式撰写周报
     <section class="page" id="hooks">
       <h1>自动化 (Hook)</h1>
       <p class="lead"><b>Hook</b> 一句话就是<b>‘自动规则’</b> —— 在某个时刻每次都自动执行一个固定动作。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像店门口的感应铃，或手机<b>“晚11点自动免打扰”</b>——设好‘发生○○ → 自动做△△’。（CLAUDE.md 是‘请求’，钩子是‘规则’）</span></p>
       <p class="defs">就像‘邮件自动回复’，一旦发生某件事，它就自动运作。</p>
       <div class="bignote"><span class="bx">放心</span><span><b>不用自己动手做。</b> 配置方法稍微有点技术性，但非开发者不懂怎么做也没关系 —— 你只要对 Claude <b>说“做一个 Hook，每次改文件就自动整理”</b>，Claude 就会替你做。这一页只要知道‘有这么个东西’就够了。</span></div>
       <p class="label">工作方式 <span class="hint">何时 → 对什么 → 怎么做</span></p>
@@ -1182,6 +1186,7 @@ description: 按公司格式撰写周报
     <section class="page" id="permissions">
       <h1>权限模式</h1>
       <p class="lead">Claude <b>能自作主张到什么程度</b>，由我来定。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像决定给助手多大自主权——<b>“每件事先问我”</b> ↔ <b>“常做的就自己办”</b>。一开始多问，熟了再放开。</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>简单说</b> · 当 Claude 要在我电脑上做点什么（改文件、执行命令）时，<b>它要多频繁地问“这个可以做吗？”</b> —— 这就是这项设置。一开始每次都问比较安全，熟练之后可以放开，让它自己处理常做的事。就像汽车的‘手动 ↔ 自动’。</div>
       <p class="defs">在 Claude Code 里用 <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> 循环切换基本模式（请求权限·接受编辑·计划）。‘自动·跳过’这类自主模式可能需要单独的选项。点一个模式，再用“查看动作”确认差异。</p>
       <div class="cols">
@@ -1383,6 +1388,7 @@ description: 按公司格式撰写周报
     <section class="page" id="compact">
       <h1>压缩 (compact)</h1>
       <p class="lead">对话变长时会发生‘压缩’。<b>长长堆积的内容会变成一段简短的摘要</b> —— 就像把桌上的一堆文件，只挑核心整理成一页。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像把一天的收据汇成一句<b>“今日总额”</b>、清空抽屉一样——把长长的对话压成简短摘要，腾出空间。</span></p>
       <p class="defs">下面是某次工作的对话记录。点‘压缩’，看看内容实际是怎么缩短的。</p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">压缩 (/compact) ▶</button><button class="btn" id="cx-reset">重新看一遍</button></div>
 
@@ -1411,6 +1417,7 @@ description: 按公司格式撰写周报
     <section class="page" id="effort">
       <h1>思考深度 (effort)</h1>
       <p class="lead"><b>思考深度（effort）</b>是用来设定 Claude <b>在回答之前要思考多深</b>的选项。想得越深，遇到难题越准确，但也更慢、更贵。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像泡茶——<b>快冲一下（低）</b> vs <b>久泡浓泡（高/最高）</b>：想得越深越准，但更费时间和钱。</span></p>
       <p class="defs">有<b>低 · 中 · 高 · 超高 · 最高</b>几档（默认是‘高’）。想得越深，用的‘思考（thinking）token’就越多（见‘Token’标签页）。选一选看看差别。</p>
       <div class="efbtns" id="ef-btns"></div>
       <div class="bars">
@@ -1429,6 +1436,7 @@ description: 按公司格式撰写周报
     <section class="page" id="goal">
       <h1>目标 (goal)</h1>
       <p class="lead"><b>目标（goal）</b>是<b>只要给出‘完成条件’，Claude 就会自己反复做直到满足条件</b>的功能。不用每次都重新去叫它。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像<b>“尝到味道对了为止”</b>——直到条件达成才停。（loop 是‘每隔固定时间’）</span></p>
       <p class="defs">不是做一次就结束，而是<b>每一轮之后都自己判定‘有没有满足条件’</b>，没满足就再做。下面来看看。</p>
       <div class="bignote"><span class="bx">示例目标</span><span>“把这份通知<b>改到错别字为 0 个为止</b>”</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">开始目标 ▶</button><button class="btn" id="goal-reset">重置</button></div>
@@ -1442,6 +1450,7 @@ description: 按公司格式撰写周报
     <section class="page" id="loop">
       <h1>重复执行 (loop)</h1>
       <p class="lead"><b>重复（loop）</b>是<b>每隔固定的间隔，自动再次执行同一件工作</b>的功能。例如：每 10 分钟‘确认一下有没有新订单进来，并发出提醒’。</p>
+      <p class="anlg"><span class="ak">比方</span><span>就像<b>“每天早上7点给花浇水”</b>——按固定间隔自动再做一次。（goal 是‘直到条件达成’）</span></p>
       <p class="defs">如果说目标（goal）是‘直到满足条件为止’，那重复（loop）就是‘<b>按固定的时间间隔</b>’。选个间隔再开始看看。（模拟会把时间快进给你看。）</p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">开始重复 ▶</button><button class="btn" id="loop-reset">停止·重置</button></div>
@@ -1492,7 +1501,7 @@ description: 按公司格式撰写周报
       <h1>术语表</h1>
       <p class="lead">把这份指南里出现的词，用一句话整理了一下。</p>
       <p class="defs">搞混时来这里快速查。在搜索框输入词，就会立刻筛选出来。</p>
-      <div class="bignote"><span class="bx">容易混</span><span>看起来像的四个 —— <b>技能</b>=自己的食谱 · <b>插件</b>=功能套装盒 · <b>子代理</b>=交给它干活的员工 · <b>Hook</b>=自动规则。名字像，角色不同。</span></div>
+      <div class="bignote"><span class="bx">容易混</span><span>看起来像的五个 —— <b>技能</b>=自己的菜谱 · <b>插件</b>=功能套装盒 · <b>MCP</b>=工具连接（接上外部应用） · <b>子代理</b>=分工 · <b>Hook</b>=自动规则。名字像，角色不同。</span></div>
       <input class="gsearch" id="gloss-search" type="text" placeholder="搜索术语…（例：终端、API、Token）">
       <div class="gloss" id="gloss-list">
         <div class="gterm"><div class="gt">上下文窗口</div><div class="gd">Claude 一次性拿在手里的‘工作空间’。只知道这里有的东西。（‘上下文窗口’标签页）</div></div>
@@ -2071,7 +2080,7 @@ description: 按公司格式撰写周报
         ['条件 / 完成标准', /如果|当|为空|空|警告|提示|检查|测试|验证|红|绿|数字|超过|低于|以上|以下|比|像|这样/.test(t)],
         ['别太短（8字+）', t.length>=8] ];
       var n=checks.filter(function(c){return c[1];}).length;
-      var v = n>=4?'很好！Claude 一次就懂。' : n>=2?'还行。再补一两点就完美了。' : '太笼统了——Claude 会反问。';
+      var v = n>=4?'很好！Claude 一次就懂。' : n>=2?'还行。再补一两点就完美了。' : '太笼统了——Claude 可能猜着做、猜偏。';
       var h='<div class="schead">'+n+'/4 — '+v+'</div>';
       checks.forEach(function(c){ h+='<div class="chk '+(c[1]?'y':'n')+'"><span class="cx">'+(c[1]?'✓':'·')+'</span><span>'+c[0]+'</span></div>'; });
       BOX.innerHTML=h; BOX.className='scorebox on'; }

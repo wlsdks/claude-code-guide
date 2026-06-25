@@ -137,6 +137,8 @@
   .mg2chat{ margin-top:11px; display:flex; flex-direction:column; gap:8px; min-height:96px; }
   /* sim takeaway (결론) — what you learn after watching */
   .simtake{ margin-top:14px; display:flex; gap:9px; align-items:baseline; font-size:13px; line-height:1.55; background:rgba(31,158,118,.07); border:1px solid rgba(31,158,118,.26); border-radius:9px; padding:10px 13px; } .simtake .stk{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--good); border:1px solid rgba(31,158,118,.34); border-radius:5px; padding:1px 7px; }
+  /* real-world analogy callout (비유) */
+  .anlg{ display:flex; gap:9px; align-items:baseline; font-size:13.5px; line-height:1.6; background:var(--row); border:1px solid var(--line2); border-radius:9px; padding:11px 14px; margin:0 0 18px; } .anlg .ak{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:5px; padding:1px 7px; }
   .cxbadge{ display:inline-block; font-size:12.5px; font-variant-numeric:tabular-nums; background:var(--row); border-radius:7px; padding:7px 12px; margin-bottom:12px; } .cxbadge b{ font-weight:600; } .cxbadge .ar{ color:var(--faint); margin:0 6px; }
   .cxsummary{ border:1px solid var(--good); border-radius:12px; background:rgba(31,158,118,.08); padding:14px 16px; font-size:13.5px; line-height:1.65; }
   .cxsummary .cxh{ font-size:11px; color:var(--good); text-transform:uppercase; letter-spacing:.3px; font-weight:600; margin-bottom:6px; }
@@ -812,6 +814,7 @@ irm https://claude.ai/install.ps1 | iex</div>
     <section class="page" id="sessions">
       <h1>セッション & フォルダ</h1>
       <p class="lead"><b>セッション</b>は一度の連続した会話です。そのセッションのコンテキストウィンドウに、すべてが積み上がります。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>1 セッションは「一つの料理」——作り終えたら鍋をさっと洗って（<code>/clear</code>）次に移ると、味が混ざりません。</span></p>
       <p class="defs">コンピュータに詳しくなくても大丈夫です。順番に — <b>まずフォルダを決めて、その中でセッションを始め</b>ます。</p>
 
       <p class="label">ステップ1 — まず作業フォルダを決める <span class="hint">セッションはフォルダの中で始まります</span></p>
@@ -1138,6 +1141,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="hooks">
       <h1>自動化 (フック · Hooks)</h1>
       <p class="lead"><b>フック</b>はひとことで言うと<b>「自動ルール」</b>です — 特定の瞬間に決まった動作が毎回自動で実行されます。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>お店のドアの呼び鈴や、スマホの「23 時に自動でおやすみモード」のように——「○○が起きたら → 自動で△△」を設定。（CLAUDE.md が「お願い」なら、フックは「ルール」）</span></p>
       <p class="defs">「自動返信メール」のように、あることが起きると自動で動きます。</p>
       <div class="bignote"><span class="bx">ご安心を</span><span><b>自分で作る必要はありません。</b> 設定方法は少し技術的ですが、非エンジニアは作り方を知らなくても大丈夫 — Claude に <b>「ファイルを直すたびに自動で整理するフックを作って」</b>のように言葉でお願いすれば、Claude が代わりに作ってくれます。このページは「こういうものがある」とわかれば十分です。</span></div>
       <p class="label">どう動くか <span class="hint">いつ → 何を → どうやって</span></p>
@@ -1183,6 +1187,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="permissions">
       <h1>権限モード</h1>
       <p class="lead">Claude が<b>どこまで自分で進めるか</b>を、自分で決めます。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>アシスタントにどこまで任せるか——<b>「何でも先に聞いて」</b> ↔ <b>「いつものことは自分で」</b>。最初は確認多め、慣れたら緩める。</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>かんたんに言うと</b> · Claude が自分のコンピュータで何か（ファイルを直す・コマンドを実行する）をするとき、<b>「これやっていいですか?」とどのくらい頻繁に聞くか</b>を決める設定です。最初は毎回聞くのが安全で、慣れてきたらよくやる仕事は自動でやらせるように緩められます。車の「マニュアル ↔ オートマ」のようなものです。</div>
       <p class="defs">Claude Code では <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> で基本モード（権限リクエスト・編集の承認・プラン）を循環します。「自動・スキップ」のような自律モードは別のオプションが必要な場合があります。モードを押して「動作を見る」で違いを確認してください。</p>
       <div class="cols">
@@ -1384,6 +1389,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="compact">
       <h1>圧縮 (compact)</h1>
       <p class="lead">会話が長くなると「圧縮」が起こります。<b>長く積み上がった内容が、短い要約 1 つに</b>変わります — 机の上の書類を、要点だけ 1 枚にまとめるのと似ています。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>一日のレシートを「本日の合計」の一行にまとめて引き出しを空けるように——長い会話を短い要約に縮めて場所を空けます。</span></p>
       <p class="defs">下はある作業の会話の記録です。「圧縮する」を押して、内容が実際にどう減るのか見てみましょう。</p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">圧縮する (/compact) ▶</button><button class="btn" id="cx-reset">もう一度見る</button></div>
 
@@ -1412,6 +1418,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="effort">
       <h1>考える深さ (effort)</h1>
       <p class="lead"><b>考える深さ（effort）</b>は、Claude が<b>答える前にどれだけ深く考えるか</b>を決める設定です。深く考えるほど難しい問題により正確になりますが、より遅く高くつきます。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>お茶を淹れるよう——さっと一煎（低）vs じっくり濃く（高・最高）。深く考えるほど正確ですが、時間と費用がかかります。</span></p>
       <p class="defs"><b>低 · 中 · 高 · 超高 · 最高</b>の段階があります（デフォルトは「高」）。深く考えるほど「思考（thinking）トークン」を多く使います（「トークン」タブ）。選んで違いを見てみましょう。</p>
       <div class="efbtns" id="ef-btns"></div>
       <div class="bars">
@@ -1430,6 +1437,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="goal">
       <h1>目標達成 (goal)</h1>
       <p class="lead"><b>目標（goal）</b>は、<b>「完了条件」だけ与えれば、その条件になるまで Claude が自分で繰り返す</b>機能です。毎回もう一度頼む必要がありません。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>「味が決まるまで味見する」ように——条件を満たすまで自動で繰り返します。（loop は「決まった時刻ごと」）</span></p>
       <p class="defs">一度やって終わりではなく、<b>毎ターンの後に「条件を満たしたか」を自分で判定</b>し、満たしていなければまたやります。下で見てみましょう。</p>
       <div class="bignote"><span class="bx">目標の例</span><span>「この案内文の<b>誤字が 0 個になるまで</b>直して」</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">目標スタート ▶</button><button class="btn" id="goal-reset">リセット</button></div>
@@ -1443,6 +1451,7 @@ description: 週次レポートを会社の様式で作成
     <section class="page" id="loop">
       <h1>繰り返し実行 (loop)</h1>
       <p class="lead"><b>繰り返し（loop）</b>は、<b>決めた間隔ごとに同じ作業を自動でもう一度実行する</b>機能です。例: 10 分ごとに「新しい注文が入ったか確認して通知」。</p>
+      <p class="anlg"><span class="ak">たとえ</span><span>「毎朝 7 時に水やり」のように——決まった間隔で自動でもう一度。（goal は「条件を満たすまで」）</span></p>
       <p class="defs">目標（goal）が「条件になるまで」なら、繰り返し（loop）は「<b>決めた時間間隔で</b>」です。間隔を選んでスタートしてみましょう。（シミュは時間を早送りして見せます。）</p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">繰り返しスタート ▶</button><button class="btn" id="loop-reset">停止・リセット</button></div>
@@ -1493,7 +1502,7 @@ description: 週次レポートを会社の様式で作成
       <h1>用語集</h1>
       <p class="lead">このガイドに出てきた言葉を一行でまとめました。</p>
       <p class="defs">迷ったときはここで素早く探してください。検索欄に単語を打つと、すぐ絞り込まれます。</p>
-      <div class="bignote"><span class="bx">迷ったら</span><span>似て見える4つ — <b>スキル</b>=自分のレシピ · <b>プラグイン</b>=機能のセット箱 · <b>サブエージェント</b>=仕事を任せる社員 · <b>フック</b>=自動ルール。名前は似ていても役割が違います。</span></div>
+      <div class="bignote"><span class="bx">迷ったら</span><span>似て見える 5 つ — <b>スキル</b>=自分のレシピ · <b>プラグイン</b>=機能セットの箱 · <b>MCP</b>=ツール連携（外部アプリをつなぐ） · <b>サブエージェント</b>=仕事の分担 · <b>フック</b>=自動ルール。名前は似ていても役割が違います。</span></div>
       <input class="gsearch" id="gloss-search" type="text" placeholder="用語を検索… (例: ターミナル, API, トークン)">
       <div class="gloss" id="gloss-list">
         <div class="gterm"><div class="gt">コンテキストウィンドウ</div><div class="gd">Claude が一度に抱えている「作業空間」。ここにあるものだけを知っています。（「コンテキストウィンドウ」タブ）</div></div>
@@ -2071,7 +2080,7 @@ description: 週次レポートを会社の様式で作成
         ['条件・完了の基準', /なら|たら|とき|空|警告|アラート|確認|テスト|チェック|赤|緑|数字|以上|以下|より|みたい|よう/.test(t)],
         ['短すぎない（10字+）', t.length>=10] ];
       var n=checks.filter(function(c){return c[1];}).length;
-      var v = n>=4?'とても良いです！Claude が一度で理解します。' : n>=2?'まずまず。あと1〜2点足せば完璧です。' : '曖昧すぎます — Claude が聞き返します。';
+      var v = n>=4?'とても良いです！Claude が一度で理解します。' : n>=2?'まずまず。あと1〜2点足せば完璧です。' : '曖昧すぎます——Claude が推測して外すかもしれません。';
       var h='<div class="schead">'+n+'/4 — '+v+'</div>';
       checks.forEach(function(c){ h+='<div class="chk '+(c[1]?'y':'n')+'"><span class="cx">'+(c[1]?'✓':'·')+'</span><span>'+c[0]+'</span></div>'; });
       BOX.innerHTML=h; BOX.className='scorebox on'; }

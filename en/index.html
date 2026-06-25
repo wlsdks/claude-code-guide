@@ -137,6 +137,8 @@
   .mg2chat{ margin-top:11px; display:flex; flex-direction:column; gap:8px; min-height:96px; }
   /* sim takeaway (결론) — what you learn after watching */
   .simtake{ margin-top:14px; display:flex; gap:9px; align-items:baseline; font-size:13px; line-height:1.55; background:rgba(31,158,118,.07); border:1px solid rgba(31,158,118,.26); border-radius:9px; padding:10px 13px; } .simtake .stk{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--good); border:1px solid rgba(31,158,118,.34); border-radius:5px; padding:1px 7px; }
+  /* real-world analogy callout (비유) */
+  .anlg{ display:flex; gap:9px; align-items:baseline; font-size:13.5px; line-height:1.6; background:var(--row); border:1px solid var(--line2); border-radius:9px; padding:11px 14px; margin:0 0 18px; } .anlg .ak{ flex:0 0 auto; font-size:11px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:5px; padding:1px 7px; }
   .cxbadge{ display:inline-block; font-size:12.5px; font-variant-numeric:tabular-nums; background:var(--row); border-radius:7px; padding:7px 12px; margin-bottom:12px; } .cxbadge b{ font-weight:600; } .cxbadge .ar{ color:var(--faint); margin:0 6px; }
   .cxsummary{ border:1px solid var(--good); border-radius:12px; background:rgba(31,158,118,.08); padding:14px 16px; font-size:13.5px; line-height:1.65; }
   .cxsummary .cxh{ font-size:11px; color:var(--good); text-transform:uppercase; letter-spacing:.3px; font-weight:600; margin-bottom:6px; }
@@ -810,6 +812,7 @@ irm https://claude.ai/install.ps1 | iex</div>
     <section class="page" id="sessions">
       <h1>Sessions & folders</h1>
       <p class="lead">A <b>session</b> is one continuous conversation. Everything piles up in that session's context window.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>One session is like <b>cooking one dish</b> — once a pot of soup is done, rinse the pot (<code>/clear</code>) before you start the next dish, so the flavors don't mix.</span></p>
       <p class="defs">It's fine if you're not great with computers. In order — <b>first pick a folder, then start a session inside it.</b></p>
 
       <p class="label">Step 1 — Pick your working folder first <span class="hint">A session starts inside a folder</span></p>
@@ -1136,6 +1139,7 @@ description: Write the weekly report in the company format
     <section class="page" id="hooks">
       <h1>Automation (hooks)</h1>
       <p class="lead">A <b>hook</b> is, in a word, <b>'an automatic rule'</b> — at a specific moment, a set action runs automatically, every time.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>Like a <b>shop's door chime</b> that rings when the door opens, or your phone's "Do Not Disturb after 11pm" — you set up "when X happens → automatically do Y" ahead of time. (If CLAUDE.md is a 'request,' a hook is a 'rule.')</span></p>
       <p class="defs">Like an 'auto-reply email,' it kicks in on its own when something happens.</p>
       <div class="bignote"><span class="bx">Relax</span><span><b>You don't need to build it yourself.</b> Setting it up is a little technical, but non-developers don't have to know how — just ask Claude in plain words, like <b>"Make a hook that auto-tidies every time I edit a file,"</b> and Claude builds it for you. For this page, knowing 'this exists' is enough.</span></div>
       <p class="label">How it works <span class="hint">When → what → how</span></p>
@@ -1181,6 +1185,7 @@ description: Write the weekly report in the company format
     <section class="page" id="permissions">
       <h1>Permission modes</h1>
       <p class="lead">You decide <b>how much Claude does on its own</b>.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>It's like deciding how much to delegate to an assistant — <b>"check with me first"</b> ↔ <b>"just handle the usual stuff."</b> Cautious at first, looser once you're comfortable.</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>In plain terms</b> · It's a setting for <b>how often Claude asks "May I do this?"</b> when it does something on your computer (editing files, running commands). At first it's safer to ask every time; once you're comfortable, you can let it handle frequent tasks on its own. It's like a car's 'manual ↔ automatic.'</div>
       <p class="defs">In Claude Code, <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> cycles through the default modes (ask permission, accept edits, plan). Autonomous modes like 'auto / skip' may need a separate option. Pick a mode and use "See it work" to check the difference.</p>
       <div class="cols">
@@ -1382,6 +1387,7 @@ description: Write the weekly report in the company format
     <section class="page" id="compact">
       <h1>Compacting (compact)</h1>
       <p class="lead">When a conversation gets long, 'compaction' happens. <b>A long pile of content turns into one short summary</b> — much like tidying a desk full of papers down to a single key page.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>Like tallying a day's receipts into one line — 'today's total' — and clearing the drawer: the long chat is squeezed into a short summary to free up room.</span></p>
       <p class="defs">Below is the conversation log of one task. Press 'Compact' to see how the content actually shrinks.</p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">Compact (/compact) ▶</button><button class="btn" id="cx-reset">Show again</button></div>
 
@@ -1409,6 +1415,7 @@ description: Write the weekly report in the company format
     <section class="page" id="effort">
       <h1>Thinking depth (effort)</h1>
       <p class="lead"><b>Thinking depth (effort)</b> is the setting that decides <b>how deeply Claude thinks before answering</b>. The deeper it thinks, the more accurate it is on hard problems — but it's also slower and more expensive.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>Like brewing tea or coffee — a quick steep (low) vs a long, strong brew (high/max): deeper thinking is more accurate but costs more time and money.</span></p>
       <p class="defs">There are <b>low · medium · high · x-high · max</b> levels (the default is 'high'). The deeper it thinks, the more 'thinking tokens' it uses (see the 'Tokens' tab). Pick one and see the difference.</p>
       <div class="efbtns" id="ef-btns"></div>
       <div class="bars">
@@ -1427,6 +1434,7 @@ description: Write the weekly report in the company format
     <section class="page" id="goal">
       <h1>Goals (goal)</h1>
       <p class="lead"><b>Goals (goal)</b> is a feature where you <b>give only a 'completion condition' and Claude keeps repeating on its own until that condition is met</b>. No need to ask again every time.</p>
+      <p class="anlg"><span class="ak">Like this</span><span>Like <b>"keep tasting until it's seasoned right"</b> — it repeats on its own until the condition is met. (loop runs at fixed times.)</span></p>
       <p class="defs">Instead of doing it once and stopping, it <b>judges for itself after every turn whether the condition is satisfied</b>, and if not, it does it again. See below.</p>
       <div class="bignote"><span class="bx">Example goal</span><span>"Fix this notice <b>until there are 0 typos</b>"</span></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">Start goal ▶</button><button class="btn" id="goal-reset">Reset</button></div>
@@ -1440,6 +1448,7 @@ description: Write the weekly report in the company format
     <section class="page" id="loop">
       <h1>Repeat (loop)</h1>
       <p class="lead"><b>Repeat (loop)</b> is a feature that <b>automatically re-runs the same task at a set interval</b>. Example: every 10 minutes, "check for new orders and notify."</p>
+      <p class="anlg"><span class="ak">Like this</span><span>Like <b>"water the plants every morning at 7"</b> — it repeats on a set schedule. (goal runs until a condition is met.)</span></p>
       <p class="defs">If goals run 'until a condition is met,' repeat runs '<b>at a fixed time interval</b>.' Pick an interval and start. (The simulation fast-forwards time to show it.)</p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">Start repeat ▶</button><button class="btn" id="loop-reset">Stop & reset</button></div>
@@ -1490,7 +1499,7 @@ description: Write the weekly report in the company format
       <h1>Glossary</h1>
       <p class="lead">A one-line summary of the terms that came up in this guide.</p>
       <p class="defs">When you're confused, look it up quickly here. Type a word in the search box and it filters right away.</p>
-      <div class="bignote"><span class="bx">If unsure</span><span>Four that look similar — <b>Skill</b>=your own recipe · <b>Plugin</b>=a box of features · <b>Subagent</b>=a worker you hand a job to · <b>Hook</b>=an automatic rule. Similar names, different roles.</span></div>
+      <div class="bignote"><span class="bx">If unsure</span><span>Five that look similar — <b>Skill</b>=your own recipe · <b>Plugin</b>=a box of features · <b>MCP</b>=a tool connection (hook up outside apps) · <b>Subagent</b>=a worker you hand a job to · <b>Hook</b>=an automatic rule. Similar names, different roles.</span></div>
       <input class="gsearch" id="gloss-search" type="text" placeholder="Search terms… (e.g. terminal, API, token)">
       <div class="gloss" id="gloss-list">
         <div class="gterm"><div class="gt">Context window</div><div class="gd">The 'workspace' Claude holds at one time. It only knows what's in here. (the 'Context window' tab)</div></div>
@@ -2069,7 +2078,7 @@ description: Write the weekly report in the company format
         ['Condition / done-criteria', /if|when|empty|blank|warn|alert|check|test|verify|red|green|number|digit|over|under|above|below|than|like|so that|once/i.test(t)],
         ['Not too short (20+ chars)', t.length>=20] ];
       var n=checks.filter(function(c){return c[1];}).length;
-      var v = n>=4?'Great! Claude gets it in one go.' : n>=2?'Decent. Add one or two more and it\'s perfect.' : 'Too vague — Claude will ask back.';
+      var v = n>=4?'Great! Claude gets it in one go.' : n>=2?'Decent. Add one or two more and it\'s perfect.' : 'Too vague — Claude may guess and get it wrong.';
       var h='<div class="schead">'+n+'/4 — '+v+'</div>';
       checks.forEach(function(c){ h+='<div class="chk '+(c[1]?'y':'n')+'"><span class="cx">'+(c[1]?'✓':'·')+'</span><span>'+c[0]+'</span></div>'; });
       BOX.innerHTML=h; BOX.className='scorebox on'; }
