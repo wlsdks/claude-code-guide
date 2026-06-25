@@ -1620,7 +1620,7 @@ description: 주간 보고서를 회사 양식으로 작성
   (function(){
     var openBtn=document.getElementById('p2-open'); if(!openBtn) return;
     var overlay=null,slides=[],idx=0,staged=[],fadeT=null;
-    function boundary(el,i){ return i>0 && (el.tagName==='H1'||el.tagName==='H3'||el.classList.contains('grp')||el.classList.contains('label')); }
+    function boundary(el,i){ if(i===0) return false; if(el.tagName==='H1'||el.tagName==='H3') return true; var c=el.classList; return c.contains('grp')||c.contains('label')||c.contains('simtake')||c.contains('bignote')||c.contains('callout'); }
     function build(page){ var kids=[].slice.call(page.children),out=[],cur=[]; kids.forEach(function(el,i){ if(boundary(el,i)&&cur.length){ out.push(cur); cur=[]; } cur.push(el); }); if(cur.length) out.push(cur); return out; }
     function restore(){ staged.forEach(function(p){ if(p.ph.parentNode) p.ph.parentNode.replaceChild(p.el,p.ph); }); staged=[]; }
     function show(i){ if(!overlay) return; restore(); idx=Math.max(0,Math.min(slides.length-1,i)); var inner=overlay.querySelector('.p2inner');
