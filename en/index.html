@@ -2019,7 +2019,7 @@ description: Write the weekly report in the company format
       if(total/MAX>.6) status.textContent='Filling up steadily… soon it\'ll reach the auto-compact line.'; acT.push(setTimeout(step,1100)); })(); });
   function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='Reached the auto-compact line — it stops here and starts summarizing. (No new work runs while it summarizes.)'; tank.classList.add('flash');
     acT.push(setTimeout(function(){ stack.classList.add('summarizing'); if(ov)ov.classList.add('on'); status.textContent='Paused — briefly summarizing past conversation, files, and tool results…'; },1300));
-    acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='Compaction done — old conversation and tool output shrink into one \'summary\' block, while essentials like your request, the file list, and decisions are preserved. (To see how the content actually changes, check the \'Compaction in detail\' tab.)'; },3400)); }
+    acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='Compaction done — old conversation and tool output shrink into one \'summary\' block, while essentials like your request, the file list, and decisions are preserved. (To see how the content actually changes, check the \'Compacting\' tab.)'; },3400)); }
   renderPrev(tokprev,'',true); ctxMax(200000); ctxBase();
 
   /* sessions + brain */

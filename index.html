@@ -2027,7 +2027,7 @@ description: 주간 보고서를 회사 양식으로 작성
       if(total/MAX>.6) status.textContent='점점 차오르는 중… 곧 자동 압축선에 닿아요.'; acT.push(setTimeout(step,1100)); })(); });
   function acTrigger(){ var tank=document.getElementById('tank'),ov=document.getElementById('acoverlay'); status.textContent='자동 압축선 도달 — 여기서 멈추고 요약을 시작해요. (요약 동안엔 새 작업이 진행되지 않아요)'; tank.classList.add('flash');
     acT.push(setTimeout(function(){ stack.classList.add('summarizing'); if(ov)ov.classList.add('on'); status.textContent='멈춤 — 지난 대화·파일·도구 결과를 짧게 요약하는 중…'; },1300));
-    acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='압축 완료 — 옛 대화·도구 출력은 ‘요약’ 한 칸으로 줄고, 요청·파일 목록·결정 같은 핵심은 보존돼요. (내용이 실제로 어떻게 바뀌는지는 ‘압축 자세히’ 탭에서 볼 수 있어요)'; },3400)); }
+    acT.push(setTimeout(function(){ stack.classList.remove('summarizing'); if(ov)ov.classList.remove('on'); tank.classList.remove('flash'); doCompact(); status.textContent='압축 완료 — 옛 대화·도구 출력은 ‘요약’ 한 칸으로 줄고, 요청·파일 목록·결정 같은 핵심은 보존돼요. (내용이 실제로 어떻게 바뀌는지는 ‘압축(compact)’ 탭에서 볼 수 있어요)'; },3400)); }
   renderPrev(tokprev,'',true); ctxMax(200000); ctxBase();
 
   /* sessions + brain */
