@@ -1975,11 +1975,12 @@ description: 週次レポートを会社の様式で作成
 
   /* intro: chat vs code */
   var ccT=[]; function ccStep(box,text){ var d=document.createElement('div'); d.className='cstep'; d.innerHTML='<span class="ck">✓</span><span>'+text+'</span>'; box.appendChild(d); requestAnimationFrame(function(){ d.classList.add('on'); }); }
-  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
+  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var demo=document.querySelector('#intro .chatdemo'); var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
     tw(document.getElementById('cc-chat'),'こうすればできます: booking.html ファイルを作って下のコードを入れ、メインページにボタンをつないだあと、保存のコードを追加してください…',22,ccT);
     ccT.push(setTimeout(function(){ document.getElementById('cc-chat-r').innerHTML='→ <b>説明とコード片</b>を受け取ります。複数のファイルに自分で貼り付けて、つなぎ・実行するのは<b>自分の役目</b>です。'; },4800));
     var steps=['予約画面(booking.html)を新しく作成','メインページに「予約」ボタンをつなぐ','予約情報を保存するコードを追加','テスト実行 → 通過'];
     steps.forEach(function(t,i){ ccT.push(setTimeout(function(){ ccStep(code,t); },800*(i+1))); });
+    ccT.push(setTimeout(function(){ if(demo) demo.style.minHeight=demo.offsetHeight+'px'; },5000));
     ccT.push(setTimeout(function(){ document.getElementById('cc-code-r').innerHTML='→ <b>実際に動く予約機能</b>が完成しました。複数のファイルを自分で作り、つなぎ・実行までやったのです。'; },800*(steps.length+1)+200));
   });
   document.getElementById('cc-chat').textContent='ボタンを押すと答えが出ます。'; document.getElementById('cc-code').innerHTML='<div class="cstep on"><span>ボタンを押すと作る過程が出ます。</span></div>';

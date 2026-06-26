@@ -1977,11 +1977,12 @@ description: 주간 보고서를 회사 양식으로 작성
 
   /* intro: chat vs code */
   var ccT=[]; function ccStep(box,text){ var d=document.createElement('div'); d.className='cstep'; d.innerHTML='<span class="ck">✓</span><span>'+text+'</span>'; box.appendChild(d); requestAnimationFrame(function(){ d.classList.add('on'); }); }
-  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
+  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var demo=document.querySelector('#intro .chatdemo'); var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
     tw(document.getElementById('cc-chat'),'이렇게 하시면 돼요: booking.html 파일을 만들어 아래 코드를 넣고, 메인 페이지에 버튼을 연결한 뒤, 저장 코드를 추가하세요…',22,ccT);
     ccT.push(setTimeout(function(){ document.getElementById('cc-chat-r').innerHTML='→ <b>설명과 코드 조각</b>을 받아요. 여러 파일에 직접 붙여넣고 연결·실행하는 건 <b>내 몫</b>이에요.'; },4800));
     var steps=['예약 화면(booking.html) 새로 만듦','메인 페이지에 ‘예약’ 버튼 연결','예약 정보 저장 코드 추가','테스트 실행 → 통과'];
     steps.forEach(function(t,i){ ccT.push(setTimeout(function(){ ccStep(code,t); },800*(i+1))); });
+    ccT.push(setTimeout(function(){ if(demo) demo.style.minHeight=demo.offsetHeight+'px'; },5000));
     ccT.push(setTimeout(function(){ document.getElementById('cc-code-r').innerHTML='→ <b>실제로 작동하는 예약 기능</b>이 완성됐어요. 여러 파일을 직접 만들고 연결·실행까지 한 거예요.'; },800*(steps.length+1)+200));
   });
   document.getElementById('cc-chat').textContent='버튼을 누르면 답이 나와요.'; document.getElementById('cc-code').innerHTML='<div class="cstep on"><span>버튼을 누르면 만드는 과정이 나와요.</span></div>';

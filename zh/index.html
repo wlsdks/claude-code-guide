@@ -1975,11 +1975,12 @@ description: 按公司格式撰写周报
 
   /* intro: chat vs code */
   var ccT=[]; function ccStep(box,text){ var d=document.createElement('div'); d.className='cstep'; d.innerHTML='<span class="ck">✓</span><span>'+text+'</span>'; box.appendChild(d); requestAnimationFrame(function(){ d.classList.add('on'); }); }
-  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
+  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var demo=document.querySelector('#intro .chatdemo'); var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
     tw(document.getElementById('cc-chat'),'你可以这样做：创建 booking.html 文件，放入下面的代码，在主页上接好按钮，然后再加上保存数据的代码…',22,ccT);
     ccT.push(setTimeout(function(){ document.getElementById('cc-chat-r').innerHTML='→ 你拿到的是<b>说明和代码片段</b>。把它们逐个贴进多个文件、连接、运行，这些得<b>你自己来</b>。'; },4800));
     var steps=['新建预约界面（booking.html）','在主页接好‘预约’按钮','加上保存预约信息的代码','运行测试 → 通过'];
     steps.forEach(function(t,i){ ccT.push(setTimeout(function(){ ccStep(code,t); },800*(i+1))); });
+    ccT.push(setTimeout(function(){ if(demo) demo.style.minHeight=demo.offsetHeight+'px'; },5000));
     ccT.push(setTimeout(function(){ document.getElementById('cc-code-r').innerHTML='→ <b>真正能用的预约功能</b>做好了。它亲手创建了多个文件，还连接、运行了起来。'; },800*(steps.length+1)+200));
   });
   document.getElementById('cc-chat').textContent='点按钮就会出现答案。'; document.getElementById('cc-code').innerHTML='<div class="cstep on"><span>点按钮就会出现制作过程。</span></div>';

@@ -1969,11 +1969,12 @@ description: Write the weekly report in the company format
 
   /* intro: chat vs code */
   var ccT=[]; function ccStep(box,text){ var d=document.createElement('div'); d.className='cstep'; d.innerHTML='<span class="ck">✓</span><span>'+text+'</span>'; box.appendChild(d); requestAnimationFrame(function(){ d.classList.add('on'); }); }
-  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
+  document.getElementById('cc-go').addEventListener('click',function(){ ccT.forEach(clearTimeout); ccT=[]; var demo=document.querySelector('#intro .chatdemo'); var code=document.getElementById('cc-code'); code.innerHTML=''; document.getElementById('cc-chat-r').textContent=''; document.getElementById('cc-code-r').textContent='';
     tw(document.getElementById('cc-chat'),'Here\'s how to do it: create a booking.html file with the code below, link a button on the main page, then add the saving code…',22,ccT);
     ccT.push(setTimeout(function(){ document.getElementById('cc-chat-r').innerHTML='→ You get <b>an explanation and code snippets</b>. Pasting them into several files and connecting and running them is <b>up to you</b>.'; },4800));
     var steps=['Created a new booking screen (booking.html)','Linked a \'Book\' button on the main page','Added code to save booking info','Ran the tests → passed'];
     steps.forEach(function(t,i){ ccT.push(setTimeout(function(){ ccStep(code,t); },800*(i+1))); });
+    ccT.push(setTimeout(function(){ if(demo) demo.style.minHeight=demo.offsetHeight+'px'; },5000));
     ccT.push(setTimeout(function(){ document.getElementById('cc-code-r').innerHTML='→ <b>A working booking feature</b> is finished. It created several files itself and connected and ran them.'; },800*(steps.length+1)+200));
   });
   document.getElementById('cc-chat').textContent='Press the button to see the answer.'; document.getElementById('cc-code').innerHTML='<div class="cstep on"><span>Press the button to see the build process.</span></div>';
