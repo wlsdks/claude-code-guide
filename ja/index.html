@@ -987,7 +987,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude にはいくつかのモデルがあります。<b>賢さ · 速さ · コスト</b>は互いにトレードオフの関係です。</p>
       <p class="defs">賢いほど、たいてい遅くて高価です。仕事に合わせて選べば大丈夫。下で選んでみてください。</p>
       <div class="mtabs" id="mtabs">
-        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">いちばん賢い</div></button>
+        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">とても賢い</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">バランス · 無難な選択</div></button>
         <button class="mtab" data-m="haiku"><div class="mn">Haiku 4.5</div><div class="mt">いちばん速くて安い</div></button>
         <button class="mtab" data-m="fable"><div class="mn">Fable 5</div><div class="mt">最新最強 · デフォルトではない</div></button>
@@ -1007,7 +1007,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
       <p class="label">モデル別のコンテキストウィンドウ (2026年6月時点)</p>
       <div class="tablewrap"><table class="t"><thead><tr><th>モデル</th><th>コンテキストウィンドウ</th><th>ひとこと</th></tr></thead><tbody>
-        <tr><td class="cmd">Opus 4.8</td><td>最大 1M (100万)</td><td>いちばん賢い</td></tr>
+        <tr><td class="cmd">Opus 4.8</td><td>最大 1M (100万)</td><td>とても賢い</td></tr>
         <tr><td class="cmd">Sonnet 4.6</td><td>最大 1M (100万)</td><td>バランス · 無難な選択</td></tr>
         <tr><td class="cmd">Haiku 4.5</td><td>200K (20万)</td><td>いちばん速くて安い</td></tr>
         <tr><td class="cmd">Fable 5</td><td>最大 1M (100万)</td><td>最新最強 · 自分で選択</td></tr>
@@ -2072,7 +2072,7 @@ description: 週次レポートを会社の様式で作成
   lcClear(); mreset(); lcVisual('input');
 
   /* models */
-  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'最大 1M (約 100万トークン)',tag:'いちばん賢いが、いちばん遅くて高い。',when:'精度が何より大事なとき。',ex:['複雑なコードの分析・設計','解くのが難しいバグ','長い推論が必要な作業']},
+  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'最大 1M (約 100万トークン)',tag:'とても賢く正確ですが、遅くて高い。',when:'精度が何より大事なとき。',ex:['複雑なコードの分析・設計','解くのが難しいバグ','長い推論が必要な作業']},
     sonnet:{iq:4,sp:4,cost:3,ctx:'最大 1M (約 100万トークン)',tag:'賢さと速さのバランス。ほとんどの作業に無難。',when:'何を選ぶか迷ったらここから始める。',ex:['一般的なコーディング・修正','文書作成・要約','ほとんどの作業']},
     haiku:{iq:3,sp:5,cost:5,ctx:'200K (約 20万トークン)',tag:'いちばん速くて、いちばん安い。',when:'速さ・コストが大事で作業が単純なとき。',ex:['簡単・くり返しの作業','速い応答','大量を軽く処理']},
     fable:{iq:5,sp:1,cost:1,ctx:'最大 1M (約 100万トークン)',tag:'いちばん強力な最新モデル — いちばん遅くて高価です。デフォルトではなく、自分で選ぶ必要があります。',when:'とても難しく長くかかる作業に最高性能が必要なとき。(プラン・環境によって選択できるかどうかが変わります)',ex:['大規模なコードのマイグレーション','長時間の自律作業','最高難度の問題']} };

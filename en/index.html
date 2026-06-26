@@ -984,7 +984,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude comes in several models. <b>Smartness, speed, and cost</b> are traded off against each other.</p>
       <p class="defs">Smarter usually means slower and pricier. Just pick what fits the job. Try choosing below.</p>
       <div class="mtabs" id="mtabs">
-        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">Smartest</div></button>
+        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">Very smart</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">Balanced · safe pick</div></button>
         <button class="mtab" data-m="haiku"><div class="mn">Haiku 4.5</div><div class="mt">Fastest and cheapest</div></button>
         <button class="mtab" data-m="fable"><div class="mn">Fable 5</div><div class="mt">Newest &amp; strongest · not default</div></button>
@@ -1004,7 +1004,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
       <p class="label">Context window by model (as of June 2026)</p>
       <div class="tablewrap"><table class="t"><thead><tr><th>Model</th><th>Context window</th><th>In a word</th></tr></thead><tbody>
-        <tr><td class="cmd">Opus 4.8</td><td>up to 1M (one million)</td><td>Smartest</td></tr>
+        <tr><td class="cmd">Opus 4.8</td><td>up to 1M (one million)</td><td>Very smart</td></tr>
         <tr><td class="cmd">Sonnet 4.6</td><td>up to 1M (one million)</td><td>Balanced · safe pick</td></tr>
         <tr><td class="cmd">Haiku 4.5</td><td>200K (two hundred thousand)</td><td>Fastest and cheapest</td></tr>
         <tr><td class="cmd">Fable 5</td><td>up to 1M (1,000,000)</td><td>Newest &amp; strongest · pick manually</td></tr>
@@ -2066,7 +2066,7 @@ description: Write the weekly report in the company format
   lcClear(); mreset(); lcVisual('input');
 
   /* models */
-  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'up to 1M (about one million tokens)',tag:'Smartest, but slowest and priciest.',when:'When accuracy matters above all.',ex:['Complex code analysis & design','Hard-to-solve bugs','Tasks needing long reasoning']},
+  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'up to 1M (about one million tokens)',tag:'Very smart and precise, but slow and pricey.',when:'When accuracy matters above all.',ex:['Complex code analysis & design','Hard-to-solve bugs','Tasks needing long reasoning']},
     sonnet:{iq:4,sp:4,cost:3,ctx:'up to 1M (about one million tokens)',tag:'A balance of smartness and speed. Fine for most tasks.',when:'If you don\'t know what to pick, start here.',ex:['General coding & edits','Writing & summarizing documents','Most tasks']},
     haiku:{iq:3,sp:5,cost:5,ctx:'200K (about two hundred thousand tokens)',tag:'Fastest and cheapest.',when:'When speed and cost matter and the task is simple.',ex:['Simple, repetitive tasks','Quick responses','Lots of light processing']},
     fable:{iq:5,sp:1,cost:1,ctx:'up to 1M (about one million tokens)',tag:'The most powerful, latest model — slowest and priciest. It\'s not the default, so you have to pick it yourself.',when:'When you need top performance for very hard or long-running tasks. (Whether you can pick it depends on your plan and environment.)',ex:['Large-scale code migrations','Long autonomous tasks','The hardest problems']} };

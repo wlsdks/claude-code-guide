@@ -986,7 +986,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude 有好几个模型。<b>聪明 · 速度 · 成本</b>三者之间是互相取舍的关系。</p>
       <p class="defs">越聪明通常越慢、越贵。按需要的工作来选就行。在下面挑一个试试。</p>
       <div class="mtabs" id="mtabs">
-        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">最聪明</div></button>
+        <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">非常聪明</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">均衡 · 稳妥之选</div></button>
         <button class="mtab" data-m="haiku"><div class="mn">Haiku 4.5</div><div class="mt">最快最便宜</div></button>
         <button class="mtab" data-m="fable"><div class="mn">Fable 5</div><div class="mt">最新最强 · 非默认</div></button>
@@ -1006,7 +1006,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
       <p class="label">各模型的上下文窗口 (截至 2026 年 6 月)</p>
       <div class="tablewrap"><table class="t"><thead><tr><th>模型</th><th>上下文窗口</th><th>一句话</th></tr></thead><tbody>
-        <tr><td class="cmd">Opus 4.8</td><td>最大 1M (100 万)</td><td>最聪明</td></tr>
+        <tr><td class="cmd">Opus 4.8</td><td>最大 1M (100 万)</td><td>非常聪明</td></tr>
         <tr><td class="cmd">Sonnet 4.6</td><td>最大 1M (100 万)</td><td>均衡 · 稳妥之选</td></tr>
         <tr><td class="cmd">Haiku 4.5</td><td>200K (20 万)</td><td>最快最便宜</td></tr>
         <tr><td class="cmd">Fable 5</td><td>最大 1M (100 万)</td><td>最新最强 · 直接选择</td></tr>
@@ -2072,7 +2072,7 @@ description: 按公司格式撰写周报
   lcClear(); mreset(); lcVisual('input');
 
   /* models */
-  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'最大 1M (约 100 万 token)',tag:'最聪明，但最慢、最贵。',when:'当准确度比什么都重要时。',ex:['复杂的代码分析·设计','难解的 bug','需要长推理的任务']},
+  var MODELS={ opus:{iq:5,sp:2,cost:1,ctx:'最大 1M (约 100 万 token)',tag:'非常聪明、精准，但最慢、最贵。',when:'当准确度比什么都重要时。',ex:['复杂的代码分析·设计','难解的 bug','需要长推理的任务']},
     sonnet:{iq:4,sp:4,cost:3,ctx:'最大 1M (约 100 万 token)',tag:'聪明与速度的均衡。大多数任务都合适。',when:'不知道选哪个，就从这里开始。',ex:['一般的编码·修改','文档撰写·总结','大多数任务']},
     haiku:{iq:3,sp:5,cost:5,ctx:'200K (约 20 万 token)',tag:'最快、最便宜。',when:'当速度·成本重要、任务又简单时。',ex:['简单·重复的工作','快速响应','大量轻量处理']},
     fable:{iq:5,sp:1,cost:1,ctx:'最大 1M (约 100 万 token)',tag:'最强大的最新模型 —— 最慢、最贵。它不是默认值，需要你自己选择。',when:'当非常难或耗时很长的任务需要最高性能时。（能否选择取决于套餐和环境）',ex:['大规模代码迁移','长时间自主工作','最高难度的问题']} };
