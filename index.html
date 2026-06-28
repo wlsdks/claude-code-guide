@@ -145,6 +145,12 @@
   /* collapsible code, one-line summary, example badge */
   .codedet{ margin:0 0 22px; } .codedet>summary{ list-style:none; cursor:pointer; font-size:12.5px; color:var(--muted); background:var(--row); border:1px solid var(--line); border-radius:8px; padding:9px 13px; display:flex; align-items:center; gap:8px; user-select:none; transition:border-color .15s,color .15s; } .codedet>summary::-webkit-details-marker{ display:none; } .codedet>summary::before{ content:'›'; color:var(--faint); font-weight:600; transition:transform .15s; display:inline-block; } .codedet[open]>summary::before{ transform:rotate(90deg); } .codedet>summary:hover{ border-color:var(--line2); color:var(--ink); } .codedet .pre{ margin:8px 0 0 !important; }
   .notedet{ margin:14px 0 22px; } .notedet>summary{ list-style:none; cursor:pointer; font-size:12.5px; color:var(--muted); background:var(--row); border:1px solid var(--line); border-radius:8px; padding:9px 13px; display:flex; align-items:center; gap:8px; user-select:none; transition:border-color .15s,color .15s; } .notedet>summary::-webkit-details-marker{ display:none; } .notedet>summary::before{ content:'›'; color:var(--faint); font-weight:600; transition:transform .15s; display:inline-block; } .notedet[open]>summary::before{ transform:rotate(90deg); } .notedet>summary:hover{ border-color:var(--line2); color:var(--ink); } .notedet .note{ margin:8px 0 0 !important; }
+  .loopviz{ margin:14px auto 18px; max-width:600px; }
+  .loopviz svg{ width:100%; height:auto; display:block; }
+  .loopviz .ln{ font-family:inherit; font-size:14px; font-weight:600; fill:var(--ink); }
+  .loopviz .lr{ font-family:inherit; font-size:12.5px; font-weight:600; fill:var(--accent); }
+  .loopviz .nd{ fill:var(--panel); stroke:var(--line2); stroke-width:1.5; }
+  .loopviz .ar{ fill:none; stroke:var(--accent); stroke-width:1.7; }
   .tldr{ display:flex; gap:10px; align-items:flex-start; background:var(--row); border-radius:12px; padding:12px 15px; margin:0 0 26px; font-size:14px; line-height:1.6; } .tldr .tlb{ font-size:11px; font-weight:600; color:var(--accent); background:var(--bg); border:1px solid var(--line2); border-radius:6px; padding:2px 8px; white-space:nowrap; flex:0 0 auto; margin-top:1px; } .tldr .tlx{ flex:1; } .tldr b{ font-weight:600; }
   .exb{ display:inline-block; font-size:11px; font-weight:500; color:var(--warn); background:rgba(216,148,63,.14); border-radius:5px; padding:1px 7px; vertical-align:middle; }
   .gl{ position:relative; border-bottom:1px dotted var(--line2); cursor:help; }
@@ -835,9 +841,21 @@ irm https://claude.ai/install.ps1 | iex</div>
     <!-- HOWWORKS: the agentic loop -->
     <section class="page" id="howworks">
       <h1>작동 원리 — 어떻게 일하나</h1>
-      <p class="lead">챗은 <b>질문 → 답</b> 한 번으로 끝나요. 클로드 코드는 달라요 — <b>스스로 도구를 써서 둘러보고·고치고·확인하길 반복</b>하다가, 다 되면 끝내요.</p>
+      <p class="lead">챗은 <b>질문 → 답</b> 한 번으로 끝나요. 클로드 코드는 <b>스스로 도구를 써서 이렇게 반복</b>해요 —</p>
       <p class="defs">아래 ‘지켜보기’를 누르면 — 클로드가 무대 뒤에서 <b>실제로 거치는 과정</b>을 한 단계씩 보여드려요. (실제 클로드 없이 흐름만)</p>
-      <div class="grp">
+             <div class="loopviz" role="img" aria-label="둘러보기 → 고치기 → 확인을 다 될 때까지 반복하는 흐름">
+        <svg viewBox="0 0 600 148" xmlns="http://www.w3.org/2000/svg">
+          <defs><marker id="lah" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto"><path d="M0.7,0.7 L6,3 L0.7,5.3" class="ar"/></marker></defs>
+          <rect class="nd" x="14" y="20" width="150" height="56" rx="14"/><text class="ln" x="89" y="52" text-anchor="middle">① 둘러보기</text>
+          <rect class="nd" x="225" y="20" width="150" height="56" rx="14"/><text class="ln" x="300" y="52" text-anchor="middle">② 고치기</text>
+          <rect class="nd" x="436" y="20" width="150" height="56" rx="14"/><text class="ln" x="511" y="52" text-anchor="middle">③ 확인</text>
+          <path class="ar" d="M168 48 H221" marker-end="url(#lah)"/>
+          <path class="ar" d="M379 48 H432" marker-end="url(#lah)"/>
+          <path class="ar" d="M511 80 C 511 126, 89 126, 89 82" marker-end="url(#lah)"/>
+          <text class="lr" x="300" y="116" text-anchor="middle">↻ 다 될 때까지 반복</text>
+        </svg>
+       </div>
+       <div class="grp">
         <h3>클로드가 일하는 걸 지켜보기</h3>
         <div class="exrow"><button class="btn solid" id="hw-go">▶ 지켜보기</button><button class="btn" id="hw-reset">처음으로</button></div>
         <div class="flow" id="hw-flow"></div>
@@ -1927,7 +1945,7 @@ description: 주간 보고서를 회사 양식으로 작성
     function open(){ var page=document.querySelector('.page.on'); if(!page) return; if(!build(page).length) return;
       overlay=document.createElement('div'); overlay.className='present2';
       overlay.innerHTML='<div class="p2bar"><span class="p2title"></span><span class="p2count"></span><span class="p2timer"></span><span class="p2sp"></span><button class="p2nav p2notebtn" title="이 화면의 한 줄 요약·결론·다음 주제를 봐요 (N)">노트</button><button class="p2nav p2simbtn" title="시뮬레이션이 있는 페이지만 모아 봐요 (←/→로 순회)">시뮬레이션 모드</button><button class="p2nav p2tocbtn">목차</button><button class="p2nav p2prev">← 이전</button><button class="p2nav p2next">다음 →</button><button class="p2x" title="끝내기 (Esc)">✕</button></div><div class="p2prog"><i></i></div><div class="p2stage"><div class="p2inner"></div></div><div class="p2note"><div class="p2notehd">발표 노트</div><div class="p2notebody"></div></div><div class="p2toc"><div class="p2tochead"><b>목차 — 바로가기</b><span class="p2sp"></span><button class="p2nav p2tocclose">닫기</button></div><div class="p2toclist"><div class="in"></div></div></div>';
-      document.body.appendChild(overlay); document.documentElement.classList.add('p2-lock'); try{ if(overlay.requestFullscreen) overlay.requestFullscreen(); }catch(e){}
+      document.body.appendChild(overlay); document.documentElement.classList.add('p2-lock'); try{ if(overlay.requestFullscreen){ var _fp=overlay.requestFullscreen(); if(_fp&&_fp.catch) _fp.catch(function(){}); } }catch(e){}
       overlay.querySelector('.p2prev').addEventListener('click',goPrev);
       overlay.querySelector('.p2next').addEventListener('click',goNext);
       overlay.querySelector('.p2simbtn').addEventListener('click',toggleSim);
@@ -1937,7 +1955,7 @@ description: 주간 보고서를 회사 양식으로 작성
       overlay.querySelector('.p2x').addEventListener('click',close);
       t0=Date.now(); tick(); timer=setInterval(tick,1000);
       loadPage(page); }
-    function close(){ if(!overlay) return; if(timer){ clearInterval(timer); timer=null; } try{ if(document.fullscreenElement) document.exitFullscreen(); }catch(e){} restore(); overlay.remove(); overlay=null; document.documentElement.classList.remove('p2-lock'); }
+    function close(){ if(!overlay) return; if(timer){ clearInterval(timer); timer=null; } try{ if(document.fullscreenElement){ var _xp=document.exitFullscreen(); if(_xp&&_xp.catch) _xp.catch(function(){}); } }catch(e){} restore(); overlay.remove(); overlay=null; document.documentElement.classList.remove('p2-lock'); }
     openBtn.addEventListener('click',open);
     document.addEventListener('keydown',function(e){ if(!overlay) return; var tocOpen=tocEl().classList.contains('on'), t=e.target, typing=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName);
       if(e.key==='Escape'){ if(tocOpen) tocEl().classList.remove('on'); else close(); return; }
