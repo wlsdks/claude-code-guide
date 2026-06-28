@@ -292,6 +292,8 @@
   @media (max-width:860px){ .p2open{ display:none; } .present2 .p2inner{ zoom:1; } }
   /* lecture-mode timer + notes panel */
   .present2 .p2timer{ font-size:13px; color:var(--muted); font-variant-numeric:tabular-nums; }
+  .present2 .p2prog{ height:3px; background:var(--row); flex:0 0 auto; }
+  .present2 .p2prog>i{ display:block; height:100%; width:0; background:var(--accent); transition:width .25s ease; }
   .present2 .p2note{ flex:0 0 auto; background:var(--panel); border-top:1px solid var(--line2); padding:12px 26px 15px; display:none; max-height:36vh; overflow:auto; }
   .present2 .p2note.on{ display:block; }
   .present2 .p2notehd{ font-size:10.5px; font-weight:700; color:var(--faint); text-transform:uppercase; letter-spacing:.5px; margin-bottom:9px; }
@@ -1880,7 +1882,7 @@ description: 주간 보고서를 회사 양식으로 작성
     function isSim(id){ return !P2STATIC[id]; }
     function curId(){ var c=document.querySelector('.page.on'); return c?c.id:''; }
     function simList(){ return [].filter.call(document.querySelectorAll('.lnb .navitem'),function(n){ return isSim(n.dataset.page); }).map(function(n){ return n.dataset.page; }); }
-    function boundary(el,i){ if(i===0) return false; if(el.tagName==='H1'||el.tagName==='H3') return true; var c=el.classList; return c.contains('grp')||c.contains('label')||c.contains('simtake')||c.contains('bignote')||c.contains('callout'); }
+    function boundary(el,i){ if(i===0) return false; if(el.tagName==='H1'||el.tagName==='H3') return true; var c=el.classList; return c.contains('grp')||c.contains('label')||c.contains('simtake')||c.contains('bignote')||c.contains('callout')||c.contains('quiz'); }
     var SIMSEL='button,input,textarea,select,.keycap,.tlpt,.prow,.timeline';
     function hasSim(slide){ return slide.some(function(el){ return (el.matches&&el.matches(SIMSEL))||(el.querySelector&&!!el.querySelector(SIMSEL)); }); }
     function build(page){ var kids=[].slice.call(page.children),out=[],cur=[]; kids.forEach(function(el,i){ if(boundary(el,i)&&cur.length){ out.push(cur); cur=[]; } cur.push(el); }); if(cur.length) out.push(cur);
@@ -1888,7 +1890,7 @@ description: 주간 보고서를 회사 양식으로 작성
     function restore(){ staged.forEach(function(p){ if(p.ph.parentNode) p.ph.parentNode.replaceChild(p.el,p.ph); }); staged=[]; }
     function show(i){ if(!overlay) return; restore(); idx=Math.max(0,Math.min(slides.length-1,i)); var inner=overlay.querySelector('.p2inner');
       slides[idx].forEach(function(el){ var ph=document.createComment('p2'); el.parentNode.insertBefore(ph,el); inner.appendChild(el); staged.push({el:el,ph:ph}); });
-      overlay.querySelector('.p2count').textContent=(idx+1)+' / '+slides.length;
+      overlay.querySelector('.p2count').textContent=(idx+1)+' / '+slides.length; var pb=overlay.querySelector('.p2prog>i'); if(pb) pb.style.width=(slides.length>1?((idx+1)/slides.length*100):100)+'%';
       var fS=idx<=0, lS=idx>=slides.length-1;
       if(simOnly){ var L=simList(),i=L.indexOf(curId()); overlay.querySelector('.p2prev').disabled=(fS&&i<=0); overlay.querySelector('.p2next').disabled=(lS&&i>=L.length-1); }
       else { overlay.querySelector('.p2prev').disabled=fS; overlay.querySelector('.p2next').disabled=lS; }
@@ -1923,8 +1925,8 @@ description: 주간 보고서를 회사 양식으로 작성
     function tick(){ if(!overlay) return; var s=Math.max(0,Math.floor((Date.now()-t0)/1000)),mm=Math.floor(s/60),ss=s%60,el=overlay.querySelector('.p2timer'); if(el) el.textContent=(mm<10?'0':'')+mm+':'+(ss<10?'0':'')+ss; }
     function open(){ var page=document.querySelector('.page.on'); if(!page) return; if(!build(page).length) return;
       overlay=document.createElement('div'); overlay.className='present2';
-      overlay.innerHTML='<div class="p2bar"><span class="p2title"></span><span class="p2count"></span><span class="p2timer"></span><span class="p2sp"></span><button class="p2nav p2notebtn" title="이 화면의 한 줄 요약·결론·다음 주제를 봐요 (N)">노트</button><button class="p2nav p2simbtn" title="시뮬레이션이 있는 페이지만 모아 봐요 (←/→로 순회)">시뮬레이션 모드</button><button class="p2nav p2tocbtn">목차</button><button class="p2nav p2prev">← 이전</button><button class="p2nav p2next">다음 →</button><button class="p2x" title="끝내기 (Esc)">✕</button></div><div class="p2stage"><div class="p2inner"></div></div><div class="p2note"><div class="p2notehd">발표 노트</div><div class="p2notebody"></div></div><div class="p2toc"><div class="p2tochead"><b>목차 — 바로가기</b><span class="p2sp"></span><button class="p2nav p2tocclose">닫기</button></div><div class="p2toclist"><div class="in"></div></div></div>';
-      document.body.appendChild(overlay); document.documentElement.classList.add('p2-lock');
+      overlay.innerHTML='<div class="p2bar"><span class="p2title"></span><span class="p2count"></span><span class="p2timer"></span><span class="p2sp"></span><button class="p2nav p2notebtn" title="이 화면의 한 줄 요약·결론·다음 주제를 봐요 (N)">노트</button><button class="p2nav p2simbtn" title="시뮬레이션이 있는 페이지만 모아 봐요 (←/→로 순회)">시뮬레이션 모드</button><button class="p2nav p2tocbtn">목차</button><button class="p2nav p2prev">← 이전</button><button class="p2nav p2next">다음 →</button><button class="p2x" title="끝내기 (Esc)">✕</button></div><div class="p2prog"><i></i></div><div class="p2stage"><div class="p2inner"></div></div><div class="p2note"><div class="p2notehd">발표 노트</div><div class="p2notebody"></div></div><div class="p2toc"><div class="p2tochead"><b>목차 — 바로가기</b><span class="p2sp"></span><button class="p2nav p2tocclose">닫기</button></div><div class="p2toclist"><div class="in"></div></div></div>';
+      document.body.appendChild(overlay); document.documentElement.classList.add('p2-lock'); try{ if(overlay.requestFullscreen) overlay.requestFullscreen(); }catch(e){}
       overlay.querySelector('.p2prev').addEventListener('click',goPrev);
       overlay.querySelector('.p2next').addEventListener('click',goNext);
       overlay.querySelector('.p2simbtn').addEventListener('click',toggleSim);
@@ -1934,12 +1936,15 @@ description: 주간 보고서를 회사 양식으로 작성
       overlay.querySelector('.p2x').addEventListener('click',close);
       t0=Date.now(); tick(); timer=setInterval(tick,1000);
       loadPage(page); }
-    function close(){ if(!overlay) return; if(timer){ clearInterval(timer); timer=null; } restore(); overlay.remove(); overlay=null; document.documentElement.classList.remove('p2-lock'); }
+    function close(){ if(!overlay) return; if(timer){ clearInterval(timer); timer=null; } try{ if(document.fullscreenElement) document.exitFullscreen(); }catch(e){} restore(); overlay.remove(); overlay=null; document.documentElement.classList.remove('p2-lock'); }
     openBtn.addEventListener('click',open);
-    document.addEventListener('keydown',function(e){ if(!overlay) return; var tocOpen=tocEl().classList.contains('on');
-      if(e.key==='Escape'){ if(tocOpen) tocEl().classList.remove('on'); else close(); }
-      else if(e.key==='ArrowRight'&&!tocOpen){ goNext(); } else if(e.key==='ArrowLeft'&&!tocOpen){ goPrev(); }
-      else if((e.key==='n'||e.key==='N')&&!tocOpen){ toggleNote(); } });
+    document.addEventListener('keydown',function(e){ if(!overlay) return; var tocOpen=tocEl().classList.contains('on'), t=e.target, typing=/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName);
+      if(e.key==='Escape'){ if(tocOpen) tocEl().classList.remove('on'); else close(); return; }
+      if(tocOpen) return;
+      if(e.key==='ArrowRight'||e.key==='PageDown'){ e.preventDefault(); goNext(); }
+      else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); goPrev(); }
+      else if(e.key===' '&&t.tagName!=='BUTTON'&&!typing){ e.preventDefault(); goNext(); }
+      else if((e.key==='n'||e.key==='N')&&!typing){ toggleNote(); } });
     var rzT=null; window.addEventListener('resize',function(){ if(!overlay) return; if(rzT)clearTimeout(rzT); rzT=setTimeout(fitZoom,120); });
   })();
 
