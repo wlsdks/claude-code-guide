@@ -1951,6 +1951,12 @@ description: 週次レポートを会社の様式で作成
         <p class="defs" style="margin-top:10px;">長くなったら分割し、<code>@docs/conventions.md</code> のように<b>他ファイルを参照</b>。基準は「30秒で読める量」。</p>
       </div>
 
+      <div class="grp">
+        <h3>2つの記憶 — 自分が書く vs クロードが書く</h3>
+        <div class="tablewrap"><table class="t"><thead><tr><th style="width:110px;"></th><th>CLAUDE.md</th><th>自動メモリ</th></tr></thead><tbody><tr><td>誰が書く</td><td>自分</td><td>クロード（修正・好みを見て）</td></tr><tr><td>内容</td><td>指示・ルール</td><td>学んだこと・パターン</td></tr><tr><td>場所</td><td><code>./CLAUDE.md</code> 等</td><td><code>~/.claude/projects/.../memory/</code></td></tr><tr><td>読込</td><td>毎セッション全文</td><td>毎セッション <code>MEMORY.md</code> 先頭200行（残りは必要時）</td></tr><tr><td>用途</td><td>コーディング標準・ワークフロー・設計</td><td>ビルドコマンド・デバッグ知見・発見した好み</td></tr></tbody></table></div>
+        <p class="simtake"><span class="stk">結論</span><span>どちらも「<b>文脈</b>」にすぎず — <b>強制ではない</b>。必須は<b>フック</b>で（「フック」参照）。自動メモリは <code>/memory</code> で確認・編集。</span></p>
+      </div>
+
       <p class="note"><b>アンチパターン</b> · 200行超・矛盾するルール・古い情報 → かえって<b>守られなくなる</b>。「30秒で読める量」に収めて。（出典：code.claude.com/docs — memory·settings、2026年6月時点）</p>
     </section>
 

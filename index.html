@@ -1952,6 +1952,12 @@ description: 주간 보고서를 회사 양식으로 작성
         <p class="defs" style="margin-top:10px;">길어지면 <code>@docs/conventions.md</code>처럼 <b>다른 파일을 참조</b>해 쪼개요. 기준은 ‘읽는 사람이 30초에 훑을 분량’.</p>
       </div>
 
+      <div class="grp">
+        <h3>두 가지 기억 — 내가 쓰는 것 vs 클로드가 쓰는 것</h3>
+        <div class="tablewrap"><table class="t"><thead><tr><th style="width:110px;">구분</th><th>CLAUDE.md</th><th>자동 메모리</th></tr></thead><tbody><tr><td>누가 쓰나</td><td>내가</td><td>클로드가 (내 교정·선호를 보고)</td></tr><tr><td>무엇</td><td>지시·규칙</td><td>스스로 배운 것·패턴</td></tr><tr><td>어디에</td><td><code>./CLAUDE.md</code> 등</td><td><code>~/.claude/projects/.../memory/</code></td></tr><tr><td>로드</td><td>매 세션 전체</td><td>매 세션 <code>MEMORY.md</code> 앞 200줄(나머지는 필요할 때)</td></tr><tr><td>용도</td><td>코딩 표준·워크플로·아키텍처</td><td>빌드 명령·디버깅 통찰·발견한 선호</td></tr></tbody></table></div>
+        <p class="simtake"><span class="stk">결론</span><span>둘 다 ‘<b>컨텍스트</b>’일 뿐 — <b>강제는 아니에요</b>. 반드시 지켜야 하면 <b>훅</b>으로(앞 ‘훅 적용’). 자동 메모리는 <code>/memory</code>로 보고 편집해요.</span></p>
+      </div>
+
       <p class="note"><b>안티패턴</b> · 200줄 넘김·서로 모순되는 규칙·낡은 정보 → 모델이 오히려 <b>덜 지켜요</b>. ‘읽는 사람이 30초에 훑을 분량’을 넘기지 마세요. (출처: code.claude.com/docs — memory·settings, 2026년 6월 기준)</p>
     </section>
 

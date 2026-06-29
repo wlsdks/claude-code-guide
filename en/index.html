@@ -1944,6 +1944,12 @@ New APIs go under src/routes/ · auth middleware required</div>
         <p class="defs" style="margin-top:10px;">When it grows, split it out and <b>reference other files</b> like <code>@docs/conventions.md</code>. Benchmark: “skimmable in 30 seconds.”</p>
       </div>
 
+      <div class="grp">
+        <h3>Two memories — what you write vs what Claude writes</h3>
+        <div class="tablewrap"><table class="t"><thead><tr><th style="width:110px;"></th><th>CLAUDE.md</th><th>Auto memory</th></tr></thead><tbody><tr><td>Who writes</td><td>You</td><td>Claude (from your corrections & prefs)</td></tr><tr><td>What</td><td>Instructions & rules</td><td>Learnings & patterns</td></tr><tr><td>Where</td><td><code>./CLAUDE.md</code> etc</td><td><code>~/.claude/projects/.../memory/</code></td></tr><tr><td>Loaded</td><td>Whole file, every session</td><td><code>MEMORY.md</code> first 200 lines each session (rest on demand)</td></tr><tr><td>Use for</td><td>Coding standards, workflows, architecture</td><td>Build commands, debugging insights, discovered prefs</td></tr></tbody></table></div>
+        <p class="simtake"><span class="stk">Bottom line</span><span>Both are just <b>context</b> — <b>not enforced</b>. For must-dos, use a <b>hook</b> (see “Hooks”). View/edit auto memory with <code>/memory</code>.</span></p>
+      </div>
+
       <p class="note"><b>Anti-pattern</b> · over 200 lines, contradictory rules, or stale info → the model actually <b>follows it less</b>. Keep it to “skimmable in 30 seconds.” (Source: code.claude.com/docs — memory·settings, as of Jun 2026)</p>
     </section>
 

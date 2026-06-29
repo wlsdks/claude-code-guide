@@ -1950,6 +1950,12 @@ description: 按公司格式撰写周报
         <p class="defs" style="margin-top:10px;">变长就拆出去，用 <code>@docs/conventions.md</code> <b>引用其他文件</b>。基准：「30 秒能扫完」。</p>
       </div>
 
+      <div class="grp">
+        <h3>两种记忆 —— 你写的 vs 克劳德写的</h3>
+        <div class="tablewrap"><table class="t"><thead><tr><th style="width:110px;"></th><th>CLAUDE.md</th><th>自动记忆</th></tr></thead><tbody><tr><td>谁写</td><td>你</td><td>克劳德（看你的纠正·偏好）</td></tr><tr><td>内容</td><td>指示·规则</td><td>学到的东西·模式</td></tr><tr><td>在哪</td><td><code>./CLAUDE.md</code> 等</td><td><code>~/.claude/projects/.../memory/</code></td></tr><tr><td>加载</td><td>每次会话全文</td><td>每次会话 <code>MEMORY.md</code> 前 200 行（其余按需）</td></tr><tr><td>用途</td><td>编码规范·工作流·架构</td><td>构建命令·调试洞见·发现的偏好</td></tr></tbody></table></div>
+        <p class="simtake"><span class="stk">结论</span><span>两者都只是「<b>上下文</b>」—— <b>不是强制</b>。必须遵守用<b>钩子</b>（见「钩子」）。自动记忆用 <code>/memory</code> 查看·编辑。</span></p>
+      </div>
+
       <p class="note"><b>反模式</b> · 超过 200 行·自相矛盾·过时信息 → 模型反而<b>更不遵守</b>。控制在「30 秒能扫完」。（来源：code.claude.com/docs —— memory·settings，2026年6月）</p>
     </section>
 
