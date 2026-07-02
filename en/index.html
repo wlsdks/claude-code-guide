@@ -696,7 +696,8 @@
     <section class="page" id="usecases">
       <h1>Real examples (by job)</h1>
       <p class="lead"><b>"Does this really work for my job?"</b> — pick a job and see <b>how your everyday work changes</b>, from start to finish.</p>
-      <p class="defs">Compare <b>Before (now)</b> on the left with <b>After (with Claude)</b> on the right, side by side. Pick a job and press the button.</p>
+      <p class="defs">Compare <b>Before (now)</b> on the left with <b>After (with Claude)</b> on the right, side by side.</p>
+      <p class="label">Try the comparison <span class="hint">Pick a job, then press play</span></p>
       <div class="cwchips" id="uc-chips"></div>
       <div class="uctask"><span class="uc-tag">The task</span><span id="uc-task"></span></div>
       <div class="btnrow" style="margin:12px 0 14px;"><button class="btn solid" id="uc-go">Compare before → after ▶</button><button class="btn" id="uc-reset">Reset</button></div>
@@ -778,7 +779,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">When you already know which file to fix — you can point right at it with <b><code>@</code> followed by the file name</b>. Claude opens that file first.</p>
       <p class="defs">Below, press <code>@</code> to pop up the file list and pick one. Type part of the name to narrow the list.</p>
       <div class="grp">
-        <h3>Try it — attach a file with @</h3>
+        <p class="label">Try it <span class="hint">attach a file with @</span></p>
         <div class="mline" id="mline"><span>Fix the booking screen </span><span id="m-typed"></span><span class="mcaret">&nbsp;&nbsp;</span></div>
         <div class="atmenu" id="atmenu"></div>
         <div class="keys" style="margin-top:10px;">
@@ -810,7 +811,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude Code stops, rewinds, and switches modes with <b>just a few keys</b>. Click them to get the feel.</p>
       <p class="defs"><b>Click a key button</b> below or <b>press the actual key</b> on your keyboard — and we'll show you <b>exactly what happens</b> on screen. (Just the behavior — no real Claude.)</p>
       <div class="grp">
-        <h3>Press a key</h3>
+        <p class="label">Try it <span class="hint">Press a key</span></p>
         <div class="keys" id="keyrow">
           <button class="keycap" data-k="esc">Esc</button>
           <button class="keycap" data-k="escesc">Esc Esc</button>
@@ -848,6 +849,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">When Claude heads the <b>wrong way</b> — you don't have to wait it out. Just <b>cut it off with Esc</b> and correct course. You're at the wheel.</p>
       <p class="defs">Tell Claude to "<b>make the text bigger</b> on the login screen." But what if Claude starts <b>changing the color</b> instead? Compare two responses.</p>
       <div class="grp">
+        <p class="label">Try it — two responses <span class="hint">Press to compare</span></p>
         <div class="exrow"><button class="btn solid" id="st-run">▶ Tell Claude</button></div>
         <div class="chatdemo">
           <div class="chatcol"><h4>Just let it run <span class="badge no">double the work</span></h4>
@@ -883,7 +885,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>Watch Claude work</h3>
+        <p class="label">Watch Claude work <span class="hint">Press play</span></p>
         <div class="exrow"><button class="btn solid" id="hw-go">▶ Watch it work</button><button class="btn" id="hw-reset">Reset</button></div>
         <div class="flow" id="hw-flow"></div>
         <p class="status" id="hw-status">Press the button to go one step at a time.</p>
@@ -914,7 +916,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>The 5 things you hand the AI — press one</h3>
+        <p class="label">The 5 things you hand the AI <span class="hint">press one</span></p>
         <div class="chips" id="su-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="tool">Tools</button>
           <button class="chip" data-k="inst">Instructions</button>
@@ -971,7 +973,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
 
       <div class="grp">
-        <h3>Try it — the setup meter</h3>
+        <p class="label">Try it <span class="hint">the setup meter</span></p>
         <p class="defs" style="margin-top:0;">See how the same model’s result improves as you switch levers on — give it a try.</p>
         <div class="chips" id="hn-chips" style="margin:2px 0 0;"><button class="chip" data-k="ctx">Context (@·CLAUDE.md)</button><button class="chip" data-k="ins">Specific instructions</button><button class="chip" data-k="tool">Tools (MCP·skills)</button><button class="chip" data-k="ver">Verification (tests)</button></div>
         <div class="hmeter"><i id="hn-bar"></i></div>
@@ -1129,6 +1131,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>Choosing a model (model)</h1>
       <p class="lead">Claude comes in several models. <b>Smartness, speed, and cost</b> are traded off against each other.</p>
       <p class="defs">Smarter usually means slower and pricier. Just pick what fits the job. Try choosing below.</p>
+      <p class="label">Pick a model <span class="hint">Click a card — details below change</span></p>
       <div class="mtabs" id="mtabs">
         <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">Very smart</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">Balanced · safe pick</div></button>
@@ -1202,6 +1205,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>Memory</h1>
       <p class="lead"><b>Automatic memory</b> is 'a note Claude writes itself.' It records what it learns even without being told to.</p>
       <p class="defs">If CLAUDE.md is the note you write, this is the note Claude writes. Let's play through how it's saved and reused.</p>
+      <p class="label">Watch it — save and reuse <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="mem-go">See how automatic memory gets saved ▶</button></div>
       <div class="cols">
         <div class="memflow">
@@ -1235,6 +1239,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>Skills</h1>
       <p class="lead">A <b>skill</b> is, in a word, <b>'your own recipe'</b> — write down a task you do often, make it once, and reuse it again and again.</p>
       <p class="defs">Let's play through the difference between explaining from scratch each time and setting it once as a skill.</p>
+      <p class="label">Compare — without vs with a skill <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sk-go">See the difference ▶</button></div>
       <div class="skgrid">
         <div class="skcol"><h4>Without a skill <span class="badge no">Repeat every time</span></h4><div class="skb" id="sk-no"></div></div>
@@ -1260,7 +1265,7 @@ description: Write the weekly report in the company format
       <p class="defs">e.g. put the <b>test → build → deploy → verify</b> steps into a 'deploy' skill, and anyone can do it the same way without being told each time. Press an advantage below.</p>
       <p class="anlg"><span class="ak">Analogy</span><span><b>A shared team checklist</b> — instead of passing a doc around and missing steps every time, make it once and a new teammate follows it exactly.</span></p>
       <div class="grp">
-        <h3>Advantages of skills — press one</h3>
+        <p class="label">Advantages of skills <span class="hint">press one</span></p>
         <div class="chips" id="ss-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="reuse">Reuse</button>
           <button class="chip" data-k="team">Team consistency</button>
@@ -1293,7 +1298,7 @@ description: Write the weekly report in the company format
       <p class="defs">A skill may carry permissions like <b>'use this tool without asking'</b> (allowed-tools), and it may come with scripts that <b>can run</b>. That's why trust matters.</p>
       <p class="anlg"><span class="ak">Analogy</span><span><b>Before hiring a consultant</b> — you ask "What permissions do you need? Are you trustworthy? May I see your process first?" If the answer is "I need full, unlimited access to everything," that's a <b>red flag</b>.</span></p>
       <div class="grp">
-        <h3>What to check before installing — press one</h3>
+        <p class="label">What to check before installing <span class="hint">press one</span></p>
         <div class="chips" id="sc-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="src">Trust the source</button>
           <button class="chip" data-k="perm">Permission scope</button>
@@ -1312,6 +1317,7 @@ description: Write the weekly report in the company format
       <p class="lead"><b>MCP</b> lets Claude <b>use other apps and services directly</b> (Jira, Google Drive, etc.) by connecting to them — like linking accounts between apps.</p>
       <p class="defs"><span class="gl" title="Model Context Protocol — the common standard for how Claude exchanges with outside tools and data">MCP = Model Context Protocol</span> (the standard for connecting a model to the outside world). Press the button to watch the connection happen.</p>
       <div class="bignote"><span class="bx">In simple terms</span><span>When you set up 'Sign in with Google' on an app, that app can use your Google, right? <b>MCP is that kind of 'connection'</b> — connect tools like Jira or Figma to Claude, and Claude opens them itself to get work done. No more copying and pasting everything by hand.</span></div>
+      <p class="label">Try connecting <span class="hint">Link the tools one by one</span></p>
       <div class="btnrow" style="margin-bottom:12px;"><button class="btn solid" id="mcp-go">Connect them one by one ▶</button><button class="btn" id="mcp-reset">Reset</button></div>
       <div class="mcpsim">
         <div class="mcphub">
@@ -1345,6 +1351,7 @@ description: Write the weekly report in the company format
       <p class="lead">A <b>plugin</b> is, in a word, <b>'a box of features'</b> — a bundle you install all at once (like an 'app' on your phone).</p>
       <p class="defs">Instead of gathering skills, tool connections (MCP), and automation (hooks) one by one, you grab a whole bundle someone else built well.</p>
       <div class="bignote"><span class="bx">In simple terms</span><span>Install one 'photo-editing app' on your phone and the filters and tools all come with it, right? <b>Plugins are like that.</b> They <b>install the skills, MCP, subagents, and hooks you saw earlier as one bundle.</b> (You don't have to know exactly what each one is — here, knowing it's a 'bundle' is enough.)</span></div>
+      <p class="label">Try installing <span class="hint">Press the bundle install</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="pl-go">Install bundle demo ▶</button><button class="btn" id="pl-reset">Reset</button></div>
       <div class="plugbox">
         <div class="ph">Plugin (a distributable package)</div>
@@ -1405,7 +1412,7 @@ description: Write the weekly report in the company format
       <p class="defs">Example task: <b>"Pull the amounts and dates from 100 invoices and enter them into Excel."</b> Run it the usual way, then press to see what happens <b>'when the format changes.'</b></p>
       <p class="anlg"><span class="ak">Analogy</span><span><b>RPA</b> is a <b>'record-and-replay' machine</b> — it repeats fixed-position clicks exactly. An <b>AI agent</b> is <b>'an employee who understands the intent'</b> — it adapts on its own even when things change.</span></p>
       <div class="grp">
-        <h3>Same task, different ways of working</h3>
+        <p class="label">Same task, different ways of working <span class="hint">Press to compare</span></p>
         <div class="exrow">
           <button class="btn solid" id="rpa-run">▶ Run as usual</button>
           <button class="btn" id="rpa-change">The format changed!</button>
@@ -1430,6 +1437,7 @@ description: Write the weekly report in the company format
       <h1>Pasting images to Claude</h1>
       <p class="lead">Claude <b>can see images.</b> Pasting a screenshot is far faster and more accurate than describing it in words.</p>
       <p class="defs">Press the button to see how Claude 'reads' an image.</p>
+      <p class="label">Watch it — reading an image <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin:0 0 16px;"><button class="btn solid" id="img-go">Have Claude analyze it ▶</button></div>
       <div class="imggrid">
         <div class="shotframe"><div class="shot">
@@ -1472,7 +1480,7 @@ description: Write the weekly report in the company format
       <p class="defs">e.g. set your work computer on a job, then from a café watch the progress on your phone and steer it with <b>"No, not like that — do it this way."</b> Press through the connection steps below.</p>
       <p class="anlg"><span class="ak">Analogy</span><span><b>A video call with a colleague at their desk</b> — your colleague (your PC) actually does the work, and you watch the screen on your phone and give directions. It's your computer doing the work.</span></p>
       <div class="grp">
-        <h3>How it connects — press it</h3>
+        <p class="label">How it connects <span class="hint">press it</span></p>
         <div class="exrow"><button class="btn solid" id="rm-go">▶ Watch it connect</button><button class="btn" id="rm-reset">Reset</button></div>
         <div id="rm-flow"></div>
         <p class="status" id="rm-status">Press the button to see how it connects to your phone.</p>
@@ -1525,6 +1533,7 @@ description: Write the weekly report in the company format
       <h1>Plan mode</h1>
       <p class="lead">Before making any changes, Claude <b>shows you 'what it plans to do' first</b> and gets your approval.</p>
       <p class="defs">For big changes or unfamiliar work, this heads off going 'in the wrong direction.' Play through the flow.</p>
+      <p class="label">Watch it — plan → approve → run <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="plan-go">See the flow ▶</button></div>
       <div class="steps">
         <div class="step" id="plan0"><div class="sn2">1</div><div><div class="st2">Switch to plan mode</div><div class="sd3"><code>Shift</code>+<code>Tab</code> or <code>/plan</code> — now it only reads and doesn't edit</div></div></div>
@@ -1544,6 +1553,7 @@ description: Write the weekly report in the company format
       <p class="anlg"><span class="ak">Like this</span><span>It's like deciding how much to delegate to an assistant — <b>"check with me first"</b> ↔ <b>"just handle the usual stuff."</b> Cautious at first, looser once you're comfortable.</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>In plain terms</b> · It's a setting for <b>how often Claude asks "May I do this?"</b> when it does something on your computer (editing files, running commands). At first it's safer to ask every time; once you're comfortable, you can let it handle frequent tasks on its own. It's like a car's 'manual ↔ automatic.'</div>
       <p class="defs">In Claude Code, <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> cycles through the default modes (ask permission, accept edits, plan). Autonomous modes like 'auto / skip' may need a separate option. Pick a mode and use "See it work" to check the difference.</p>
+      <p class="label">Pick a mode — all 5 <span class="hint">Click one, then see it act</span></p>
       <div class="cols">
         <div>
           <div class="pmenu" id="pmenu">
@@ -1577,6 +1587,7 @@ description: Write the weekly report in the company format
       <p class="lead">Claude <b>auto-saves the state at the moment of every request</b> you send. If you don't like a result, you can roll back.</p>
       <p class="defs">It's like 'time travel' — you can go to an earlier point. Click a dot to roll back.</p>
       <div class="callout" style="margin-bottom:14px;">Scenario: "Make the design more modern" → 10 files changed, but you don't like it. How do you roll back?</div>
+      <p class="label">Try rewinding <span class="hint">Pick a point, then press a restore button</span></p>
       <div class="timeline" id="rw-timeline"></div>
       <div class="tllabels" id="rw-labels"></div>
       <div class="btnrow" style="margin:14px 0;"><button class="btn" id="rw-code">Restore code only</button><button class="btn" id="rw-both">Restore code + conversation</button><button class="btn" id="rw-reset">Reset</button></div>
@@ -1640,6 +1651,7 @@ description: Write the weekly report in the company format
       <h1>Slash commands</h1>
       <p class="lead">These are <b>shortcut commands</b> that start with <code class="inlinecode">/</code>. Type them at the very start of a message.</p>
       <p class="defs">Click a command below to see what happens when you enter it.</p>
+      <p class="label">Try a command <span class="hint">Click one — it runs in the terminal below</span></p>
       <div class="chips" style="margin:0 0 12px; margin-left:0;" id="cmdchips">
         <button class="chip" data-c="init">/init</button><button class="chip" data-c="help">/help</button><button class="chip" data-c="clear">/clear</button><button class="chip" data-c="compact">/compact</button><button class="chip" data-c="model">/model</button>
       </div>
@@ -1739,6 +1751,7 @@ description: Write the weekly report in the company format
       <h1>Why manage context?</h1>
       <p class="lead">Context is Claude's <b>"desk."</b> When the desk gets cluttered, work gets <b>slower, pricier, and more error-prone</b>. That's why tidying up at the right time matters.</p>
       <p class="defs">Send the same task to a session that <b>neglects its context</b> and a session that <b>tidies up at the right time</b>. As context piles up, compare <b>how the two sessions' results diverge.</b></p>
+      <p class="label">Compare — neglect vs manage <span class="hint">Send a task</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="mg-go">Send next task ▶</button><button class="btn" id="mg-reset">Start over ↺</button></div>
       <div class="mg2">
         <div class="mg2col bad">
@@ -1777,6 +1790,7 @@ description: Write the weekly report in the company format
       <p class="lead">When a conversation gets long, 'compaction' happens. <b>A long pile of content turns into one short summary</b> — much like tidying a desk full of papers down to a single key page.</p>
       <p class="anlg"><span class="ak">Like this</span><span>Like tallying a day's receipts into one line — 'today's total' — and clearing the drawer: the long chat is squeezed into a short summary to free up room.</span></p>
       <p class="defs">Below is the conversation log of one task. Press 'Compact' to see how the content actually shrinks.</p>
+      <p class="label">Try compacting <span class="hint">Press it — the conversation shrinks</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">Compact (/compact) ▶</button><button class="btn" id="cx-reset">Show again</button></div>
 
       <p class="label" id="cx-label">Before compaction — conversation log (a long pile)</p>
@@ -1831,6 +1845,7 @@ description: Write the weekly report in the company format
       <p class="anlg"><span class="ak">Like this</span><span>Like <b>"keep tasting until it's seasoned right"</b> — it repeats on its own until the condition is met. (loop runs at fixed times.)</span></p>
       <p class="defs">Instead of doing it once and stopping, it <b>judges for itself after every turn whether the condition is satisfied</b>, and if not, it does it again. See below.</p>
       <div class="bignote"><span class="bx">Example goal</span><span>"Fix this notice <b>until there are 0 typos</b>"</span></div>
+      <p class="label">Run it — until the condition is met <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">Start goal ▶</button><button class="btn" id="goal-reset">Reset</button></div>
       <div class="cwvm"><span class="cwvmtag">Repeats automatically until the condition is met</span><div id="goal-turns"></div></div>
       <p class="status" id="goal-status" style="margin-top:12px;">Press "Start goal" to try it.</p>
@@ -1843,7 +1858,8 @@ description: Write the weekly report in the company format
       <h1>Repeat (loop)</h1>
       <p class="lead"><b>Repeat (loop)</b> is a feature that <b>automatically re-runs the same task at a set interval</b>. Example: every 10 minutes, "check for new orders and notify."</p>
       <p class="anlg"><span class="ak">Like this</span><span>Like <b>"water the plants every morning at 7"</b> — it repeats on a set schedule. (goal runs until a condition is met.)</span></p>
-      <p class="defs">If goals run 'until a condition is met,' repeat runs '<b>at a fixed time interval</b>.' Pick an interval and start. (The simulation fast-forwards time to show it.)</p>
+      <p class="defs">If goals run 'until a condition is met,' repeat runs '<b>at a fixed time interval</b>.' (The simulation fast-forwards time to show it.)</p>
+      <p class="label">Run it — on an interval <span class="hint">Pick an interval and start</span></p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">Start repeat ▶</button><button class="btn" id="loop-reset">Stop & reset</button></div>
       <p class="label">Run history</p>
@@ -1859,6 +1875,7 @@ description: Write the weekly report in the company format
       <p class="lead"><b>Workflows</b> is a feature where Claude <b>plans its own 'strategy' for a really big job and runs several helpers (subagents) at once</b> to handle it all together.</p>
       <p class="defs">If subagents are 'handing it to one person,' workflows are '<b>coordinating several people at once</b>.' Great for big reviews, cleanups, and research (higher plans like Max & Team).</p>
       <div class="bignote"><span class="bx">Example</span><span>"<b>Review 8 contracts item by item, all at once</b>" → Claude plans a strategy and deploys several helpers in one go</span></div>
+      <p class="label">Watch it — parallel work <span class="hint">Press play</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="wf-go">See parallel work ▶</button><button class="btn" id="wf-reset">Reset</button></div>
       <div class="sagrid" id="wf-grid"></div>
       <p class="status" id="wf-status" style="margin-top:14px;">Press "See parallel work" to try it.</p>
@@ -1871,7 +1888,7 @@ description: Write the weekly report in the company format
       <p class="defs">e.g. <b>"Every morning at 9, tidy up the new bugs and report to Slack."</b> Build it once and it repeats on its own. Below, pick <b>what triggers a routine</b>.</p>
       <p class="anlg"><span class="ak">Analogy</span><span><b>An assistant who works 24/7</b> — even if you don't come in, even with your computer off, it does the work on its own when the set time or signal arrives.</span></p>
       <div class="grp">
-        <h3>What triggers it — press one</h3>
+        <p class="label">What triggers it <span class="hint">press one</span></p>
         <div class="chips" id="rt-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-t="time">Schedule (by time)</button>
           <button class="chip" data-t="git">GitHub event</button>
@@ -1910,6 +1927,7 @@ description: Write the weekly report in the company format
       <h1>Diagnostics (doctor)</h1>
       <p class="lead"><b>Diagnostics (doctor)</b> is a tool that <b>checks your install status and settings all at once when something isn't working</b>. The 'first thing to try when something's broken.'</p>
       <p class="defs">Like a car's check-engine light, it points out where the problem is. Try running diagnostics yourself.</p>
+      <p class="label">Run the checkup <span class="hint">Press to run</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="dr-go">Run diagnostics ▶</button><button class="btn" id="dr-reset">Reset</button></div>
       <div class="cwvm"><span class="cwvmtag">Running /doctor checks</span><div id="dr-list"></div></div>
       <p class="status" id="dr-status" style="margin-top:12px;">Press "Run diagnostics" to try it.</p>

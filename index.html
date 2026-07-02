@@ -696,7 +696,8 @@
     <section class="page" id="usecases">
       <h1>이렇게 써요 (직업별)</h1>
       <p class="lead"><b>“내 일에 진짜 되나?”</b> — 직업을 골라, <b>늘 하던 일이 어떻게 바뀌는지</b> 처음부터 끝까지 보세요.</p>
-      <p class="defs">왼쪽 <b>전(지금)</b>과 오른쪽 <b>후(클로드와)</b>를 나란히 비교해요. 직업을 고르고 버튼을 눌러보세요.</p>
+      <p class="defs">왼쪽 <b>전(지금)</b>과 오른쪽 <b>후(클로드와)</b>를 나란히 비교해요.</p>
+      <p class="label">직접 비교해 보기 <span class="hint">직업을 고르고 눌러보세요</span></p>
       <div class="cwchips" id="uc-chips"></div>
       <div class="uctask"><span class="uc-tag">하던 일</span><span id="uc-task"></span></div>
       <div class="btnrow" style="margin:12px 0 14px;"><button class="btn solid" id="uc-go">전 → 후 비교 보기 ▶</button><button class="btn" id="uc-reset">초기화</button></div>
@@ -778,7 +779,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">고치고 싶은 파일이 정해져 있으면 — <b><code>@</code> 뒤에 파일 이름</b>으로 콕 집어줄 수 있어요. 클로드가 그 파일을 먼저 열어봐요.</p>
       <p class="defs">아래에서 <code>@</code> 를 눌러 파일 목록을 띄우고, 하나 골라보세요. 이름 일부를 치면 목록이 좁혀져요.</p>
       <div class="grp">
-        <h3>직접 해보기 — @ 로 파일 붙이기</h3>
+        <p class="label">직접 해보기 <span class="hint">@ 로 파일 붙이기</span></p>
         <div class="mline" id="mline"><span>예약 화면 고쳐줘 </span><span id="m-typed"></span><span class="mcaret">&nbsp;&nbsp;</span></div>
         <div class="atmenu" id="atmenu"></div>
         <div class="keys" style="margin-top:10px;">
@@ -810,7 +811,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">클로드 코드는 <b>키 몇 개</b>로 멈추고, 되돌리고, 모드를 바꿔요. 마우스로 눌러보며 익혀요.</p>
       <p class="defs">아래 <b>키 버튼을 클릭</b>하거나 <b>실제 키보드로 직접 눌러</b> 보세요 — 화면에서 <b>무슨 일이 일어나는지</b> 그대로 보여드려요. (실제 클로드 없이 동작만)</p>
       <div class="grp">
-        <h3>키를 눌러보세요</h3>
+        <p class="label">직접 해보기 <span class="hint">키를 눌러보세요</span></p>
         <div class="keys" id="keyrow">
           <button class="keycap" data-k="esc">Esc</button>
           <button class="keycap" data-k="escesc">Esc Esc</button>
@@ -848,6 +849,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">클로드가 <b>엉뚱한 방향</b>으로 갈 때 — 끝까지 기다릴 필요 없어요. <b>Esc로 끊고</b> 바로잡으면 돼요. 운전대는 나에게.</p>
       <p class="defs">클로드에게 “로그인 화면 <b>글자를 키워줘</b>” 라고 시켜요. 그런데 클로드가 <b>색을 바꾸기</b> 시작하면? 두 가지 대응을 비교해요.</p>
       <div class="grp">
+        <p class="label">직접 해보기 — 두 가지 대응 <span class="hint">눌러서 비교</span></p>
         <div class="exrow"><button class="btn solid" id="st-run">▶ 클로드에게 시키기</button></div>
         <div class="chatdemo">
           <div class="chatcol"><h4>그냥 둔다 <span class="badge no">두 배 일</span></h4>
@@ -884,7 +886,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>클로드가 일하는 걸 지켜보기</h3>
+        <p class="label">클로드가 일하는 걸 지켜보기 <span class="hint">눌러서 재생</span></p>
         <div class="exrow"><button class="btn solid" id="hw-go">▶ 지켜보기</button><button class="btn" id="hw-reset">처음으로</button></div>
         <div class="flow" id="hw-flow"></div>
         <p class="status" id="hw-status">버튼을 누르면 한 단계씩 진행돼요.</p>
@@ -916,7 +918,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>AI에게 쥐여주는 5가지 — 눌러보세요</h3>
+        <p class="label">AI에게 쥐여주는 5가지 <span class="hint">눌러보세요</span></p>
         <div class="chips" id="su-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="tool">도구</button>
           <button class="chip" data-k="inst">지시</button>
@@ -973,7 +975,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
 
       <div class="grp">
-        <h3>직접 갖춰보세요 — 환경 미터</h3>
+        <p class="label">직접 갖춰보세요 <span class="hint">환경 미터</span></p>
         <p class="defs" style="margin-top:0;">손잡이를 켤수록 같은 모델의 결과가 어떻게 좋아지는지 — 눌러보세요.</p>
         <div class="chips" id="hn-chips" style="margin:2px 0 0;"><button class="chip" data-k="ctx">맥락 (@·CLAUDE.md)</button><button class="chip" data-k="ins">구체적 지시</button><button class="chip" data-k="tool">도구 (MCP·스킬)</button><button class="chip" data-k="ver">검증 (테스트)</button></div>
         <div class="hmeter"><i id="hn-bar"></i></div>
@@ -1131,6 +1133,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>모델 고르기 (model)</h1>
       <p class="lead">클로드는 여러 모델이 있어요. <b>똑똑함 · 속도 · 비용</b>은 서로 맞바꾸는 관계예요.</p>
       <p class="defs">더 똑똑하면 보통 더 느리고 비싸요. 일에 맞게 고르면 됩니다. 아래에서 골라보세요.</p>
+      <p class="label">모델을 골라보세요 <span class="hint">카드를 누르면 아래 설명이 바뀌어요</span></p>
       <div class="mtabs" id="mtabs">
         <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">아주 똑똑함</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">균형 · 무난한 선택</div></button>
@@ -1204,6 +1207,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>메모리</h1>
       <p class="lead"><b>자동 메모리</b>는 ‘클로드가 스스로 적는 메모’예요. 내가 시키지 않아도 배운 걸 기록해 둬요.</p>
       <p class="defs">CLAUDE.md가 내가 쓰는 메모라면, 이건 클로드가 쓰는 메모예요. 어떻게 저장되고 다시 쓰이는지 재생해 볼게요.</p>
+      <p class="label">직접 보기 — 저장과 재사용 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="mem-go">자동 메모리 등록 과정 보기 ▶</button></div>
       <div class="cols">
         <div class="memflow">
@@ -1237,6 +1241,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>스킬 (Skills)</h1>
       <p class="lead"><b>스킬</b>은 한마디로 <b>‘나만의 레시피’</b>예요 — 자주 쓰는 작업 방법을 적어두면 한 번 만들고 계속 재사용해요.</p>
       <p class="defs">매번 처음부터 설명하는 것과, 스킬로 한 번 정해두는 것의 차이를 재생해 볼게요.</p>
+      <p class="label">직접 비교 — 스킬 없을 때 vs 있을 때 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sk-go">차이 보기 ▶</button></div>
       <div class="skgrid">
         <div class="skcol"><h4>스킬 없이 <span class="badge no">매번 반복</span></h4><div class="skb" id="sk-no"></div></div>
@@ -1263,7 +1268,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="defs">예: ‘배포하기’ 스킬에 <b>테스트 → 빌드 → 배포 → 확인</b> 절차를 담아두면, 매번 설명 안 해도 누구나 똑같이 해요. 아래 장점을 눌러보세요.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>팀 공용 체크리스트</b> — 매번 문서 돌려보며 단계를 빠뜨리는 대신, 한 번 만들어두면 새 팀원도 그대로 따라 해요.</span></p>
       <div class="grp">
-        <h3>스킬의 장점 — 눌러보세요</h3>
+        <p class="label">스킬의 장점 <span class="hint">눌러보세요</span></p>
         <div class="chips" id="ss-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="reuse">재사용</button>
           <button class="chip" data-k="team">팀 일관성</button>
@@ -1296,7 +1301,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="defs">스킬엔 <b>‘이 도구는 안 물어보고 써도 돼’</b>(allowed-tools) 같은 권한이 들어갈 수 있고, 스크립트가 딸려 <b>실행될 수도</b> 있어요. 그래서 신뢰가 중요해요.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>컨설턴트에게 일 맡기기 전</b> — “무슨 권한이 필요해요? 믿을 만한 분이에요? 절차 먼저 봐도 될까요?” 묻잖아요. “전부 무제한 접근이 필요하다”면 <b>빨간불</b>이에요.</span></p>
       <div class="grp">
-        <h3>설치 전 확인할 것 — 눌러보세요</h3>
+        <p class="label">설치 전 확인할 것 <span class="hint">눌러보세요</span></p>
         <div class="chips" id="sc-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="src">출처 신뢰</button>
           <button class="chip" data-k="perm">권한 범위</button>
@@ -1315,6 +1320,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="lead"><b>MCP</b>는 클로드에게 <b>다른 앱·서비스(지라·구글 드라이브 등)를 직접 쓸 수 있게</b> 연결해 주는 거예요 — 앱끼리 계정을 연결하는 것처럼요.</p>
       <p class="defs"><span class="gl" title="Model Context Protocol — 클로드가 외부 도구·데이터와 주고받는 공통 규칙(표준)">MCP = Model Context Protocol</span> (모델이 외부와 연결되는 표준). 버튼을 누르면 연결 과정을 볼 수 있어요.</p>
       <div class="bignote"><span class="bx">쉽게</span><span>어떤 앱에 ‘구글로 로그인’을 연결하면 그 앱이 내 구글을 쓸 수 있죠? <b>MCP도 그런 ‘연결’</b>이에요 — 클로드에게 지라·피그마 같은 도구를 연결해주면, 클로드가 그걸 직접 열어 일해요. 내가 일일이 복사·붙여넣기 안 해도 되고요.</span></div>
+      <p class="label">직접 연결해 보기 <span class="hint">도구를 하나씩 이어보세요</span></p>
       <div class="btnrow" style="margin-bottom:12px;"><button class="btn solid" id="mcp-go">하나씩 연결해보기 ▶</button><button class="btn" id="mcp-reset">초기화</button></div>
       <div class="mcpsim">
         <div class="mcphub">
@@ -1348,6 +1354,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="lead"><b>플러그인</b>은 한마디로 <b>‘기능 세트 상자’</b>예요 — 여러 기능을 한 번에 설치하는 묶음(휴대폰 ‘앱’처럼).</p>
       <p class="defs">스킬·도구 연결(MCP)·자동화(훅) 같은 걸 하나하나 따로 챙기는 대신, 누군가 잘 만들어 둔 묶음을 통째로 받아 쓰는 거예요.</p>
       <div class="bignote"><span class="bx">쉽게</span><span>휴대폰에 ‘사진 보정 앱’ 하나 깔면 필터·도구가 한꺼번에 따라오죠? <b>플러그인도 그래요.</b> 앞에서 본 스킬·MCP·서브에이전트·훅을 <b>한 묶음으로 설치</b>하는 거예요. (각각이 뭔지 다 몰라도 괜찮아요 — 여기선 ‘묶음’이라는 것만 알면 충분해요.)</span></div>
+      <p class="label">직접 설치해 보기 <span class="hint">묶음 설치를 눌러보세요</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="pl-go">묶음 설치 데모 ▶</button><button class="btn" id="pl-reset">초기화</button></div>
       <div class="plugbox">
         <div class="ph">플러그인 (배포 가능한 패키지)</div>
@@ -1409,7 +1416,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="defs">예시 업무: <b>“송장(인보이스) 100장에서 금액·날짜를 뽑아 엑셀에 입력”</b>. 평소대로 실행해 보고, <b>‘양식이 바뀌면’</b> 어떻게 달라지는지 직접 눌러보세요.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>RPA</b>는 <b>‘녹화·재생’ 기계</b> — 정해진 자리 클릭을 그대로 반복해요. <b>AI 에이전트</b>는 <b>‘뜻을 이해하는 직원’</b> — 상황이 바뀌어도 알아서 맞춰요.</span></p>
       <div class="grp">
-        <h3>같은 업무, 다르게 일해요</h3>
+        <p class="label">같은 업무, 다르게 일해요 <span class="hint">눌러서 비교</span></p>
         <div class="exrow">
           <button class="btn solid" id="rpa-run">▶ 평소처럼 실행</button>
           <button class="btn" id="rpa-change">양식이 바뀌었어요!</button>
@@ -1434,6 +1441,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>클로드에게 이미지 붙여넣기</h1>
       <p class="lead">클로드는 <b>이미지를 볼 수 있어요.</b> 스크린샷을 붙이면 말로 설명하는 것보다 훨씬 빠르고 정확해요.</p>
       <p class="defs">버튼을 누르면 클로드가 이미지를 어떻게 ‘읽어내는지’ 보여드려요.</p>
+      <p class="label">직접 보기 — 이미지 읽어내기 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin:0 0 16px;"><button class="btn solid" id="img-go">클로드가 분석하기 ▶</button></div>
       <div class="imggrid">
         <div class="shotframe"><div class="shot">
@@ -1476,7 +1484,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="defs">예: 회사 컴퓨터에 일을 시켜두고, 카페에서 폰으로 진행을 보며 <b>“그건 아니야, 이렇게 해”</b> 방향을 잡아요. 아래에서 연결되는 과정을 눌러보세요.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>책상의 동료와 영상통화</b> — 동료(내 PC)가 실제로 일을 하고, 나는 폰으로 화면을 보며 지시해요. 내 컴퓨터가 일하는 거예요.</span></p>
       <div class="grp">
-        <h3>어떻게 연결되나 — 눌러보세요</h3>
+        <p class="label">어떻게 연결되나 <span class="hint">눌러보세요</span></p>
         <div class="exrow"><button class="btn solid" id="rm-go">▶ 연결 과정 보기</button><button class="btn" id="rm-reset">처음으로</button></div>
         <div id="rm-flow"></div>
         <p class="status" id="rm-status">버튼을 누르면 폰으로 연결되는 과정을 보여드려요.</p>
@@ -1529,6 +1537,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>계획 모드</h1>
       <p class="lead">바로 고치기 전에, 클로드가 <b>‘무엇을 할지’ 계획부터 보여주고</b> 내 승인을 받아요.</p>
       <p class="defs">큰 변경이나 낯선 작업에서 ‘엉뚱한 방향’을 미리 막을 수 있어요. 흐름을 재생해 보세요.</p>
+      <p class="label">직접 보기 — 계획 → 승인 → 실행 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="plan-go">흐름 보기 ▶</button></div>
       <div class="steps">
         <div class="step" id="plan0"><div class="sn2">1</div><div><div class="st2">계획 모드로 전환</div><div class="sd3"><code>Shift</code>+<code>Tab</code> 또는 <code>/plan</code> — 이제 읽기만 하고 고치지 않아요</div></div></div>
@@ -1548,6 +1557,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="anlg"><span class="ak">비유</span><span>보조에게 얼마나 맡길지 정하는 것 — <b>“뭐든 먼저 물어봐”</b> ↔ <b>“늘 하던 건 알아서 해”</b>. 처음엔 물어보게, 익숙해지면 풀어줘요.</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>쉽게 말하면</b> · 클로드가 내 컴퓨터에서 뭔가(파일 고치기·명령 실행)를 할 때, <b>“이거 해도 될까요?”라고 얼마나 자주 물어볼지</b> 정하는 설정이에요. 처음엔 매번 물어보는 게 안전하고, 익숙해지면 자주 하는 일은 알아서 하게 풀어줄 수 있어요. 자동차의 ‘수동 ↔ 자동’ 같은 거예요.</div>
       <p class="defs">클로드 코드에서 <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> 으로 기본 모드(권한 요청·편집 수락·계획)를 순환해요. ‘자동·건너뛰기’ 같은 자율 모드는 별도 옵션이 필요할 수 있어요. 모드를 누르고 “동작 보기”로 차이를 확인하세요.</p>
+      <p class="label">직접 골라보기 — 5가지 모드 <span class="hint">모드를 누르고 동작 보기</span></p>
       <div class="cols">
         <div>
           <div class="pmenu" id="pmenu">
@@ -1581,6 +1591,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="lead">클로드는 내가 보낸 <b>요청마다 그 순간의 상태를 자동 저장</b>해 둬요. 마음에 안 들면 되돌릴 수 있어요.</p>
       <p class="defs">‘시간 여행’처럼 이전 시점으로 갈 수 있어요. 점을 눌러 되돌려 보세요.</p>
       <div class="callout" style="margin-bottom:14px;">상황: “디자인을 모던하게 바꿔줘” → 파일 10개가 바뀌었는데 마음에 안 들어요. 어떻게 되돌릴까요?</div>
+      <p class="label">직접 되돌려 보기 <span class="hint">점을 고르고 복구 버튼을 눌러보세요</span></p>
       <div class="timeline" id="rw-timeline"></div>
       <div class="tllabels" id="rw-labels"></div>
       <div class="btnrow" style="margin:14px 0;"><button class="btn" id="rw-code">코드만 복구</button><button class="btn" id="rw-both">코드+대화 복구</button><button class="btn" id="rw-reset">초기화</button></div>
@@ -1644,6 +1655,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>슬래시 명령</h1>
       <p class="lead"><code class="inlinecode">/</code> 로 시작하는 <b>단축 명령</b>이에요. 메시지 맨 앞에 입력해요.</p>
       <p class="defs">아래 명령을 눌러보면, 입력했을 때 어떤 일이 일어나는지 보여드려요.</p>
+      <p class="label">직접 입력해 보기 <span class="hint">명령을 누르면 아래 터미널에서 실행돼요</span></p>
       <div class="chips" style="margin:0 0 12px; margin-left:0;" id="cmdchips">
         <button class="chip" data-c="init">/init</button><button class="chip" data-c="help">/help</button><button class="chip" data-c="clear">/clear</button><button class="chip" data-c="compact">/compact</button><button class="chip" data-c="model">/model</button>
       </div>
@@ -1744,6 +1756,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>맥락은 왜 관리해야 할까?</h1>
       <p class="lead">컨텍스트(맥락)는 클로드의 <b>‘책상’</b>이에요. 책상이 지저분해지면 일이 <b>느려지고, 비싸지고, 실수가 늘어요</b>. 그래서 제때 정리하는 게 중요해요.</p>
       <p class="defs">같은 작업을 <b>방치하는 세션</b>과 <b>제때 정리하는 세션</b>에 똑같이 보내봐요. 맥락이 쌓일수록 <b>두 세션의 결과가 어떻게 갈리는지</b> 비교해 보세요.</p>
+      <p class="label">직접 비교 — 방치 vs 관리 <span class="hint">작업을 보내 보세요</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="mg-go">다음 작업 보내기 ▶</button><button class="btn" id="mg-reset">처음부터 ↺</button></div>
       <div class="mg2">
         <div class="mg2col bad">
@@ -1782,6 +1795,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="lead">대화가 길어지면 ‘압축’이 일어나요. <b>길게 쌓인 내용이 짧은 요약 하나로</b> 바뀌죠 — 책상 위 서류를 핵심만 한 장으로 정리하는 것과 비슷해요.</p>
       <p class="anlg"><span class="ak">비유</span><span>하루치 영수증을 밤에 “오늘 매출 OO원” <b>한 줄로 정리해 서랍을 비우듯</b> — 길게 쌓인 대화를 핵심 요약으로 줄여 자리를 내요.</span></p>
       <p class="defs">아래는 한 작업의 대화 기록이에요. ‘압축하기’를 누르면 내용이 실제로 어떻게 줄어드는지 보세요.</p>
+      <p class="label">직접 압축해 보기 <span class="hint">누르면 대화가 실제로 줄어요</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">압축하기 (/compact) ▶</button><button class="btn" id="cx-reset">다시 보기</button></div>
 
       <p class="label" id="cx-label">압축 전 — 대화 기록 (길게 쌓임)</p>
@@ -1837,6 +1851,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="anlg"><span class="ak">비유</span><span><b>“김치가 익을 때까지 매일 맛보기”</b>처럼 — 조건이 될 때까지 알아서 반복해요. (loop는 ‘정해진 시각마다’)</span></p>
       <p class="defs">한 번 하고 끝이 아니라, <b>매 턴 뒤에 ‘조건을 만족했는지’ 스스로 판정</b>하고, 안 됐으면 또 해요. 아래에서 보세요.</p>
       <div class="bignote"><span class="bx">예시 목표</span><span>“이 안내문의 <b>오타가 0개가 될 때까지</b> 고쳐줘”</span></div>
+      <p class="label">직접 돌려보기 — 조건 만족까지 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">목표 시작 ▶</button><button class="btn" id="goal-reset">초기화</button></div>
       <div class="cwvm"><span class="cwvmtag">조건이 될 때까지 자동 반복</span><div id="goal-turns"></div></div>
       <p class="status" id="goal-status" style="margin-top:12px;">“목표 시작”을 눌러보세요.</p>
@@ -1849,7 +1864,8 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>반복 실행 (loop)</h1>
       <p class="lead"><b>반복(loop)</b>은 <b>정해진 간격마다 같은 작업을 자동으로 다시 실행</b>하는 기능이에요. 예: 10분마다 ‘새 주문 들어왔는지 확인하고 알림’.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>“아침 7시마다 화분에 물 주기”</b>처럼 — 정해진 간격마다 자동으로 다시 해요. (goal은 ‘조건이 될 때까지’)</span></p>
-      <p class="defs">목표(goal)가 ‘조건이 될 때까지’라면, 반복(loop)은 ‘<b>정해진 시간 간격으로</b>’예요. 간격을 고르고 시작해 보세요. (시뮬은 시간을 빠르게 돌려 보여줘요.)</p>
+      <p class="defs">목표(goal)가 ‘조건이 될 때까지’라면, 반복(loop)은 ‘<b>정해진 시간 간격으로</b>’예요. (시뮬은 시간을 빠르게 돌려 보여줘요.)</p>
+      <p class="label">직접 돌려보기 — 정한 간격마다 <span class="hint">간격을 고르고 시작해 보세요</span></p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">반복 시작 ▶</button><button class="btn" id="loop-reset">멈춤·초기화</button></div>
       <p class="label">실행 기록</p>
@@ -1865,6 +1881,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="lead"><b>워크플로(workflows)</b>는 <b>아주 큰 일을 클로드가 스스로 ‘작전’을 짜서 여러 도우미(서브에이전트)를 동시에 굴려</b> 한꺼번에 처리하는 기능이에요.</p>
       <p class="defs">서브에이전트가 ‘한 명에게 맡기기’라면, 워크플로는 ‘<b>여러 명을 동시에 조율</b>’해요. 큰 검토·정리·조사에 강해요(Max·Team 등 상위 플랜).</p>
       <div class="bignote"><span class="bx">예시</span><span>“계약서 <b>8건을 항목별로 동시에 검토</b>해줘” → 클로드가 작전을 짜서 도우미 여러 명을 한 번에 투입</span></div>
+      <p class="label">직접 보기 — 동시 작업 <span class="hint">눌러서 재생</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="wf-go">동시 작업 보기 ▶</button><button class="btn" id="wf-reset">초기화</button></div>
       <div class="sagrid" id="wf-grid"></div>
       <p class="status" id="wf-status" style="margin-top:14px;">“동시 작업 보기”를 눌러보세요.</p>
@@ -1878,7 +1895,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <p class="defs">예: <b>“매일 아침 9시에 새 버그를 정리해 슬랙에 보고”</b>. 한 번 만들어두면 알아서 반복돼요. 아래에서 <b>무엇이 루틴을 실행시키는지</b> 골라보세요.</p>
       <p class="anlg"><span class="ak">비유</span><span><b>24시간 일하는 비서</b> — 내가 출근 안 해도, 컴퓨터가 꺼져 있어도, 정한 시각이나 신호가 오면 알아서 일을 해둬요.</span></p>
       <div class="grp">
-        <h3>무엇이 실행시키나 — 눌러보세요</h3>
+        <p class="label">무엇이 실행시키나 <span class="hint">눌러보세요</span></p>
         <div class="chips" id="rt-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-t="time">일정 (시각마다)</button>
           <button class="chip" data-t="git">깃헙 이벤트</button>
@@ -1917,6 +1934,7 @@ description: 주간 보고서를 회사 양식으로 작성
       <h1>진단 (doctor)</h1>
       <p class="lead"><b>진단(doctor)</b>은 <b>뭔가 잘 안 될 때 설치 상태와 설정을 한 번에 점검</b>해 주는 도구예요. ‘안 될 때 먼저 해볼 것’.</p>
       <p class="defs">자동차 점검등처럼, 어디가 문제인지 짚어줘요. 진단을 직접 돌려보세요.</p>
+      <p class="label">직접 진단해 보기 <span class="hint">눌러서 실행</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="dr-go">진단 실행 ▶</button><button class="btn" id="dr-reset">초기화</button></div>
       <div class="cwvm"><span class="cwvmtag">/doctor 점검 중</span><div id="dr-list"></div></div>
       <p class="status" id="dr-status" style="margin-top:12px;">“진단 실행”을 눌러보세요.</p>

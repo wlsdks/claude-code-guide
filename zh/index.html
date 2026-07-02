@@ -696,7 +696,8 @@
     <section class="page" id="usecases">
       <h1>实际用例（按职业）</h1>
       <p class="lead"><b>“对我的工作真的有用吗？”</b> —— 选一个职业，看看<b>平时做的事会怎样改变</b>，从头到尾。</p>
-      <p class="defs">把左边的<b>之前（现在）</b>和右边的<b>之后（用 Claude）</b>并排比较。选一个职业，按一下按钮。</p>
+      <p class="defs">把左边的<b>之前（现在）</b>和右边的<b>之后（用 Claude）</b>并排比较。</p>
+      <p class="label">动手比一比 <span class="hint">选个职业，按一下</span></p>
       <div class="cwchips" id="uc-chips"></div>
       <div class="uctask"><span class="uc-tag">在做的事</span><span id="uc-task"></span></div>
       <div class="btnrow" style="margin:12px 0 14px;"><button class="btn solid" id="uc-go">看 之前 → 之后 对比 ▶</button><button class="btn" id="uc-reset">重置</button></div>
@@ -778,7 +779,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">要改的文件已经确定的话 —— 用 <b><code>@</code> 加文件名</b>就能直接点名。Claude 会先打开那个文件。</p>
       <p class="defs">在下面点 <code>@</code> 弹出文件列表，选一个试试。（输入名称的一部分即可缩小列表）</p>
       <div class="grp">
-        <h3>动手试 —— 用 @ 附加文件</h3>
+        <p class="label">动手试 <span class="hint">用 @ 附加文件</span></p>
         <div class="mline" id="mline"><span>改一下预约页面 </span><span id="m-typed"></span><span class="mcaret">&nbsp;&nbsp;</span></div>
         <div class="atmenu" id="atmenu"></div>
         <div class="keys" style="margin-top:10px;">
@@ -810,7 +811,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude Code 用<b>几个键</b>就能叫停、回退、切换模式。用鼠标点点试试就会了。</p>
       <p class="defs"><b>点击下面的按键</b>，或<b>直接按键盘上对应的键</b> —— 屏幕上<b>会发生什么</b>，就原样展示给你看。（无需真实 Claude，只看交互）</p>
       <div class="grp">
-        <h3>按按这些键</h3>
+        <p class="label">动手试 <span class="hint">按按这些键</span></p>
         <div class="keys" id="keyrow">
           <button class="keycap" data-k="esc">Esc</button>
           <button class="keycap" data-k="escesc">Esc Esc</button>
@@ -848,6 +849,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <p class="lead">Claude 走<b>偏方向</b>时 —— 不用等它跑完。<b>用 Esc 打断</b>再纠正就行。方向盘在你手里。</p>
       <p class="defs">让 Claude “把登录页面的<b>文字放大</b>”。结果它却开始<b>改颜色</b>？对比两种应对。</p>
       <div class="grp">
+        <p class="label">动手试 —— 两种应对 <span class="hint">按一下对比</span></p>
         <div class="exrow"><button class="btn solid" id="st-run">▶ 让 Claude 去做</button></div>
         <div class="chatdemo">
           <div class="chatcol"><h4>放着不管 <span class="badge no">两倍活</span></h4>
@@ -884,7 +886,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>看着 Claude 干活</h3>
+        <p class="label">看着 Claude 干活 <span class="hint">按一下播放</span></p>
         <div class="exrow"><button class="btn solid" id="hw-go">▶ 看它工作</button><button class="btn" id="hw-reset">重来</button></div>
         <div class="flow" id="hw-flow"></div>
         <p class="status" id="hw-status">点按钮就一步步进行。</p>
@@ -916,7 +918,7 @@ irm https://claude.ai/install.ps1 | iex</div>
         </svg>
        </div>
        <div class="grp">
-        <h3>递给 AI 的 5 样东西 —— 点点看</h3>
+        <p class="label">递给 AI 的 5 样东西 <span class="hint">点点看</span></p>
         <div class="chips" id="su-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="tool">工具</button>
           <button class="chip" data-k="inst">指示</button>
@@ -973,7 +975,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       </div>
 
       <div class="grp">
-        <h3>动手试 —— 环境仪表</h3>
+        <p class="label">动手试 <span class="hint">环境仪表</span></p>
         <p class="defs" style="margin-top:0;">看同一模型的结果如何随把手开启而变好 —— 点点看。</p>
         <div class="chips" id="hn-chips" style="margin:2px 0 0;"><button class="chip" data-k="ctx">上下文 (@·CLAUDE.md)</button><button class="chip" data-k="ins">具体指示</button><button class="chip" data-k="tool">工具 (MCP·技能)</button><button class="chip" data-k="ver">验证 (测试)</button></div>
         <div class="hmeter"><i id="hn-bar"></i></div>
@@ -1131,6 +1133,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>选择模型 (model)</h1>
       <p class="lead">Claude 有好几个模型。<b>聪明 · 速度 · 成本</b>三者之间是互相取舍的关系。</p>
       <p class="defs">越聪明通常越慢、越贵。按需要的工作来选就行。在下面挑一个试试。</p>
+      <p class="label">选一个模型 <span class="hint">点卡片，下面的说明会变</span></p>
       <div class="mtabs" id="mtabs">
         <button class="mtab" data-m="opus"><div class="mn">Opus 4.8</div><div class="mt">非常聪明</div></button>
         <button class="mtab on" data-m="sonnet"><div class="mn">Sonnet 4.6</div><div class="mt">均衡 · 稳妥之选</div></button>
@@ -1204,6 +1207,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>记忆</h1>
       <p class="lead"><b>自动记忆</b>是‘Claude 自己写下的备忘’。即使我没让它做，它也会把学到的东西记下来。</p>
       <p class="defs">如果说 CLAUDE.md 是我写的备忘，那这个就是 Claude 写的备忘。来回放一下它是怎么保存、又怎么被再次用上的。</p>
+      <p class="label">看一看 —— 保存与复用 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="mem-go">查看自动记忆登记的过程 ▶</button></div>
       <div class="cols">
         <div class="memflow">
@@ -1237,6 +1241,7 @@ irm https://claude.ai/install.ps1 | iex</div>
       <h1>技能 (Skills)</h1>
       <p class="lead"><b>技能</b>一句话就是<b>‘自己的食谱’</b> —— 把常用的操作方法写下来，做一次以后反复用。</p>
       <p class="defs">来回放一下：每次从头解释，和用技能定义一次，差别有多大。</p>
+      <p class="label">对比 —— 没技能 vs 有技能 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="sk-go">查看差异 ▶</button></div>
       <div class="skgrid">
         <div class="skcol"><h4>不用技能 <span class="badge no">每次重复</span></h4><div class="skb" id="sk-no"></div></div>
@@ -1263,7 +1268,7 @@ description: 按公司格式撰写周报
       <p class="defs">例如：把<b>测试 → 构建 → 部署 → 检查</b>的流程装进‘部署’技能里，不用每次都解释，谁来都照着做一样。点点下面的好处。</p>
       <p class="anlg"><span class="ak">比喻</span><span><b>团队共用清单</b> —— 不用每次翻文档还漏步骤，做好一次，新成员也照着来。</span></p>
       <div class="grp">
-        <h3>技能的好处 —— 点点看</h3>
+        <p class="label">技能的好处 <span class="hint">点点看</span></p>
         <div class="chips" id="ss-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="reuse">复用</button>
           <button class="chip" data-k="team">团队一致</button>
@@ -1296,7 +1301,7 @@ description: 按公司格式撰写周报
       <p class="defs">技能里可能带着 <b>‘这个工具不用问就能用’</b>（allowed-tools）这类权限，还可能附带脚本被<b>执行</b>。所以信任很重要。</p>
       <p class="anlg"><span class="ak">比喻</span><span><b>把活交给顾问之前</b> —— 你会问“需要什么权限？靠谱吗？能先看看流程吗？”。如果对方说“需要全部无限制访问”，那就是<b>红灯</b>。</span></p>
       <div class="grp">
-        <h3>安装前要确认的 —— 点点看</h3>
+        <p class="label">安装前要确认的 <span class="hint">点点看</span></p>
         <div class="chips" id="sc-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-k="src">来源可信</button>
           <button class="chip" data-k="perm">权限范围</button>
@@ -1315,6 +1320,7 @@ description: 按公司格式撰写周报
       <p class="lead"><b>MCP</b> 让 Claude 能<b>直接使用其他应用和服务</b>（Jira、Google Drive 等）——通过连接，就像应用之间互相关联账号一样。</p>
       <p class="defs"><span class="gl" title="Model Context Protocol —— Claude 与外部工具、数据交互的通用规则（标准）">MCP = Model Context Protocol</span>（模型与外部连接的标准）。点按钮就能看到连接的过程。</p>
       <div class="bignote"><span class="bx">通俗讲</span><span>给某个 App 接上‘用 Google 登录’，它就能用你的 Google 账号了吧？<b>MCP 也是这样的‘连接’</b> —— 给 Claude 接上 Jira、Figma 这类工具，Claude 就能直接打开它们来干活。你也不用一项项地复制粘贴了。</span></div>
+      <p class="label">动手连一连 <span class="hint">把工具一个个接上</span></p>
       <div class="btnrow" style="margin-bottom:12px;"><button class="btn solid" id="mcp-go">逐个连接试试 ▶</button><button class="btn" id="mcp-reset">重置</button></div>
       <div class="mcpsim">
         <div class="mcphub">
@@ -1348,6 +1354,7 @@ description: 按公司格式撰写周报
       <p class="lead"><b>插件</b>一句话就是<b>‘功能套装盒’</b> —— 把多个功能一次性装好的打包（就像手机上的‘App’）。</p>
       <p class="defs">不用一个个单独去张罗技能、工具连接（MCP）、自动化（Hook），而是把别人做好的整包拿来直接用。</p>
       <div class="bignote"><span class="bx">通俗讲</span><span>手机上装一个‘修图 App’，滤镜、工具就一并跟着来了吧？<b>插件也一样。</b> 把前面讲过的技能、MCP、子代理、Hook <b>打成一个包安装</b>。（每一个具体是什么不全懂也没关系 —— 这里只要知道它是‘一个打包’就够了。）</span></div>
+      <p class="label">动手装一装 <span class="hint">按一下打包安装</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="pl-go">一次安装演示 ▶</button><button class="btn" id="pl-reset">重置</button></div>
       <div class="plugbox">
         <div class="ph">插件 (可发布的软件包)</div>
@@ -1409,7 +1416,7 @@ description: 按公司格式撰写周报
       <p class="defs">示例任务：<b>“从 100 张发票里提取金额和日期，填进 Excel”</b>。先照常跑一遍，再点点看<b>‘格式变了’</b>会怎样。</p>
       <p class="anlg"><span class="ak">比喻</span><span><b>RPA</b> 是<b>‘录制·回放’机器</b> —— 照着固定位置的点击一遍遍重复。<b>AI 智能体</b>是<b>‘理解含义的员工’</b> —— 情况变了也会自己应对。</span></p>
       <div class="grp">
-        <h3>同一件活，干法不同</h3>
+        <p class="label">同一件活，干法不同 <span class="hint">按一下对比</span></p>
         <div class="exrow">
           <button class="btn solid" id="rpa-run">▶ 照常运行</button>
           <button class="btn" id="rpa-change">格式变了！</button>
@@ -1434,6 +1441,7 @@ description: 按公司格式撰写周报
       <h1>把图片粘给 Claude</h1>
       <p class="lead">Claude <b>能看图片。</b> 贴上截图，比用话描述要快得多、准得多。</p>
       <p class="defs">点按钮，看看 Claude 是怎么把图片‘读懂’的。</p>
+      <p class="label">看一看 —— 读图过程 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin:0 0 16px;"><button class="btn solid" id="img-go">让 Claude 分析 ▶</button></div>
       <div class="imggrid">
         <div class="shotframe"><div class="shot">
@@ -1476,7 +1484,7 @@ description: 按公司格式撰写周报
       <p class="defs">例如：让公司电脑去干活，自己在咖啡馆用手机看进度，<b>“不对，得这么来”</b>地把方向。点点下面看看连接的过程。</p>
       <p class="anlg"><span class="ak">比喻</span><span><b>和桌前的同事视频通话</b> —— 同事（我的电脑）真正在干活，我用手机看着画面下指示。是我的电脑在干活。</span></p>
       <div class="grp">
-        <h3>怎么连接 —— 点点看</h3>
+        <p class="label">怎么连接 <span class="hint">点点看</span></p>
         <div class="exrow"><button class="btn solid" id="rm-go">▶ 看连接过程</button><button class="btn" id="rm-reset">重来</button></div>
         <div id="rm-flow"></div>
         <p class="status" id="rm-status">点按钮，给你演示用手机连接的过程。</p>
@@ -1529,6 +1537,7 @@ description: 按公司格式撰写周报
       <h1>计划模式</h1>
       <p class="lead">在直接动手改之前，Claude 会<b>先把‘要做什么’的计划给你看</b>，等你批准。</p>
       <p class="defs">在大改动或不熟悉的工作里，可以提前避免‘跑偏方向’。来回放一下流程。</p>
+      <p class="label">看一看 —— 计划 → 批准 → 执行 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="plan-go">查看流程 ▶</button></div>
       <div class="steps">
         <div class="step" id="plan0"><div class="sn2">1</div><div><div class="st2">切换到计划模式</div><div class="sd3"><code>Shift</code>+<code>Tab</code> 或 <code>/plan</code> —— 现在只读，不修改</div></div></div>
@@ -1548,6 +1557,7 @@ description: 按公司格式撰写周报
       <p class="anlg"><span class="ak">比方</span><span>就像决定给助手多大自主权——<b>“每件事先问我”</b> ↔ <b>“常做的就自己办”</b>。一开始多问，熟了再放开。</span></p>
       <div class="callout" style="margin:0 0 8px;"><b>简单说</b> · 当 Claude 要在我电脑上做点什么（改文件、执行命令）时，<b>它要多频繁地问“这个可以做吗？”</b> —— 这就是这项设置。一开始每次都问比较安全，熟练之后可以放开，让它自己处理常做的事。就像汽车的‘手动 ↔ 自动’。</div>
       <p class="defs">在 Claude Code 里用 <code class="inlinecode">Shift</code>+<code class="inlinecode">Tab</code> 循环切换基本模式（请求权限·接受编辑·计划）。‘自动·跳过’这类自主模式可能需要单独的选项。点一个模式，再用“查看动作”确认差异。</p>
+      <p class="label">选一选 —— 5种模式 <span class="hint">点一个再看动作</span></p>
       <div class="cols">
         <div>
           <div class="pmenu" id="pmenu">
@@ -1581,6 +1591,7 @@ description: 按公司格式撰写周报
       <p class="lead">Claude 会<b>在我发出的每个请求处自动保存当时的状态</b>。不满意的话可以回退。</p>
       <p class="defs">像‘时间旅行’一样回到之前的某个时刻。点圆点回退试试。</p>
       <div class="callout" style="margin-bottom:14px;">场景：“把设计改得现代一点” → 改了 10 个文件，但我不喜欢。怎么退回去？</div>
+      <p class="label">动手回退 <span class="hint">选一个点，再按恢复按钮</span></p>
       <div class="timeline" id="rw-timeline"></div>
       <div class="tllabels" id="rw-labels"></div>
       <div class="btnrow" style="margin:14px 0;"><button class="btn" id="rw-code">只恢复代码</button><button class="btn" id="rw-both">恢复代码+对话</button><button class="btn" id="rw-reset">重置</button></div>
@@ -1644,6 +1655,7 @@ description: 按公司格式撰写周报
       <h1>斜杠命令</h1>
       <p class="lead">以 <code class="inlinecode">/</code> 开头的<b>快捷命令</b>。输在消息的最前面。</p>
       <p class="defs">点下面的命令试试，看看输入它时会发生什么。</p>
+      <p class="label">试试命令 <span class="hint">点一个，会在下面的终端执行</span></p>
       <div class="chips" style="margin:0 0 12px; margin-left:0;" id="cmdchips">
         <button class="chip" data-c="init">/init</button><button class="chip" data-c="help">/help</button><button class="chip" data-c="clear">/clear</button><button class="chip" data-c="compact">/compact</button><button class="chip" data-c="model">/model</button>
       </div>
@@ -1743,6 +1755,7 @@ description: 按公司格式撰写周报
       <h1>为什么要管理上下文？</h1>
       <p class="lead">上下文（脉络）就是 Claude 的 <b>“桌子”</b>。桌子乱了，工作就会 <b>更慢、更贵、更容易出错</b>。所以及时整理很重要。</p>
       <p class="defs">把同一个任务同时发给‘放任不管’的会话和‘随手整理’的会话。看看上下文堆积时，两个会话的结果如何分道扬镳。</p>
+      <p class="label">动手比 —— 放任 vs 管理 <span class="hint">发个任务试试</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="mg-go">发送下一个任务 ▶</button><button class="btn" id="mg-reset">从头开始 ↺</button></div>
       <div class="mg2">
         <div class="mg2col bad">
@@ -1781,6 +1794,7 @@ description: 按公司格式撰写周报
       <p class="lead">对话变长时会发生‘压缩’。<b>长长堆积的内容会变成一段简短的摘要</b> —— 就像把桌上的一堆文件，只挑核心整理成一页。</p>
       <p class="anlg"><span class="ak">比方</span><span>就像把一天的收据汇成一句<b>“今日总额”</b>、清空抽屉一样——把长长的对话压成简短摘要，腾出空间。</span></p>
       <p class="defs">下面是某次工作的对话记录。点‘压缩’，看看内容实际是怎么缩短的。</p>
+      <p class="label">动手压缩 <span class="hint">按一下，对话真的会变短</span></p>
       <div class="btnrow" style="margin-bottom:16px;"><button class="btn solid" id="cx-go">压缩 (/compact) ▶</button><button class="btn" id="cx-reset">重新看一遍</button></div>
 
       <p class="label" id="cx-label">压缩前 —— 对话记录（长长堆积）</p>
@@ -1836,6 +1850,7 @@ description: 按公司格式撰写周报
       <p class="anlg"><span class="ak">比方</span><span>就像<b>“尝到味道对了为止”</b>——直到条件达成才停。（loop 是‘每隔固定时间’）</span></p>
       <p class="defs">不是做一次就结束，而是<b>每一轮之后都自己判定‘有没有满足条件’</b>，没满足就再做。下面来看看。</p>
       <div class="bignote"><span class="bx">示例目标</span><span>“把这份通知<b>改到错别字为 0 个为止</b>”</span></div>
+      <p class="label">跑一跑 —— 直到满足条件 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="goal-go">开始目标 ▶</button><button class="btn" id="goal-reset">重置</button></div>
       <div class="cwvm"><span class="cwvmtag">直到满足条件为止自动反复</span><div id="goal-turns"></div></div>
       <p class="status" id="goal-status" style="margin-top:12px;">点一下“开始目标”。</p>
@@ -1848,7 +1863,8 @@ description: 按公司格式撰写周报
       <h1>重复执行 (loop)</h1>
       <p class="lead"><b>重复（loop）</b>是<b>每隔固定的间隔，自动再次执行同一件工作</b>的功能。例如：每 10 分钟‘确认一下有没有新订单进来，并发出提醒’。</p>
       <p class="anlg"><span class="ak">比方</span><span>就像<b>“每天早上7点给花浇水”</b>——按固定间隔自动再做一次。（goal 是‘直到条件达成’）</span></p>
-      <p class="defs">如果说目标（goal）是‘直到满足条件为止’，那重复（loop）就是‘<b>按固定的时间间隔</b>’。选个间隔再开始看看。（模拟会把时间快进给你看。）</p>
+      <p class="defs">如果说目标（goal）是‘直到满足条件为止’，那重复（loop）就是‘<b>按固定的时间间隔</b>’。（模拟会把时间快进给你看。）</p>
+      <p class="label">跑一跑 —— 按固定间隔 <span class="hint">选个间隔再开始</span></p>
       <div class="chips" id="loop-chips" style="margin-bottom:12px;"></div>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="loop-go">开始重复 ▶</button><button class="btn" id="loop-reset">停止·重置</button></div>
       <p class="label">执行记录</p>
@@ -1864,6 +1880,7 @@ description: 按公司格式撰写周报
       <p class="lead"><b>工作流（workflows）</b>是<b>面对非常大的工作时，Claude 自己排好‘作战计划’，同时调动多个助手（子代理）</b>一次性处理完的功能。</p>
       <p class="defs">如果说子代理是‘交给一个人’，那工作流就是‘<b>同时协调多个人</b>’。擅长大型的检查·整理·调查（Max·Team 等更高方案）。</p>
       <div class="bignote"><span class="bx">示例</span><span>“把<b>8 份合同按项目同时检查</b>” → Claude 排好作战计划，一次投入多名助手</span></div>
+      <p class="label">看一看 —— 同时作业 <span class="hint">按一下播放</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="wf-go">看看并行作业 ▶</button><button class="btn" id="wf-reset">重置</button></div>
       <div class="sagrid" id="wf-grid"></div>
       <p class="status" id="wf-status" style="margin-top:14px;">点一下“看看并行作业”。</p>
@@ -1877,7 +1894,7 @@ description: 按公司格式撰写周报
       <p class="defs">例如：<b>“每天早上 9 点整理新 bug 并报到 Slack”</b>。做好一次就会自动重复。在下面选选看<b>是什么触发了例程</b>。</p>
       <p class="anlg"><span class="ak">比喻</span><span><b>24 小时工作的助理</b> —— 我没上班、电脑关着，只要到了定好的时刻或信号来了，它就自己把活干好。</span></p>
       <div class="grp">
-        <h3>是什么触发的 —— 点点看</h3>
+        <p class="label">是什么触发的 <span class="hint">点点看</span></p>
         <div class="chips" id="rt-chips" style="margin:4px 0 14px;">
           <button class="chip on" data-t="time">日程（按时刻）</button>
           <button class="chip" data-t="git">GitHub 事件</button>
@@ -1916,6 +1933,7 @@ description: 按公司格式撰写周报
       <h1>诊断 (doctor)</h1>
       <p class="lead"><b>诊断（doctor）</b>是<b>在出了问题时，一次性检查安装状态和设置</b>的工具。‘不行的时候先试试它’。</p>
       <p class="defs">就像汽车的检查指示灯，帮你指出哪里出了问题。亲自跑一次诊断看看。</p>
+      <p class="label">动手诊断 <span class="hint">按一下运行</span></p>
       <div class="btnrow" style="margin-bottom:14px;"><button class="btn solid" id="dr-go">运行诊断 ▶</button><button class="btn" id="dr-reset">重置</button></div>
       <div class="cwvm"><span class="cwvmtag">/doctor 检查中</span><div id="dr-list"></div></div>
       <p class="status" id="dr-status" style="margin-top:12px;">点一下“运行诊断”。</p>
